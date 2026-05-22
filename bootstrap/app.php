@@ -13,6 +13,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Railway (and most PaaS hosts) terminate TLS at an edge proxy and
+        // forward requests internally over HTTP with X-Forwarded-* headers.
+        // Without trusting those headers Laravel thinks every request is
+        // http:// + a private IP — which breaks generated URLs (storage,
+        // Sanctum cookies, password-reset links). '*' is safe here because
+        // Railway only routes traffic that originated at its edge.
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'admin' => EnsureAdmin::class,
         ]);

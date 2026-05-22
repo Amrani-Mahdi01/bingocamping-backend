@@ -1,0 +1,18 @@
+# Railway / Nixpacks build config for the BINGO Laravel backend.
+#
+# Nixpacks auto-detects PHP from composer.json (php: ^8.3) — we only
+# override two things:
+#   1. Install with --no-dev --optimize-autoloader so the prod container
+#      isn't carrying phpunit / pint / pail / etc.
+#   2. Run migrations + storage:link before the HTTP server starts.
+#      `migrate --force` is idempotent (Laravel tracks applied migrations
+#      in a `migrations` table), so it's safe to run on every deploy.
+#      `storage:link --force` recreates the public/storage symlink each
+#      boot, which is what makes the Volume mount actually serve images
+#      at /storage/<path>.
+
+[phases.install]
+cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
+
+[start]
+cmd = "php artisan migrate --force && php artisan storage:link --force && php artisan serve --host=0.0.0.0 --port=$PORT"

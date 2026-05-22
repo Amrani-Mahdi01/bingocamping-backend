@@ -19,9 +19,11 @@ return [
     'allowed_origins' => $origins,
 
     'allowed_origins_patterns' => [
-        // Allow every Vercel preview deploy that ends in .vercel.app once
-        // we have the project name. Comment out until we deploy.
-        // '#^https://bingo-[a-z0-9-]+\.vercel\.app$#',
+        // Allow every Vercel preview deploy (the `*-<hash>.vercel.app`
+        // domains Vercel auto-generates per branch / PR). The production
+        // domain should still be listed explicitly via FRONTEND_URLS so
+        // it's discoverable from config rather than relying on the regex.
+        '#^https://[a-z0-9-]+\.vercel\.app$#',
     ],
 
     'allowed_headers' => ['*'],
