@@ -1,0 +1,4223 @@
+[
+    {
+        "id": 1,
+        "wilaya_id": "01",
+        "code": "01000",
+        "name_fr": "Adrar",
+        "name_ar": "أدرار",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 2,
+        "wilaya_id": "01",
+        "code": "01100",
+        "name_fr": "Reggane",
+        "name_ar": "رقان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 3,
+        "wilaya_id": "01",
+        "code": "01110",
+        "name_fr": "Aoulef",
+        "name_ar": "أولف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 4,
+        "wilaya_id": "01",
+        "code": "01120",
+        "name_fr": "Tinerkouk",
+        "name_ar": "تنركوك",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 5,
+        "wilaya_id": "01",
+        "code": "01130",
+        "name_fr": "Charouine",
+        "name_ar": "شروين",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 6,
+        "wilaya_id": "01",
+        "code": "01140",
+        "name_fr": "Fenoughil",
+        "name_ar": "فنوغيل",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 7,
+        "wilaya_id": "01",
+        "code": "01150",
+        "name_fr": "Tsabit",
+        "name_ar": "تسابيت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 8,
+        "wilaya_id": "02",
+        "code": "02000",
+        "name_fr": "Chlef",
+        "name_ar": "الشلف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 9,
+        "wilaya_id": "02",
+        "code": "02100",
+        "name_fr": "Ténès",
+        "name_ar": "تنس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 10,
+        "wilaya_id": "02",
+        "code": "02110",
+        "name_fr": "Boukadir",
+        "name_ar": "بوقادير",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 11,
+        "wilaya_id": "02",
+        "code": "02120",
+        "name_fr": "Oued Sly",
+        "name_ar": "وادي سلي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 12,
+        "wilaya_id": "02",
+        "code": "02130",
+        "name_fr": "Ouled Farès",
+        "name_ar": "أولاد فارس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 13,
+        "wilaya_id": "02",
+        "code": "02140",
+        "name_fr": "Beni Haoua",
+        "name_ar": "بني حواء",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 14,
+        "wilaya_id": "02",
+        "code": "02150",
+        "name_fr": "Sobha",
+        "name_ar": "الصبحة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 15,
+        "wilaya_id": "02",
+        "code": "02160",
+        "name_fr": "El Karimia",
+        "name_ar": "الكريمية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 16,
+        "wilaya_id": "02",
+        "code": "02170",
+        "name_fr": "Sidi Akkacha",
+        "name_ar": "سيدي عكاشة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 17,
+        "wilaya_id": "03",
+        "code": "03000",
+        "name_fr": "Laghouat",
+        "name_ar": "الأغواط",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 18,
+        "wilaya_id": "03",
+        "code": "03100",
+        "name_fr": "Aflou",
+        "name_ar": "أفلو",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 19,
+        "wilaya_id": "03",
+        "code": "03110",
+        "name_fr": "Ksar El Hirane",
+        "name_ar": "قصر الحيران",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 20,
+        "wilaya_id": "03",
+        "code": "03120",
+        "name_fr": "Hassi R'Mel",
+        "name_ar": "حاسي الرمل",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 21,
+        "wilaya_id": "03",
+        "code": "03130",
+        "name_fr": "Hassi Delaa",
+        "name_ar": "حاسي الدلاعة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 22,
+        "wilaya_id": "03",
+        "code": "03140",
+        "name_fr": "Brida",
+        "name_ar": "البريدة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 23,
+        "wilaya_id": "03",
+        "code": "03150",
+        "name_fr": "El Ghicha",
+        "name_ar": "الغيشة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 24,
+        "wilaya_id": "04",
+        "code": "04000",
+        "name_fr": "Oum El Bouaghi",
+        "name_ar": "أم البواقي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 25,
+        "wilaya_id": "04",
+        "code": "04100",
+        "name_fr": "Aïn Beïda",
+        "name_ar": "عين البيضاء",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 26,
+        "wilaya_id": "04",
+        "code": "04110",
+        "name_fr": "Aïn M'lila",
+        "name_ar": "عين مليلة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 27,
+        "wilaya_id": "04",
+        "code": "04120",
+        "name_fr": "Souk Naamane",
+        "name_ar": "سوق نعمان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 28,
+        "wilaya_id": "04",
+        "code": "04130",
+        "name_fr": "Sigus",
+        "name_ar": "سيقوس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 29,
+        "wilaya_id": "04",
+        "code": "04140",
+        "name_fr": "F'kirina",
+        "name_ar": "فكيرينة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 30,
+        "wilaya_id": "04",
+        "code": "04150",
+        "name_fr": "Berriche",
+        "name_ar": "البريش",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 31,
+        "wilaya_id": "05",
+        "code": "05000",
+        "name_fr": "Batna",
+        "name_ar": "باتنة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 32,
+        "wilaya_id": "05",
+        "code": "05100",
+        "name_fr": "Barika",
+        "name_ar": "بريكة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 33,
+        "wilaya_id": "05",
+        "code": "05110",
+        "name_fr": "Merouana",
+        "name_ar": "مروانة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 34,
+        "wilaya_id": "05",
+        "code": "05120",
+        "name_fr": "N'Gaous",
+        "name_ar": "نقاوس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 35,
+        "wilaya_id": "05",
+        "code": "05130",
+        "name_fr": "Arris",
+        "name_ar": "أريس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 36,
+        "wilaya_id": "05",
+        "code": "05140",
+        "name_fr": "Tazoult",
+        "name_ar": "تازولت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 37,
+        "wilaya_id": "05",
+        "code": "05150",
+        "name_fr": "Aïn Touta",
+        "name_ar": "عين التوتة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 38,
+        "wilaya_id": "05",
+        "code": "05160",
+        "name_fr": "Seriana",
+        "name_ar": "سريانة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 39,
+        "wilaya_id": "05",
+        "code": "05170",
+        "name_fr": "Timgad",
+        "name_ar": "تيمقاد",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 40,
+        "wilaya_id": "06",
+        "code": "06000",
+        "name_fr": "Béjaïa",
+        "name_ar": "بجاية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 41,
+        "wilaya_id": "06",
+        "code": "06100",
+        "name_fr": "Akbou",
+        "name_ar": "أقبو",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 42,
+        "wilaya_id": "06",
+        "code": "06110",
+        "name_fr": "El Kseur",
+        "name_ar": "القصر",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 43,
+        "wilaya_id": "06",
+        "code": "06120",
+        "name_fr": "Sidi Aïch",
+        "name_ar": "سيدي عيش",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 44,
+        "wilaya_id": "06",
+        "code": "06130",
+        "name_fr": "Kherrata",
+        "name_ar": "خراطة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 45,
+        "wilaya_id": "06",
+        "code": "06140",
+        "name_fr": "Souk El Tenine",
+        "name_ar": "سوق الإثنين",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 46,
+        "wilaya_id": "06",
+        "code": "06150",
+        "name_fr": "Tichi",
+        "name_ar": "تيشي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 47,
+        "wilaya_id": "06",
+        "code": "06160",
+        "name_fr": "Aokas",
+        "name_ar": "أوقاس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 48,
+        "wilaya_id": "06",
+        "code": "06170",
+        "name_fr": "Amizour",
+        "name_ar": "أميزور",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 49,
+        "wilaya_id": "06",
+        "code": "06180",
+        "name_fr": "Tazmalt",
+        "name_ar": "تازمالت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 50,
+        "wilaya_id": "06",
+        "code": "06190",
+        "name_fr": "Seddouk",
+        "name_ar": "صدوق",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 51,
+        "wilaya_id": "07",
+        "code": "07000",
+        "name_fr": "Biskra",
+        "name_ar": "بسكرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 52,
+        "wilaya_id": "07",
+        "code": "07100",
+        "name_fr": "Tolga",
+        "name_ar": "طولقة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 53,
+        "wilaya_id": "07",
+        "code": "07110",
+        "name_fr": "Sidi Okba",
+        "name_ar": "سيدي عقبة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 54,
+        "wilaya_id": "07",
+        "code": "07120",
+        "name_fr": "El Kantara",
+        "name_ar": "القنطرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 55,
+        "wilaya_id": "07",
+        "code": "07130",
+        "name_fr": "Ourlal",
+        "name_ar": "أورلال",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 56,
+        "wilaya_id": "07",
+        "code": "07140",
+        "name_fr": "Foughala",
+        "name_ar": "فوغالة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 57,
+        "wilaya_id": "07",
+        "code": "07150",
+        "name_fr": "M'lili",
+        "name_ar": "مليلي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 58,
+        "wilaya_id": "07",
+        "code": "07160",
+        "name_fr": "Zeribet El Oued",
+        "name_ar": "زريبة الوادي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 59,
+        "wilaya_id": "08",
+        "code": "08000",
+        "name_fr": "Béchar",
+        "name_ar": "بشار",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 60,
+        "wilaya_id": "08",
+        "code": "08100",
+        "name_fr": "Abadla",
+        "name_ar": "العبادلة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 61,
+        "wilaya_id": "08",
+        "code": "08110",
+        "name_fr": "Kenadsa",
+        "name_ar": "القنادسة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 62,
+        "wilaya_id": "08",
+        "code": "08120",
+        "name_fr": "Taghit",
+        "name_ar": "تاغيت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 63,
+        "wilaya_id": "08",
+        "code": "08130",
+        "name_fr": "Béni Ounif",
+        "name_ar": "بني ونيف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 64,
+        "wilaya_id": "08",
+        "code": "08140",
+        "name_fr": "Lahmar",
+        "name_ar": "لحمر",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 65,
+        "wilaya_id": "09",
+        "code": "09000",
+        "name_fr": "Blida",
+        "name_ar": "البليدة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 66,
+        "wilaya_id": "09",
+        "code": "09100",
+        "name_fr": "Boufarik",
+        "name_ar": "بوفاريك",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 67,
+        "wilaya_id": "09",
+        "code": "09110",
+        "name_fr": "Mouzaïa",
+        "name_ar": "موزاية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 68,
+        "wilaya_id": "09",
+        "code": "09120",
+        "name_fr": "El Affroun",
+        "name_ar": "العفرون",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 69,
+        "wilaya_id": "09",
+        "code": "09130",
+        "name_fr": "Beni Mered",
+        "name_ar": "بني مراد",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 70,
+        "wilaya_id": "09",
+        "code": "09140",
+        "name_fr": "Bouinan",
+        "name_ar": "بوينان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 71,
+        "wilaya_id": "09",
+        "code": "09150",
+        "name_fr": "Larbaâ",
+        "name_ar": "الأربعاء",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 72,
+        "wilaya_id": "09",
+        "code": "09160",
+        "name_fr": "Soumaa",
+        "name_ar": "الصومعة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 73,
+        "wilaya_id": "09",
+        "code": "09170",
+        "name_fr": "Meftah",
+        "name_ar": "مفتاح",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 74,
+        "wilaya_id": "09",
+        "code": "09180",
+        "name_fr": "Oued El Alleug",
+        "name_ar": "وادي العلايق",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 75,
+        "wilaya_id": "10",
+        "code": "10000",
+        "name_fr": "Bouira",
+        "name_ar": "البويرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 76,
+        "wilaya_id": "10",
+        "code": "10100",
+        "name_fr": "Lakhdaria",
+        "name_ar": "الأخضرية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 77,
+        "wilaya_id": "10",
+        "code": "10110",
+        "name_fr": "Sour El Ghozlane",
+        "name_ar": "سور الغزلان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 78,
+        "wilaya_id": "10",
+        "code": "10120",
+        "name_fr": "M'Chedallah",
+        "name_ar": "مشدالة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 79,
+        "wilaya_id": "10",
+        "code": "10130",
+        "name_fr": "Aïn Bessem",
+        "name_ar": "عين بسام",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 80,
+        "wilaya_id": "10",
+        "code": "10140",
+        "name_fr": "Bordj Okhriss",
+        "name_ar": "برج أخريص",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 81,
+        "wilaya_id": "10",
+        "code": "10150",
+        "name_fr": "El Hachimia",
+        "name_ar": "الهاشمية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 82,
+        "wilaya_id": "10",
+        "code": "10160",
+        "name_fr": "Ahnif",
+        "name_ar": "أحنيف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 83,
+        "wilaya_id": "10",
+        "code": "10170",
+        "name_fr": "Bechloul",
+        "name_ar": "بشلول",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 84,
+        "wilaya_id": "10",
+        "code": "10180",
+        "name_fr": "Kadiria",
+        "name_ar": "القادرية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 85,
+        "wilaya_id": "11",
+        "code": "11000",
+        "name_fr": "Tamanrasset",
+        "name_ar": "تمنراست",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 86,
+        "wilaya_id": "11",
+        "code": "11100",
+        "name_fr": "Abalessa",
+        "name_ar": "أبلسة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 87,
+        "wilaya_id": "11",
+        "code": "11110",
+        "name_fr": "In Amguel",
+        "name_ar": "عين أمقل",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 88,
+        "wilaya_id": "11",
+        "code": "11120",
+        "name_fr": "Idles",
+        "name_ar": "إيدلس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 89,
+        "wilaya_id": "11",
+        "code": "11130",
+        "name_fr": "Tazrouk",
+        "name_ar": "تاظروك",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 90,
+        "wilaya_id": "12",
+        "code": "12000",
+        "name_fr": "Tébessa",
+        "name_ar": "تبسة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 91,
+        "wilaya_id": "12",
+        "code": "12100",
+        "name_fr": "Bir El Ater",
+        "name_ar": "بئر العاتر",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 92,
+        "wilaya_id": "12",
+        "code": "12110",
+        "name_fr": "Cheria",
+        "name_ar": "الشريعة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 93,
+        "wilaya_id": "12",
+        "code": "12120",
+        "name_fr": "El Aouinet",
+        "name_ar": "العوينات",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 94,
+        "wilaya_id": "12",
+        "code": "12130",
+        "name_fr": "Negrine",
+        "name_ar": "نقرين",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 95,
+        "wilaya_id": "12",
+        "code": "12140",
+        "name_fr": "Ouenza",
+        "name_ar": "الونزة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 96,
+        "wilaya_id": "12",
+        "code": "12150",
+        "name_fr": "El Kouif",
+        "name_ar": "الكويف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 97,
+        "wilaya_id": "12",
+        "code": "12160",
+        "name_fr": "Hammamet",
+        "name_ar": "حمامات",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 98,
+        "wilaya_id": "13",
+        "code": "13000",
+        "name_fr": "Tlemcen",
+        "name_ar": "تلمسان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 99,
+        "wilaya_id": "13",
+        "code": "13100",
+        "name_fr": "Maghnia",
+        "name_ar": "مغنية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 100,
+        "wilaya_id": "13",
+        "code": "13110",
+        "name_fr": "Ghazaouet",
+        "name_ar": "الغزوات",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 101,
+        "wilaya_id": "13",
+        "code": "13120",
+        "name_fr": "Nedroma",
+        "name_ar": "ندرومة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 102,
+        "wilaya_id": "13",
+        "code": "13130",
+        "name_fr": "Sebdou",
+        "name_ar": "سبدو",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 103,
+        "wilaya_id": "13",
+        "code": "13140",
+        "name_fr": "Remchi",
+        "name_ar": "الرمشي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 104,
+        "wilaya_id": "13",
+        "code": "13150",
+        "name_fr": "Ouled Mimoun",
+        "name_ar": "أولاد ميمون",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 105,
+        "wilaya_id": "13",
+        "code": "13160",
+        "name_fr": "Aïn Tallout",
+        "name_ar": "عين تالوت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 106,
+        "wilaya_id": "13",
+        "code": "13170",
+        "name_fr": "Mansourah",
+        "name_ar": "المنصورة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 107,
+        "wilaya_id": "13",
+        "code": "13180",
+        "name_fr": "Sebra",
+        "name_ar": "السبرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 108,
+        "wilaya_id": "14",
+        "code": "14000",
+        "name_fr": "Tiaret",
+        "name_ar": "تيارت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 109,
+        "wilaya_id": "14",
+        "code": "14100",
+        "name_fr": "Sougueur",
+        "name_ar": "السوقر",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 110,
+        "wilaya_id": "14",
+        "code": "14110",
+        "name_fr": "Frenda",
+        "name_ar": "فرندة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 111,
+        "wilaya_id": "14",
+        "code": "14120",
+        "name_fr": "Mahdia",
+        "name_ar": "المهدية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 112,
+        "wilaya_id": "14",
+        "code": "14130",
+        "name_fr": "Ksar Chellala",
+        "name_ar": "قصر الشلالة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 113,
+        "wilaya_id": "14",
+        "code": "14140",
+        "name_fr": "Mechraa Safa",
+        "name_ar": "مشرع الصفا",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 114,
+        "wilaya_id": "14",
+        "code": "14150",
+        "name_fr": "Aïn Deheb",
+        "name_ar": "عين الذهب",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 115,
+        "wilaya_id": "14",
+        "code": "14160",
+        "name_fr": "Hamadia",
+        "name_ar": "الحمادية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 116,
+        "wilaya_id": "15",
+        "code": "15000",
+        "name_fr": "Tizi Ouzou",
+        "name_ar": "تيزي وزو",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 117,
+        "wilaya_id": "15",
+        "code": "15100",
+        "name_fr": "Azazga",
+        "name_ar": "أزازقة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 118,
+        "wilaya_id": "15",
+        "code": "15110",
+        "name_fr": "Boghni",
+        "name_ar": "بوغني",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 119,
+        "wilaya_id": "15",
+        "code": "15120",
+        "name_fr": "Draâ Ben Khedda",
+        "name_ar": "ذراع بن خدة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 120,
+        "wilaya_id": "15",
+        "code": "15130",
+        "name_fr": "Ouaguenoun",
+        "name_ar": "واقنون",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 121,
+        "wilaya_id": "15",
+        "code": "15140",
+        "name_fr": "Larbaâ Nath Irathen",
+        "name_ar": "الأربعاء نايث إيراثن",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 122,
+        "wilaya_id": "15",
+        "code": "15150",
+        "name_fr": "Tigzirt",
+        "name_ar": "تيقزيرت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 123,
+        "wilaya_id": "15",
+        "code": "15160",
+        "name_fr": "Aïn El Hammam",
+        "name_ar": "عين الحمام",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 124,
+        "wilaya_id": "15",
+        "code": "15170",
+        "name_fr": "Maâtkas",
+        "name_ar": "معاتقة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 125,
+        "wilaya_id": "15",
+        "code": "15180",
+        "name_fr": "Béni Yenni",
+        "name_ar": "بني يني",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 126,
+        "wilaya_id": "15",
+        "code": "15190",
+        "name_fr": "Tadmaït",
+        "name_ar": "تادمايت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 127,
+        "wilaya_id": "16",
+        "code": "16000",
+        "name_fr": "Alger Centre",
+        "name_ar": "الجزائر الوسطى",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 128,
+        "wilaya_id": "16",
+        "code": "16001",
+        "name_fr": "Sidi M'Hamed",
+        "name_ar": "سيدي امحمد",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 129,
+        "wilaya_id": "16",
+        "code": "16002",
+        "name_fr": "El Madania",
+        "name_ar": "المدنية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 130,
+        "wilaya_id": "16",
+        "code": "16003",
+        "name_fr": "Hamma Annassers",
+        "name_ar": "الحامة الأنصار",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 131,
+        "wilaya_id": "16",
+        "code": "16004",
+        "name_fr": "Bab El Oued",
+        "name_ar": "باب الواد",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 132,
+        "wilaya_id": "16",
+        "code": "16005",
+        "name_fr": "Bologhine",
+        "name_ar": "بولوغين",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 133,
+        "wilaya_id": "16",
+        "code": "16006",
+        "name_fr": "Casbah",
+        "name_ar": "القصبة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 134,
+        "wilaya_id": "16",
+        "code": "16007",
+        "name_fr": "Oued Koriche",
+        "name_ar": "وادي قريش",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 135,
+        "wilaya_id": "16",
+        "code": "16008",
+        "name_fr": "Bir Mourad Raïs",
+        "name_ar": "بئر مراد رايس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 136,
+        "wilaya_id": "16",
+        "code": "16009",
+        "name_fr": "El Biar",
+        "name_ar": "الأبيار",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 137,
+        "wilaya_id": "16",
+        "code": "16010",
+        "name_fr": "Bouzaréah",
+        "name_ar": "بوزريعة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 138,
+        "wilaya_id": "16",
+        "code": "16011",
+        "name_fr": "Birkhadem",
+        "name_ar": "بئر خادم",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 139,
+        "wilaya_id": "16",
+        "code": "16012",
+        "name_fr": "El Harrach",
+        "name_ar": "الحراش",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 140,
+        "wilaya_id": "16",
+        "code": "16013",
+        "name_fr": "Baraki",
+        "name_ar": "براقي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 141,
+        "wilaya_id": "16",
+        "code": "16014",
+        "name_fr": "Oued Smar",
+        "name_ar": "وادي السمار",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 142,
+        "wilaya_id": "16",
+        "code": "16015",
+        "name_fr": "Bourouba",
+        "name_ar": "بوروبة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 143,
+        "wilaya_id": "16",
+        "code": "16016",
+        "name_fr": "Hussein Dey",
+        "name_ar": "حسين داي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 144,
+        "wilaya_id": "16",
+        "code": "16017",
+        "name_fr": "Kouba",
+        "name_ar": "القبة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 145,
+        "wilaya_id": "16",
+        "code": "16018",
+        "name_fr": "Bachdjerrah",
+        "name_ar": "باش جراح",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 146,
+        "wilaya_id": "16",
+        "code": "16019",
+        "name_fr": "Dar El Beïda",
+        "name_ar": "الدار البيضاء",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 147,
+        "wilaya_id": "16",
+        "code": "16020",
+        "name_fr": "Bab Ezzouar",
+        "name_ar": "باب الزوار",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 148,
+        "wilaya_id": "16",
+        "code": "16021",
+        "name_fr": "Ben Aknoun",
+        "name_ar": "بن عكنون",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 149,
+        "wilaya_id": "16",
+        "code": "16022",
+        "name_fr": "Dely Brahim",
+        "name_ar": "دالي إبراهيم",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 150,
+        "wilaya_id": "16",
+        "code": "16023",
+        "name_fr": "Hammamet",
+        "name_ar": "حمامات",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 151,
+        "wilaya_id": "16",
+        "code": "16024",
+        "name_fr": "Rais Hamidou",
+        "name_ar": "الرايس حميدو",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 152,
+        "wilaya_id": "16",
+        "code": "16025",
+        "name_fr": "Djasr Kasentina",
+        "name_ar": "جسر قسنطينة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 153,
+        "wilaya_id": "16",
+        "code": "16026",
+        "name_fr": "El Mouradia",
+        "name_ar": "المرادية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 154,
+        "wilaya_id": "16",
+        "code": "16027",
+        "name_fr": "Hydra",
+        "name_ar": "حيدرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 155,
+        "wilaya_id": "16",
+        "code": "16028",
+        "name_fr": "Mohammadia",
+        "name_ar": "المحمدية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 156,
+        "wilaya_id": "16",
+        "code": "16029",
+        "name_fr": "Bordj El Kiffan",
+        "name_ar": "برج الكيفان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 157,
+        "wilaya_id": "16",
+        "code": "16030",
+        "name_fr": "El Magharia",
+        "name_ar": "المقارية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 158,
+        "wilaya_id": "16",
+        "code": "16031",
+        "name_fr": "Beni Messous",
+        "name_ar": "بني مسوس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 159,
+        "wilaya_id": "16",
+        "code": "16032",
+        "name_fr": "Les Eucalyptus",
+        "name_ar": "الكاليتوس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 160,
+        "wilaya_id": "16",
+        "code": "16033",
+        "name_fr": "Birtouta",
+        "name_ar": "بئر توتة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 161,
+        "wilaya_id": "16",
+        "code": "16034",
+        "name_fr": "Tassala El Merdja",
+        "name_ar": "تسالة المرجة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 162,
+        "wilaya_id": "16",
+        "code": "16035",
+        "name_fr": "Ouled Chebel",
+        "name_ar": "أولاد شبل",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 163,
+        "wilaya_id": "16",
+        "code": "16036",
+        "name_fr": "Sidi Moussa",
+        "name_ar": "سيدي موسى",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 164,
+        "wilaya_id": "16",
+        "code": "16037",
+        "name_fr": "Aïn Taya",
+        "name_ar": "عين طاية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 165,
+        "wilaya_id": "16",
+        "code": "16038",
+        "name_fr": "Bordj El Bahri",
+        "name_ar": "برج البحري",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 166,
+        "wilaya_id": "16",
+        "code": "16039",
+        "name_fr": "Marsa",
+        "name_ar": "المرسى",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 167,
+        "wilaya_id": "16",
+        "code": "16040",
+        "name_fr": "Haraoua",
+        "name_ar": "هراوة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 168,
+        "wilaya_id": "16",
+        "code": "16041",
+        "name_fr": "Rouïba",
+        "name_ar": "الرويبة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 169,
+        "wilaya_id": "16",
+        "code": "16042",
+        "name_fr": "Réghaïa",
+        "name_ar": "الرغاية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 170,
+        "wilaya_id": "16",
+        "code": "16043",
+        "name_fr": "Aïn Benian",
+        "name_ar": "عين بنيان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 171,
+        "wilaya_id": "16",
+        "code": "16044",
+        "name_fr": "Staoueli",
+        "name_ar": "سطاوالي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 172,
+        "wilaya_id": "16",
+        "code": "16045",
+        "name_fr": "Zéralda",
+        "name_ar": "زرالدة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 173,
+        "wilaya_id": "16",
+        "code": "16046",
+        "name_fr": "Mahelma",
+        "name_ar": "محلمة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 174,
+        "wilaya_id": "16",
+        "code": "16047",
+        "name_fr": "Rahmania",
+        "name_ar": "الرحمانية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 175,
+        "wilaya_id": "16",
+        "code": "16048",
+        "name_fr": "Souidania",
+        "name_ar": "السويدانية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 176,
+        "wilaya_id": "16",
+        "code": "16049",
+        "name_fr": "Cheraga",
+        "name_ar": "الشراقة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 177,
+        "wilaya_id": "16",
+        "code": "16050",
+        "name_fr": "Ouled Fayet",
+        "name_ar": "أولاد فايت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 178,
+        "wilaya_id": "16",
+        "code": "16051",
+        "name_fr": "El Achour",
+        "name_ar": "العاشور",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 179,
+        "wilaya_id": "16",
+        "code": "16052",
+        "name_fr": "Draria",
+        "name_ar": "درارية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 180,
+        "wilaya_id": "16",
+        "code": "16053",
+        "name_fr": "Douera",
+        "name_ar": "دويرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 181,
+        "wilaya_id": "16",
+        "code": "16054",
+        "name_fr": "Baba Hassen",
+        "name_ar": "بابا حسن",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 182,
+        "wilaya_id": "16",
+        "code": "16055",
+        "name_fr": "Khraicia",
+        "name_ar": "الخرايسية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 183,
+        "wilaya_id": "16",
+        "code": "16056",
+        "name_fr": "Saoula",
+        "name_ar": "سعولة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 184,
+        "wilaya_id": "17",
+        "code": "17000",
+        "name_fr": "Djelfa",
+        "name_ar": "الجلفة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 185,
+        "wilaya_id": "17",
+        "code": "17100",
+        "name_fr": "Aïn Oussera",
+        "name_ar": "عين وسارة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 186,
+        "wilaya_id": "17",
+        "code": "17110",
+        "name_fr": "Hassi Bahbah",
+        "name_ar": "حاسي بحبح",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 187,
+        "wilaya_id": "17",
+        "code": "17120",
+        "name_fr": "Birine",
+        "name_ar": "بيرين",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 188,
+        "wilaya_id": "17",
+        "code": "17130",
+        "name_fr": "Messad",
+        "name_ar": "مسعد",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 189,
+        "wilaya_id": "17",
+        "code": "17140",
+        "name_fr": "Charef",
+        "name_ar": "الشارف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 190,
+        "wilaya_id": "17",
+        "code": "17150",
+        "name_fr": "El Idrissia",
+        "name_ar": "الإدريسية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 191,
+        "wilaya_id": "17",
+        "code": "17160",
+        "name_fr": "Faidh El Botma",
+        "name_ar": "فيض البطمة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 192,
+        "wilaya_id": "18",
+        "code": "18000",
+        "name_fr": "Jijel",
+        "name_ar": "جيجل",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 193,
+        "wilaya_id": "18",
+        "code": "18100",
+        "name_fr": "Taher",
+        "name_ar": "الطاهير",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 194,
+        "wilaya_id": "18",
+        "code": "18110",
+        "name_fr": "El Milia",
+        "name_ar": "الميلية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 195,
+        "wilaya_id": "18",
+        "code": "18120",
+        "name_fr": "Chekfa",
+        "name_ar": "شكفة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 196,
+        "wilaya_id": "18",
+        "code": "18130",
+        "name_fr": "Sidi Maarouf",
+        "name_ar": "سيدي معروف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 197,
+        "wilaya_id": "18",
+        "code": "18140",
+        "name_fr": "Texenna",
+        "name_ar": "تاكسنة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 198,
+        "wilaya_id": "18",
+        "code": "18150",
+        "name_fr": "Settara",
+        "name_ar": "الستارة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 199,
+        "wilaya_id": "18",
+        "code": "18160",
+        "name_fr": "Ziama Mansouriah",
+        "name_ar": "زيامة منصورية",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 200,
+        "wilaya_id": "19",
+        "code": "19000",
+        "name_fr": "Sétif",
+        "name_ar": "سطيف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 201,
+        "wilaya_id": "19",
+        "code": "19100",
+        "name_fr": "El Eulma",
+        "name_ar": "العلمة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 202,
+        "wilaya_id": "19",
+        "code": "19110",
+        "name_fr": "Aïn Oulmène",
+        "name_ar": "عين ولمان",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 203,
+        "wilaya_id": "19",
+        "code": "19120",
+        "name_fr": "Bougaâ",
+        "name_ar": "بوقاعة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 204,
+        "wilaya_id": "19",
+        "code": "19130",
+        "name_fr": "Aïn Azel",
+        "name_ar": "عين أزال",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 205,
+        "wilaya_id": "19",
+        "code": "19140",
+        "name_fr": "Beni Aziz",
+        "name_ar": "بني عزيز",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 206,
+        "wilaya_id": "19",
+        "code": "19150",
+        "name_fr": "Aïn El Kebira",
+        "name_ar": "عين الكبيرة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 207,
+        "wilaya_id": "19",
+        "code": "19160",
+        "name_fr": "Hammam Sokhna",
+        "name_ar": "حمام السخنة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 208,
+        "wilaya_id": "19",
+        "code": "19170",
+        "name_fr": "Bir Haddada",
+        "name_ar": "بير حدادة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 209,
+        "wilaya_id": "19",
+        "code": "19180",
+        "name_fr": "Salah Bey",
+        "name_ar": "صالح باي",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 210,
+        "wilaya_id": "19",
+        "code": "19190",
+        "name_fr": "Bouandas",
+        "name_ar": "بوعنداس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 211,
+        "wilaya_id": "20",
+        "code": "20000",
+        "name_fr": "Saïda",
+        "name_ar": "سعيدة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 212,
+        "wilaya_id": "20",
+        "code": "20100",
+        "name_fr": "El Hassasna",
+        "name_ar": "الحساسنة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 213,
+        "wilaya_id": "20",
+        "code": "20110",
+        "name_fr": "Aïn El Hadjar",
+        "name_ar": "عين الحجر",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 214,
+        "wilaya_id": "20",
+        "code": "20120",
+        "name_fr": "Hounet",
+        "name_ar": "الهونت",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 215,
+        "wilaya_id": "20",
+        "code": "20130",
+        "name_fr": "Sidi Boubekeur",
+        "name_ar": "سيدي بوبكر",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 216,
+        "wilaya_id": "20",
+        "code": "20140",
+        "name_fr": "Youb",
+        "name_ar": "يوب",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 217,
+        "wilaya_id": "20",
+        "code": "20150",
+        "name_fr": "Ouled Brahim",
+        "name_ar": "أولاد ابراهيم",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 218,
+        "wilaya_id": "21",
+        "code": "21000",
+        "name_fr": "Skikda",
+        "name_ar": "سكيكدة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 219,
+        "wilaya_id": "21",
+        "code": "21100",
+        "name_fr": "Azzaba",
+        "name_ar": "عزابة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 220,
+        "wilaya_id": "21",
+        "code": "21110",
+        "name_fr": "Collo",
+        "name_ar": "القل",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 221,
+        "wilaya_id": "21",
+        "code": "21120",
+        "name_fr": "El Harrouch",
+        "name_ar": "الحروش",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 222,
+        "wilaya_id": "21",
+        "code": "21130",
+        "name_fr": "Sidi Mezghiche",
+        "name_ar": "سيدي مزغيش",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 223,
+        "wilaya_id": "21",
+        "code": "21140",
+        "name_fr": "Ramdane Djamel",
+        "name_ar": "رمضان جمال",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 224,
+        "wilaya_id": "21",
+        "code": "21150",
+        "name_fr": "Ben Azzouz",
+        "name_ar": "بن عزوز",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 225,
+        "wilaya_id": "21",
+        "code": "21160",
+        "name_fr": "Filfila",
+        "name_ar": "فيلفلة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 226,
+        "wilaya_id": "21",
+        "code": "21170",
+        "name_fr": "Tamalous",
+        "name_ar": "تمالوس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 227,
+        "wilaya_id": "22",
+        "code": "22000",
+        "name_fr": "Sidi Bel Abbès",
+        "name_ar": "سيدي بلعباس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 228,
+        "wilaya_id": "22",
+        "code": "22100",
+        "name_fr": "Tessala",
+        "name_ar": "تسالة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 229,
+        "wilaya_id": "22",
+        "code": "22110",
+        "name_fr": "Ben Badis",
+        "name_ar": "بن باديس",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 230,
+        "wilaya_id": "22",
+        "code": "22120",
+        "name_fr": "Mostefa Ben Brahim",
+        "name_ar": "مصطفى بن إبراهيم",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 231,
+        "wilaya_id": "22",
+        "code": "22130",
+        "name_fr": "Sfisef",
+        "name_ar": "سفيزف",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 232,
+        "wilaya_id": "22",
+        "code": "22140",
+        "name_fr": "Marhoum",
+        "name_ar": "مرحوم",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 233,
+        "wilaya_id": "22",
+        "code": "22150",
+        "name_fr": "Telagh",
+        "name_ar": "تلاغ",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 234,
+        "wilaya_id": "22",
+        "code": "22160",
+        "name_fr": "Mérine",
+        "name_ar": "مرين",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 235,
+        "wilaya_id": "22",
+        "code": "22170",
+        "name_fr": "Ras El Ma",
+        "name_ar": "رأس الماء",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 236,
+        "wilaya_id": "23",
+        "code": "23000",
+        "name_fr": "Annaba",
+        "name_ar": "عنابة",
+        "created_at": "2026-05-24 12:26:20",
+        "updated_at": "2026-05-24 12:26:20"
+    },
+    {
+        "id": 237,
+        "wilaya_id": "23",
+        "code": "23100",
+        "name_fr": "El Hadjar",
+        "name_ar": "الحجار",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 238,
+        "wilaya_id": "23",
+        "code": "23110",
+        "name_fr": "Berrahal",
+        "name_ar": "برحال",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 239,
+        "wilaya_id": "23",
+        "code": "23120",
+        "name_fr": "El Bouni",
+        "name_ar": "البوني",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 240,
+        "wilaya_id": "23",
+        "code": "23130",
+        "name_fr": "Sidi Amar",
+        "name_ar": "سيدي عمار",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 241,
+        "wilaya_id": "23",
+        "code": "23140",
+        "name_fr": "Chetaibi",
+        "name_ar": "شطايبي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 242,
+        "wilaya_id": "23",
+        "code": "23150",
+        "name_fr": "Aïn Berda",
+        "name_ar": "عين برادة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 243,
+        "wilaya_id": "24",
+        "code": "24000",
+        "name_fr": "Guelma",
+        "name_ar": "قالمة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 244,
+        "wilaya_id": "24",
+        "code": "24100",
+        "name_fr": "Oued Zenati",
+        "name_ar": "وادي الزناتي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 245,
+        "wilaya_id": "24",
+        "code": "24110",
+        "name_fr": "Bouchegouf",
+        "name_ar": "بوشقوف",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 246,
+        "wilaya_id": "24",
+        "code": "24120",
+        "name_fr": "Hammam Debagh",
+        "name_ar": "حمام دباغ",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 247,
+        "wilaya_id": "24",
+        "code": "24130",
+        "name_fr": "Aïn Ben Beida",
+        "name_ar": "عين بن بيضاء",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 248,
+        "wilaya_id": "24",
+        "code": "24140",
+        "name_fr": "Khezara",
+        "name_ar": "خزارة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 249,
+        "wilaya_id": "24",
+        "code": "24150",
+        "name_fr": "Hammam N'Bails",
+        "name_ar": "حمام النبائل",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 250,
+        "wilaya_id": "25",
+        "code": "25000",
+        "name_fr": "Constantine",
+        "name_ar": "قسنطينة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 251,
+        "wilaya_id": "25",
+        "code": "25100",
+        "name_fr": "El Khroub",
+        "name_ar": "الخروب",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 252,
+        "wilaya_id": "25",
+        "code": "25110",
+        "name_fr": "Aïn Smara",
+        "name_ar": "عين سمارة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 253,
+        "wilaya_id": "25",
+        "code": "25120",
+        "name_fr": "Hamma Bouziane",
+        "name_ar": "حامة بوزيان",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 254,
+        "wilaya_id": "25",
+        "code": "25130",
+        "name_fr": "Didouche Mourad",
+        "name_ar": "ديدوش مراد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 255,
+        "wilaya_id": "25",
+        "code": "25140",
+        "name_fr": "Zighoud Youcef",
+        "name_ar": "زيغود يوسف",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 256,
+        "wilaya_id": "25",
+        "code": "25150",
+        "name_fr": "Béni H'midène",
+        "name_ar": "بني حميدان",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 257,
+        "wilaya_id": "25",
+        "code": "25160",
+        "name_fr": "Ouled Rahmoune",
+        "name_ar": "أولاد رحمون",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 258,
+        "wilaya_id": "25",
+        "code": "25170",
+        "name_fr": "Ibn Ziad",
+        "name_ar": "ابن زياد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 259,
+        "wilaya_id": "26",
+        "code": "26000",
+        "name_fr": "Médéa",
+        "name_ar": "المدية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 260,
+        "wilaya_id": "26",
+        "code": "26100",
+        "name_fr": "Berrouaghia",
+        "name_ar": "البرواقية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 261,
+        "wilaya_id": "26",
+        "code": "26110",
+        "name_fr": "Tablat",
+        "name_ar": "تابلاط",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 262,
+        "wilaya_id": "26",
+        "code": "26120",
+        "name_fr": "Beni Slimane",
+        "name_ar": "بني سليمان",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 263,
+        "wilaya_id": "26",
+        "code": "26130",
+        "name_fr": "El Omaria",
+        "name_ar": "العمارية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 264,
+        "wilaya_id": "26",
+        "code": "26140",
+        "name_fr": "Ksar El Boukhari",
+        "name_ar": "قصر البخاري",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 265,
+        "wilaya_id": "26",
+        "code": "26150",
+        "name_fr": "Damiat",
+        "name_ar": "دامية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 266,
+        "wilaya_id": "26",
+        "code": "26160",
+        "name_fr": "Hamdania",
+        "name_ar": "الحمدانية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 267,
+        "wilaya_id": "26",
+        "code": "26170",
+        "name_fr": "Si Mahdjoub",
+        "name_ar": "سي محجوب",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 268,
+        "wilaya_id": "27",
+        "code": "27000",
+        "name_fr": "Mostaganem",
+        "name_ar": "مستغانم",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 269,
+        "wilaya_id": "27",
+        "code": "27100",
+        "name_fr": "Aïn Tedles",
+        "name_ar": "عين تادلس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 270,
+        "wilaya_id": "27",
+        "code": "27110",
+        "name_fr": "Hadjadj",
+        "name_ar": "حجاج",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 271,
+        "wilaya_id": "27",
+        "code": "27120",
+        "name_fr": "Bouguirat",
+        "name_ar": "بوقيراط",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 272,
+        "wilaya_id": "27",
+        "code": "27130",
+        "name_fr": "Sirat",
+        "name_ar": "سيرات",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 273,
+        "wilaya_id": "27",
+        "code": "27140",
+        "name_fr": "Sidi Lakhdar",
+        "name_ar": "سيدي لخضر",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 274,
+        "wilaya_id": "27",
+        "code": "27150",
+        "name_fr": "Mesra",
+        "name_ar": "ماسرى",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 275,
+        "wilaya_id": "27",
+        "code": "27160",
+        "name_fr": "Khadra",
+        "name_ar": "خضرة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 276,
+        "wilaya_id": "27",
+        "code": "27170",
+        "name_fr": "Hassi Mameche",
+        "name_ar": "حاسي ماماش",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 277,
+        "wilaya_id": "28",
+        "code": "28000",
+        "name_fr": "MSila",
+        "name_ar": "المسيلة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 278,
+        "wilaya_id": "28",
+        "code": "28100",
+        "name_fr": "Bou Saâda",
+        "name_ar": "بوسعادة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 279,
+        "wilaya_id": "28",
+        "code": "28110",
+        "name_fr": "Sidi Aïssa",
+        "name_ar": "سيدي عيسى",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 280,
+        "wilaya_id": "28",
+        "code": "28120",
+        "name_fr": "Ouled Derradj",
+        "name_ar": "أولاد دراج",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 281,
+        "wilaya_id": "28",
+        "code": "28130",
+        "name_fr": "Magra",
+        "name_ar": "مقرة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 282,
+        "wilaya_id": "28",
+        "code": "28140",
+        "name_fr": "Khoubana",
+        "name_ar": "خبانة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 283,
+        "wilaya_id": "28",
+        "code": "28150",
+        "name_fr": "Hammam Dhalaa",
+        "name_ar": "حمام الضلعة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 284,
+        "wilaya_id": "28",
+        "code": "28160",
+        "name_fr": "Aïn El Khadra",
+        "name_ar": "عين الخضراء",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 285,
+        "wilaya_id": "28",
+        "code": "28170",
+        "name_fr": "Berhoum",
+        "name_ar": "برهوم",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 286,
+        "wilaya_id": "29",
+        "code": "29000",
+        "name_fr": "Mascara",
+        "name_ar": "معسكر",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 287,
+        "wilaya_id": "29",
+        "code": "29100",
+        "name_fr": "Tighennif",
+        "name_ar": "تيغنيف",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 288,
+        "wilaya_id": "29",
+        "code": "29110",
+        "name_fr": "Mohammadia",
+        "name_ar": "المحمدية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 289,
+        "wilaya_id": "29",
+        "code": "29120",
+        "name_fr": "Sig",
+        "name_ar": "سيق",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 290,
+        "wilaya_id": "29",
+        "code": "29130",
+        "name_fr": "Ghriss",
+        "name_ar": "غريس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 291,
+        "wilaya_id": "29",
+        "code": "29140",
+        "name_fr": "Tizi",
+        "name_ar": "تيزي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 292,
+        "wilaya_id": "29",
+        "code": "29150",
+        "name_fr": "Maoussa",
+        "name_ar": "ماوسة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 293,
+        "wilaya_id": "29",
+        "code": "29160",
+        "name_fr": "Bouhanifia",
+        "name_ar": "بوحنيفية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 294,
+        "wilaya_id": "30",
+        "code": "30000",
+        "name_fr": "Ouargla",
+        "name_ar": "ورقلة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 295,
+        "wilaya_id": "30",
+        "code": "30100",
+        "name_fr": "Hassi Messaoud",
+        "name_ar": "حاسي مسعود",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 296,
+        "wilaya_id": "30",
+        "code": "30110",
+        "name_fr": "Sidi Khouiled",
+        "name_ar": "سيدي خويلد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 297,
+        "wilaya_id": "30",
+        "code": "30120",
+        "name_fr": "Rouissat",
+        "name_ar": "الرويسات",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 298,
+        "wilaya_id": "30",
+        "code": "30130",
+        "name_fr": "N'Goussa",
+        "name_ar": "نقوسة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 299,
+        "wilaya_id": "30",
+        "code": "30140",
+        "name_fr": "El Borma",
+        "name_ar": "البرمة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 300,
+        "wilaya_id": "31",
+        "code": "31000",
+        "name_fr": "Oran",
+        "name_ar": "وهران",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 301,
+        "wilaya_id": "31",
+        "code": "31100",
+        "name_fr": "Es Senia",
+        "name_ar": "السانية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 302,
+        "wilaya_id": "31",
+        "code": "31110",
+        "name_fr": "Aïn El Turk",
+        "name_ar": "عين الترك",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 303,
+        "wilaya_id": "31",
+        "code": "31120",
+        "name_fr": "Bir El Djir",
+        "name_ar": "بئر الجير",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 304,
+        "wilaya_id": "31",
+        "code": "31130",
+        "name_fr": "Bethioua",
+        "name_ar": "بطيوة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 305,
+        "wilaya_id": "31",
+        "code": "31140",
+        "name_fr": "Arzew",
+        "name_ar": "أرزيو",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 306,
+        "wilaya_id": "31",
+        "code": "31150",
+        "name_fr": "Boutlélis",
+        "name_ar": "بوتليليس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 307,
+        "wilaya_id": "31",
+        "code": "31160",
+        "name_fr": "Misserghin",
+        "name_ar": "المسرغين",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 308,
+        "wilaya_id": "31",
+        "code": "31170",
+        "name_fr": "Hassi Bounif",
+        "name_ar": "حاسي بونيف",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 309,
+        "wilaya_id": "31",
+        "code": "31180",
+        "name_fr": "Gdyel",
+        "name_ar": "قديل",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 310,
+        "wilaya_id": "31",
+        "code": "31190",
+        "name_fr": "Sidi Chami",
+        "name_ar": "سيدي الشحمي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 311,
+        "wilaya_id": "31",
+        "code": "31200",
+        "name_fr": "El Ançor",
+        "name_ar": "العنصر",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 312,
+        "wilaya_id": "32",
+        "code": "32000",
+        "name_fr": "El Bayadh",
+        "name_ar": "البيض",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 313,
+        "wilaya_id": "32",
+        "code": "32100",
+        "name_fr": "Brezina",
+        "name_ar": "بريزينة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 314,
+        "wilaya_id": "32",
+        "code": "32110",
+        "name_fr": "Bougtoub",
+        "name_ar": "بوقطب",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 315,
+        "wilaya_id": "32",
+        "code": "32120",
+        "name_fr": "El Bnoud",
+        "name_ar": "البنود",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 316,
+        "wilaya_id": "32",
+        "code": "32130",
+        "name_fr": "Boualem",
+        "name_ar": "بوعلام",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 317,
+        "wilaya_id": "32",
+        "code": "32140",
+        "name_fr": "Stitten",
+        "name_ar": "استيتن",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 318,
+        "wilaya_id": "32",
+        "code": "32150",
+        "name_fr": "Ghassoul",
+        "name_ar": "الغاسول",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 319,
+        "wilaya_id": "33",
+        "code": "33000",
+        "name_fr": "Illizi",
+        "name_ar": "إيليزي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 320,
+        "wilaya_id": "33",
+        "code": "33100",
+        "name_fr": "In Amenas",
+        "name_ar": "عين أميناس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 321,
+        "wilaya_id": "33",
+        "code": "33110",
+        "name_fr": "Bordj Omar Driss",
+        "name_ar": "برج عمر إدريس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 322,
+        "wilaya_id": "33",
+        "code": "33120",
+        "name_fr": "Debdeb",
+        "name_ar": "دبدب",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 323,
+        "wilaya_id": "34",
+        "code": "34000",
+        "name_fr": "Bordj Bou Arreridj",
+        "name_ar": "برج بوعريريج",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 324,
+        "wilaya_id": "34",
+        "code": "34100",
+        "name_fr": "Ras El Oued",
+        "name_ar": "رأس الوادي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 325,
+        "wilaya_id": "34",
+        "code": "34110",
+        "name_fr": "Mansoura",
+        "name_ar": "المنصورة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 326,
+        "wilaya_id": "34",
+        "code": "34120",
+        "name_fr": "El Mhir",
+        "name_ar": "المهير",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 327,
+        "wilaya_id": "34",
+        "code": "34130",
+        "name_fr": "El Achir",
+        "name_ar": "العشير",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 328,
+        "wilaya_id": "34",
+        "code": "34140",
+        "name_fr": "Bordj Zemoura",
+        "name_ar": "برج زمورة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 329,
+        "wilaya_id": "34",
+        "code": "34150",
+        "name_fr": "Tixter",
+        "name_ar": "تيكستر",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 330,
+        "wilaya_id": "34",
+        "code": "34160",
+        "name_fr": "Bir Kasdali",
+        "name_ar": "بئر قاصد علي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 331,
+        "wilaya_id": "35",
+        "code": "35000",
+        "name_fr": "Boumerdès",
+        "name_ar": "بومرداس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 332,
+        "wilaya_id": "35",
+        "code": "35100",
+        "name_fr": "Dellys",
+        "name_ar": "دلس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 333,
+        "wilaya_id": "35",
+        "code": "35110",
+        "name_fr": "Boudouaou",
+        "name_ar": "بودواو",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 334,
+        "wilaya_id": "35",
+        "code": "35120",
+        "name_fr": "Khemis El Khechna",
+        "name_ar": "خميس الخشنة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 335,
+        "wilaya_id": "35",
+        "code": "35130",
+        "name_fr": "Tidjelabine",
+        "name_ar": "تيجلابين",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 336,
+        "wilaya_id": "35",
+        "code": "35140",
+        "name_fr": "Si Mustapha",
+        "name_ar": "سي مصطفى",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 337,
+        "wilaya_id": "35",
+        "code": "35150",
+        "name_fr": "Naciria",
+        "name_ar": "الناصرية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 338,
+        "wilaya_id": "35",
+        "code": "35160",
+        "name_fr": "Bordj Ménaïel",
+        "name_ar": "برج منايل",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 339,
+        "wilaya_id": "35",
+        "code": "35170",
+        "name_fr": "Issers",
+        "name_ar": "الإيسر",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 340,
+        "wilaya_id": "35",
+        "code": "35180",
+        "name_fr": "Thenia",
+        "name_ar": "الثنية",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 341,
+        "wilaya_id": "35",
+        "code": "35190",
+        "name_fr": "Zemmouri",
+        "name_ar": "زموري",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 342,
+        "wilaya_id": "36",
+        "code": "36000",
+        "name_fr": "El Tarf",
+        "name_ar": "الطارف",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 343,
+        "wilaya_id": "36",
+        "code": "36100",
+        "name_fr": "Ben M'hidi",
+        "name_ar": "بن مهيدي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 344,
+        "wilaya_id": "36",
+        "code": "36110",
+        "name_fr": "Bouhadjar",
+        "name_ar": "بوحجار",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 345,
+        "wilaya_id": "36",
+        "code": "36120",
+        "name_fr": "El Kala",
+        "name_ar": "القالة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 346,
+        "wilaya_id": "36",
+        "code": "36130",
+        "name_fr": "Drean",
+        "name_ar": "الذرعان",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 347,
+        "wilaya_id": "36",
+        "code": "36140",
+        "name_fr": "Besbes",
+        "name_ar": "البسباس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 348,
+        "wilaya_id": "36",
+        "code": "36150",
+        "name_fr": "Bouteldja",
+        "name_ar": "بوتلجة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 349,
+        "wilaya_id": "37",
+        "code": "37000",
+        "name_fr": "Tindouf",
+        "name_ar": "تندوف",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 350,
+        "wilaya_id": "37",
+        "code": "37100",
+        "name_fr": "Oum El Assel",
+        "name_ar": "أم العسل",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 351,
+        "wilaya_id": "38",
+        "code": "38000",
+        "name_fr": "Tissemsilt",
+        "name_ar": "تيسمسيلت",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 352,
+        "wilaya_id": "38",
+        "code": "38100",
+        "name_fr": "Theniet El Had",
+        "name_ar": "ثنية الأحد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 353,
+        "wilaya_id": "38",
+        "code": "38110",
+        "name_fr": "Bordj Bounaama",
+        "name_ar": "برج بونعامة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 354,
+        "wilaya_id": "38",
+        "code": "38120",
+        "name_fr": "Lardjem",
+        "name_ar": "الأرجم",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 355,
+        "wilaya_id": "38",
+        "code": "38130",
+        "name_fr": "Khemisti",
+        "name_ar": "خميستي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 356,
+        "wilaya_id": "38",
+        "code": "38140",
+        "name_fr": "Beni Chaib",
+        "name_ar": "بني شعيب",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 357,
+        "wilaya_id": "39",
+        "code": "39000",
+        "name_fr": "El Oued",
+        "name_ar": "الوادي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 358,
+        "wilaya_id": "39",
+        "code": "39100",
+        "name_fr": "Guemar",
+        "name_ar": "قمار",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 359,
+        "wilaya_id": "39",
+        "code": "39110",
+        "name_fr": "Robbah",
+        "name_ar": "الرباح",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 360,
+        "wilaya_id": "39",
+        "code": "39120",
+        "name_fr": "Magrane",
+        "name_ar": "المقرن",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 361,
+        "wilaya_id": "39",
+        "code": "39130",
+        "name_fr": "Hassi Khalifa",
+        "name_ar": "حاسي خليفة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 362,
+        "wilaya_id": "39",
+        "code": "39140",
+        "name_fr": "Reguiba",
+        "name_ar": "الرقيبة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 363,
+        "wilaya_id": "39",
+        "code": "39150",
+        "name_fr": "Trifaoui",
+        "name_ar": "الطريفاوي",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 364,
+        "wilaya_id": "39",
+        "code": "39160",
+        "name_fr": "Mih Ouansa",
+        "name_ar": "ميه ونسة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 365,
+        "wilaya_id": "40",
+        "code": "40000",
+        "name_fr": "Khenchela",
+        "name_ar": "خنشلة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 366,
+        "wilaya_id": "40",
+        "code": "40100",
+        "name_fr": "Kais",
+        "name_ar": "قايس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 367,
+        "wilaya_id": "40",
+        "code": "40110",
+        "name_fr": "Tamza",
+        "name_ar": "تامزة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 368,
+        "wilaya_id": "40",
+        "code": "40120",
+        "name_fr": "Ouled Rechache",
+        "name_ar": "أولاد رشاش",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 369,
+        "wilaya_id": "40",
+        "code": "40130",
+        "name_fr": "Bouhmama",
+        "name_ar": "بوحمامة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 370,
+        "wilaya_id": "40",
+        "code": "40140",
+        "name_fr": "Chechar",
+        "name_ar": "الششار",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 371,
+        "wilaya_id": "40",
+        "code": "40150",
+        "name_fr": "Babar",
+        "name_ar": "بابار",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 372,
+        "wilaya_id": "41",
+        "code": "41000",
+        "name_fr": "Souk Ahras",
+        "name_ar": "سوق أهراس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 373,
+        "wilaya_id": "41",
+        "code": "41100",
+        "name_fr": "Sedrata",
+        "name_ar": "سدراتة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 374,
+        "wilaya_id": "41",
+        "code": "41110",
+        "name_fr": "Mechroha",
+        "name_ar": "مشروحة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 375,
+        "wilaya_id": "41",
+        "code": "41120",
+        "name_fr": "Taoura",
+        "name_ar": "تاورة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 376,
+        "wilaya_id": "41",
+        "code": "41130",
+        "name_fr": "Ouled Driss",
+        "name_ar": "أولاد إدريس",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 377,
+        "wilaya_id": "41",
+        "code": "41140",
+        "name_fr": "M'daourouch",
+        "name_ar": "مداوروش",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 378,
+        "wilaya_id": "41",
+        "code": "41150",
+        "name_fr": "Hennancha",
+        "name_ar": "هنانشة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 379,
+        "wilaya_id": "42",
+        "code": "42000",
+        "name_fr": "Tipaza",
+        "name_ar": "تيبازة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 380,
+        "wilaya_id": "42",
+        "code": "42100",
+        "name_fr": "Cherchell",
+        "name_ar": "شرشال",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 381,
+        "wilaya_id": "42",
+        "code": "42110",
+        "name_fr": "Koléa",
+        "name_ar": "القليعة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 382,
+        "wilaya_id": "42",
+        "code": "42120",
+        "name_fr": "Hadjout",
+        "name_ar": "حجوط",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 383,
+        "wilaya_id": "42",
+        "code": "42130",
+        "name_fr": "Ahmer El Aïn",
+        "name_ar": "أحمر العين",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 384,
+        "wilaya_id": "42",
+        "code": "42140",
+        "name_fr": "Bou Ismaïl",
+        "name_ar": "بوإسماعيل",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 385,
+        "wilaya_id": "42",
+        "code": "42150",
+        "name_fr": "Fouka",
+        "name_ar": "فوكة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 386,
+        "wilaya_id": "42",
+        "code": "42160",
+        "name_fr": "Damous",
+        "name_ar": "دامو",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 387,
+        "wilaya_id": "42",
+        "code": "42170",
+        "name_fr": "Bourkika",
+        "name_ar": "بورقيقة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 388,
+        "wilaya_id": "42",
+        "code": "42180",
+        "name_fr": "Sidi Rached",
+        "name_ar": "سيدي راشد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 389,
+        "wilaya_id": "43",
+        "code": "43000",
+        "name_fr": "Mila",
+        "name_ar": "ميلة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 390,
+        "wilaya_id": "43",
+        "code": "43100",
+        "name_fr": "Chelghoum Laïd",
+        "name_ar": "شلغوم العيد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 391,
+        "wilaya_id": "43",
+        "code": "43110",
+        "name_fr": "Ferdjioua",
+        "name_ar": "فرجيوة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 392,
+        "wilaya_id": "43",
+        "code": "43120",
+        "name_fr": "Grarem Gouga",
+        "name_ar": "قرارم قوقة",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 393,
+        "wilaya_id": "43",
+        "code": "43130",
+        "name_fr": "Tadjenanet",
+        "name_ar": "تاجنانت",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 394,
+        "wilaya_id": "43",
+        "code": "43140",
+        "name_fr": "Rouached",
+        "name_ar": "الرواشد",
+        "created_at": "2026-05-24 12:26:21",
+        "updated_at": "2026-05-24 12:26:21"
+    },
+    {
+        "id": 395,
+        "wilaya_id": "43",
+        "code": "43150",
+        "name_fr": "Sidi Merouane",
+        "name_ar": "سيدي مروان",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 396,
+        "wilaya_id": "43",
+        "code": "43160",
+        "name_fr": "Telerghma",
+        "name_ar": "تلاغمة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 397,
+        "wilaya_id": "43",
+        "code": "43170",
+        "name_fr": "Oued Endja",
+        "name_ar": "وادي النجاء",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 398,
+        "wilaya_id": "44",
+        "code": "44000",
+        "name_fr": "Aïn Defla",
+        "name_ar": "عين الدفلى",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 399,
+        "wilaya_id": "44",
+        "code": "44100",
+        "name_fr": "Khemis Miliana",
+        "name_ar": "خميس مليانة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 400,
+        "wilaya_id": "44",
+        "code": "44110",
+        "name_fr": "Miliana",
+        "name_ar": "مليانة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 401,
+        "wilaya_id": "44",
+        "code": "44120",
+        "name_fr": "Hammam Righa",
+        "name_ar": "حمام ريغة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 402,
+        "wilaya_id": "44",
+        "code": "44130",
+        "name_fr": "El Attaf",
+        "name_ar": "العطاف",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 403,
+        "wilaya_id": "44",
+        "code": "44140",
+        "name_fr": "Djelida",
+        "name_ar": "جليدة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 404,
+        "wilaya_id": "44",
+        "code": "44150",
+        "name_fr": "Rouina",
+        "name_ar": "الروينة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 405,
+        "wilaya_id": "44",
+        "code": "44160",
+        "name_fr": "Boumedfaa",
+        "name_ar": "بومدفع",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 406,
+        "wilaya_id": "44",
+        "code": "44170",
+        "name_fr": "El Abadia",
+        "name_ar": "العبادية",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 407,
+        "wilaya_id": "45",
+        "code": "45000",
+        "name_fr": "Naâma",
+        "name_ar": "النعامة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 408,
+        "wilaya_id": "45",
+        "code": "45100",
+        "name_fr": "Aïn Sefra",
+        "name_ar": "عين الصفراء",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 409,
+        "wilaya_id": "45",
+        "code": "45110",
+        "name_fr": "Mécheria",
+        "name_ar": "المشرية",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 410,
+        "wilaya_id": "45",
+        "code": "45120",
+        "name_fr": "Asla",
+        "name_ar": "عسلة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 411,
+        "wilaya_id": "45",
+        "code": "45130",
+        "name_fr": "Tiout",
+        "name_ar": "تيوت",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 412,
+        "wilaya_id": "45",
+        "code": "45140",
+        "name_fr": "Sfissifa",
+        "name_ar": "سفيسيفة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 413,
+        "wilaya_id": "46",
+        "code": "46000",
+        "name_fr": "Aïn Témouchent",
+        "name_ar": "عين تموشنت",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 414,
+        "wilaya_id": "46",
+        "code": "46100",
+        "name_fr": "Hammam Bouhadjar",
+        "name_ar": "حمام بوحجر",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 415,
+        "wilaya_id": "46",
+        "code": "46110",
+        "name_fr": "Beni Saf",
+        "name_ar": "بني صاف",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 416,
+        "wilaya_id": "46",
+        "code": "46120",
+        "name_fr": "Aïn Larbaa",
+        "name_ar": "عين الأربعاء",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 417,
+        "wilaya_id": "46",
+        "code": "46130",
+        "name_fr": "El Malah",
+        "name_ar": "الملاح",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 418,
+        "wilaya_id": "46",
+        "code": "46140",
+        "name_fr": "Oulhaça",
+        "name_ar": "أولاحاسة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 419,
+        "wilaya_id": "46",
+        "code": "46150",
+        "name_fr": "El Amria",
+        "name_ar": "العامرية",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 420,
+        "wilaya_id": "46",
+        "code": "46160",
+        "name_fr": "Chentouf",
+        "name_ar": "شنتوف",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 421,
+        "wilaya_id": "47",
+        "code": "47000",
+        "name_fr": "Ghardaïa",
+        "name_ar": "غرداية",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 422,
+        "wilaya_id": "47",
+        "code": "47100",
+        "name_fr": "Berriane",
+        "name_ar": "بريان",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 423,
+        "wilaya_id": "47",
+        "code": "47110",
+        "name_fr": "El Atteuf",
+        "name_ar": "العطف",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 424,
+        "wilaya_id": "47",
+        "code": "47120",
+        "name_fr": "Bounoura",
+        "name_ar": "بنورة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 425,
+        "wilaya_id": "47",
+        "code": "47130",
+        "name_fr": "Daya Ben Dahoua",
+        "name_ar": "ضاية بن ضحوة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 426,
+        "wilaya_id": "47",
+        "code": "47140",
+        "name_fr": "Metlili",
+        "name_ar": "المتليلي",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 427,
+        "wilaya_id": "47",
+        "code": "47150",
+        "name_fr": "Zelfana",
+        "name_ar": "الزلفانة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 428,
+        "wilaya_id": "47",
+        "code": "47160",
+        "name_fr": "Guerrara",
+        "name_ar": "القرارة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 429,
+        "wilaya_id": "48",
+        "code": "48000",
+        "name_fr": "Relizane",
+        "name_ar": "غليزان",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 430,
+        "wilaya_id": "48",
+        "code": "48100",
+        "name_fr": "Yellel",
+        "name_ar": "يلل",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 431,
+        "wilaya_id": "48",
+        "code": "48110",
+        "name_fr": "Oued Rhiou",
+        "name_ar": "وادي رهيو",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 432,
+        "wilaya_id": "48",
+        "code": "48120",
+        "name_fr": "Mazouna",
+        "name_ar": "مازونة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 433,
+        "wilaya_id": "48",
+        "code": "48130",
+        "name_fr": "Ammi Moussa",
+        "name_ar": "عمي موسى",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 434,
+        "wilaya_id": "48",
+        "code": "48140",
+        "name_fr": "Zemmoura",
+        "name_ar": "زمورة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 435,
+        "wilaya_id": "48",
+        "code": "48150",
+        "name_fr": "Sidi M'Hamed Benaouda",
+        "name_ar": "سيدي امحمد بن عودة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 436,
+        "wilaya_id": "48",
+        "code": "48160",
+        "name_fr": "Djidiouia",
+        "name_ar": "جديوية",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 437,
+        "wilaya_id": "48",
+        "code": "48170",
+        "name_fr": "Sidi Khettab",
+        "name_ar": "سيدي خطاب",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 438,
+        "wilaya_id": "49",
+        "code": "49000",
+        "name_fr": "Timimoun",
+        "name_ar": "تيميمون",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 439,
+        "wilaya_id": "49",
+        "code": "49100",
+        "name_fr": "Ouled Saïd",
+        "name_ar": "أولاد سعيد",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 440,
+        "wilaya_id": "49",
+        "code": "49110",
+        "name_fr": "Aougrout",
+        "name_ar": "أوقروت",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 441,
+        "wilaya_id": "49",
+        "code": "49120",
+        "name_fr": "Talmine",
+        "name_ar": "طلمين",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 442,
+        "wilaya_id": "50",
+        "code": "50000",
+        "name_fr": "Bordj Badji Mokhtar",
+        "name_ar": "برج باجي مختار",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 443,
+        "wilaya_id": "50",
+        "code": "50100",
+        "name_fr": "Timiaouine",
+        "name_ar": "تيميا وين",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 444,
+        "wilaya_id": "51",
+        "code": "51000",
+        "name_fr": "Ouled Djellal",
+        "name_ar": "أولاد جلال",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 445,
+        "wilaya_id": "51",
+        "code": "51100",
+        "name_fr": "Sidi Khaled",
+        "name_ar": "سيدي خالد",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 446,
+        "wilaya_id": "51",
+        "code": "51110",
+        "name_fr": "Ras El Miaad",
+        "name_ar": "رأس الميعاد",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 447,
+        "wilaya_id": "52",
+        "code": "52000",
+        "name_fr": "Béni Abbès",
+        "name_ar": "بني عباس",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 448,
+        "wilaya_id": "52",
+        "code": "52100",
+        "name_fr": "Tabelbala",
+        "name_ar": "تبلبالة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 449,
+        "wilaya_id": "52",
+        "code": "52110",
+        "name_fr": "Igli",
+        "name_ar": "إقلي",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 450,
+        "wilaya_id": "52",
+        "code": "52120",
+        "name_fr": "El Ouata",
+        "name_ar": "الواتة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 451,
+        "wilaya_id": "53",
+        "code": "53000",
+        "name_fr": "In Salah",
+        "name_ar": "عين صالح",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 452,
+        "wilaya_id": "53",
+        "code": "53100",
+        "name_fr": "In Ghar",
+        "name_ar": "عين غار",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 453,
+        "wilaya_id": "53",
+        "code": "53110",
+        "name_fr": "Foggaret Ezzaouia",
+        "name_ar": "فقارة الزاوية",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 454,
+        "wilaya_id": "54",
+        "code": "54000",
+        "name_fr": "In Guezzam",
+        "name_ar": "عين قزام",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 455,
+        "wilaya_id": "54",
+        "code": "54100",
+        "name_fr": "Tin Zaouatine",
+        "name_ar": "تين زواتين",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 456,
+        "wilaya_id": "55",
+        "code": "55000",
+        "name_fr": "Touggourt",
+        "name_ar": "تقرت",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 457,
+        "wilaya_id": "55",
+        "code": "55100",
+        "name_fr": "Témacine",
+        "name_ar": "تماسين",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 458,
+        "wilaya_id": "55",
+        "code": "55110",
+        "name_fr": "Megarine",
+        "name_ar": "المقارين",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 459,
+        "wilaya_id": "55",
+        "code": "55120",
+        "name_fr": "El Hadjira",
+        "name_ar": "الحجيرة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 460,
+        "wilaya_id": "55",
+        "code": "55130",
+        "name_fr": "Nezla",
+        "name_ar": "النزلة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 461,
+        "wilaya_id": "56",
+        "code": "56000",
+        "name_fr": "Djanet",
+        "name_ar": "جانت",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 462,
+        "wilaya_id": "56",
+        "code": "56100",
+        "name_fr": "Bordj El Haouas",
+        "name_ar": "برج الحواس",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 463,
+        "wilaya_id": "57",
+        "code": "57000",
+        "name_fr": "El MGhair",
+        "name_ar": "المغير",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 464,
+        "wilaya_id": "57",
+        "code": "57100",
+        "name_fr": "Djamaa",
+        "name_ar": "جامعة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 465,
+        "wilaya_id": "57",
+        "code": "57110",
+        "name_fr": "Sidi Khellil",
+        "name_ar": "سيدي خليل",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 466,
+        "wilaya_id": "57",
+        "code": "57120",
+        "name_fr": "Still",
+        "name_ar": "أم الطيور",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 467,
+        "wilaya_id": "58",
+        "code": "58000",
+        "name_fr": "El Meniaa",
+        "name_ar": "المنيعة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 468,
+        "wilaya_id": "58",
+        "code": "58100",
+        "name_fr": "Hassi Lefhal",
+        "name_ar": "حاسي الفحل",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    },
+    {
+        "id": 469,
+        "wilaya_id": "58",
+        "code": "58110",
+        "name_fr": "Hassi Gara",
+        "name_ar": "حاسي القارة",
+        "created_at": "2026-05-24 12:26:22",
+        "updated_at": "2026-05-24 12:26:22"
+    }
+]

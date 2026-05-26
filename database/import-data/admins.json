@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@admin.com",
+        "password": "$2y$12$\/7zX0EqwgRjQDbjyZSnJ\/OgtDCH3PEb9hsqPX\/f45EPAxOgdaE5Zi",
+        "role": "owner",
+        "is_active": 1,
+        "last_seen_at": "2026-05-26 08:44:26",
+        "remember_token": null,
+        "created_at": "2026-05-24 11:46:11",
+        "updated_at": "2026-05-26 08:44:26"
+    },
+    {
+        "id": 4,
+        "name": "Mahdi Amrani",
+        "email": "midouyahya22@gmail.com",
+        "password": "$2y$12$X0En5OXS\/dREgAsBXsiUdO\/1.4odzIv\/KDHUOV9tXimmnMaE.Xj2K",
+        "role": "admin",
+        "is_active": 1,
+        "last_seen_at": null,
+        "remember_token": null,
+        "created_at": "2026-05-25 15:49:47",
+        "updated_at": "2026-05-25 15:49:47"
+    },
+    {
+        "id": 5,
+        "name": "Dhia",
+        "email": "dhia@gmail.com",
+        "password": "$2y$12$VxWsEpvq7tuWz\/NwKPsdS.WkfHcPAndy3qoKZui5YEpgnBTIkIGd6",
+        "role": "admin",
+        "is_active": 1,
+        "last_seen_at": "2026-05-26 08:38:17",
+        "remember_token": null,
+        "created_at": "2026-05-26 08:30:39",
+        "updated_at": "2026-05-26 08:38:17"
+    }
+]

@@ -1,0 +1,261 @@
+[
+    {
+        "key": "site.logo",
+        "value": "\/storage\/logos\/WU4qMraO61MyjIaGc4wyefHY.png",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 08:45:27"
+    },
+    {
+        "key": "site.logo_alt_fr",
+        "value": "BINGO",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "site.logo_alt_ar",
+        "value": "بينغو",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "site.logo_height",
+        "value": "77",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 09:24:41"
+    },
+    {
+        "key": "site.logo_max_width",
+        "value": "180",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "site.logo_radius",
+        "value": "0",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.phone",
+        "value": "+213 563 73 31 82",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 09:42:00"
+    },
+    {
+        "key": "contact.email",
+        "value": "bingo@bingo.dz",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 08:44:04"
+    },
+    {
+        "key": "contact.whatsapp",
+        "value": "+213 673 81 28 96",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 08:44:04"
+    },
+    {
+        "key": "contact.address.fr",
+        "value": "DIAG-TEST-ADDRESS-9999",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 09:56:01"
+    },
+    {
+        "key": "contact.address.ar",
+        "value": "حي حسن باي، سطيف 19000، الجزائر",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.sam",
+        "value": "9h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.dim",
+        "value": "9h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.lun",
+        "value": "9h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.mar",
+        "value": "9h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.mer",
+        "value": "9h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.jeu",
+        "value": "9h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.hours.ven",
+        "value": "14h-18h",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "social.facebook",
+        "value": "https:\/\/www.facebook.com\/profile.php?id=100090231580510",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 08:44:04"
+    },
+    {
+        "key": "social.instagram",
+        "value": "https:\/\/www.instagram.com\/bingo_camping19\/",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 08:44:04"
+    },
+    {
+        "key": "social.tiktok",
+        "value": "https:\/\/www.tiktok.com\/@bingocamping",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-25 08:44:04"
+    },
+    {
+        "key": "social.youtube",
+        "value": null,
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "social.whatsapp_business",
+        "value": "+213 6 XX XX XX XX",
+        "is_public": 1,
+        "created_at": "2026-05-24 12:26:24",
+        "updated_at": "2026-05-24 12:26:24"
+    },
+    {
+        "key": "contact.maps_url",
+        "value": "https:\/\/www.google.com\/maps\/place\/Bingo+camping\/@36.1900695,5.4377325,17z\/data=!3m1!4b1!4m6!3m5!1s0x12f315006648bb7f:0xc3f606259fdccfa4!8m2!3d36.1900695!4d5.4377325!16s%2Fg%2F11m604401h?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:44:04",
+        "updated_at": "2026-05-25 09:33:05"
+    },
+    {
+        "key": "home.featured.slug.0",
+        "value": "product:sac-a-dos-forclaz-symbium-60-camping-trekking-bivouac-im8q",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-26 09:33:18"
+    },
+    {
+        "key": "home.featured.slug.1",
+        "value": "category:tentes-abris",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 08:57:53"
+    },
+    {
+        "key": "home.featured.slug.2",
+        "value": "category:cuisine-outdoor",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:12"
+    },
+    {
+        "key": "home.featured.slug.3",
+        "value": "product:salomon-x-ultra-4",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:12"
+    },
+    {
+        "key": "home.featured.slug.4",
+        "value": "product:merrell-moab-3",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:13"
+    },
+    {
+        "key": "home.featured.slug.5",
+        "value": "product:forclaz-mh100-popote",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:13"
+    },
+    {
+        "key": "home.promo.title.fr",
+        "value": "Jusqu'à −30 % sur la collection automne",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:13"
+    },
+    {
+        "key": "home.promo.title.ar",
+        "value": "حتى −30٪ على تشكيلة الخريف",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 10:21:08"
+    },
+    {
+        "key": "home.promo.cta.fr",
+        "value": "Voir les promotions",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:13"
+    },
+    {
+        "key": "home.promo.cta.ar",
+        "value": "عرض العروض",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:13"
+    },
+    {
+        "key": "home.promo.link",
+        "value": "\/product\/sac-a-dos-forclaz-symbium-60-camping-trekking-bivouac-kqgy",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-25 09:05:13"
+    },
+    {
+        "key": "contact.maps_place.fr",
+        "value": "Le magasin est situé à Sétif, quartier Dallas, 3ème tranche, en face de LG",
+        "is_public": 1,
+        "created_at": "2026-05-25 09:33:05",
+        "updated_at": "2026-05-25 09:57:24"
+    },
+    {
+        "key": "contact.maps_place.ar",
+        "value": "المحل متواجد بسطيف، حي دالاس، التوسعة الثالثة، أمام محل LG.",
+        "is_public": 1,
+        "created_at": "2026-05-25 09:33:05",
+        "updated_at": "2026-05-25 09:33:05"
+    }
+]
