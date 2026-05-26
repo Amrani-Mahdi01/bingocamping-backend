@@ -35,9 +35,18 @@ class StoreOrderRequest extends FormRequest
             'shipping.notes' => ['nullable', 'string', 'max:500'],
 
             'lines' => ['required', 'array', 'min:1', 'max:50'],
-            'lines.*.productId' => ['required', 'integer', 'exists:products,id'],
+            // Identify products by slug (what the storefront cart speaks).
+            // OrderController resolves slug → product row inside the
+            // transaction so a deleted/disabled product fails the order.
+            'lines.*.productSlug' => ['required', 'string', 'exists:products,slug'],
             'lines.*.variant' => ['nullable', 'string', 'max:160'],
             'lines.*.quantity' => ['required', 'integer', 'min:1', 'max:99'],
+
+            // Google reCAPTCHA v2 response token. Required so the
+            // controller can pass it to Google's siteverify endpoint.
+            // Only enforced when RECAPTCHA_SECRET_KEY is configured in
+            // .env — see OrderController::verifyRecaptcha.
+            'recaptchaToken' => ['nullable', 'string', 'max:4096'],
         ];
     }
 
@@ -52,6 +61,7 @@ class StoreOrderRequest extends FormRequest
             'shipping.wilayaId.required' => "Choisissez votre wilaya.",
             'shipping.commune.required' => "La commune est requise.",
             'lines.required' => "Au moins un article requis.",
+            'lines.*.productSlug.exists' => "Un des produits n'est plus disponible.",
         ];
     }
 }

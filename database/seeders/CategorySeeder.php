@@ -19,6 +19,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Tentes & Abris',
                 'name_ar' => 'الخيام والمآوي',
                 'icon' => 'Tent',
+                'image' => '/categories/camping-tent.png',
                 'subs' => [
                     ['slug' => 'tentes-2-3-places',     'name_fr' => 'Tentes 2-3 places',     'name_ar' => 'خيام 2-3 أشخاص'],
                     ['slug' => 'tentes-4-places-plus',  'name_fr' => 'Tentes 4 places et +',  'name_ar' => 'خيام 4 أشخاص فأكثر'],
@@ -31,6 +32,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Sacs de couchage',
                 'name_ar' => 'أكياس النوم',
                 'icon' => 'Moon',
+                'image' => '/categories/camping-tent.png',
                 'subs' => [
                     ['slug' => 'ete-3-saisons',         'name_fr' => 'Été / 3 saisons',       'name_ar' => 'صيف / 3 فصول'],
                     ['slug' => 'hiver-grand-froid',     'name_fr' => 'Hiver & grand froid',   'name_ar' => 'شتاء وبرد قارس'],
@@ -42,6 +44,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Cuisine outdoor',
                 'name_ar' => 'مطبخ المغامرة',
                 'icon' => 'ChefHat',
+                'image' => '/categories/bonfire.png',
                 'subs' => [
                     ['slug' => 'rechauds',              'name_fr' => 'Réchauds',              'name_ar' => 'المواقد'],
                     ['slug' => 'popotes-vaisselle',     'name_fr' => 'Popotes & vaisselle',   'name_ar' => 'أواني وأدوات الطهي'],
@@ -54,6 +57,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Éclairage',
                 'name_ar' => 'الإضاءة',
                 'icon' => 'Lamp',
+                'image' => '/categories/flashlight.png',
                 'subs' => [
                     ['slug' => 'lampes-frontales',      'name_fr' => 'Lampes frontales',      'name_ar' => 'كشافات الرأس'],
                     ['slug' => 'lanternes',             'name_fr' => 'Lanternes',             'name_ar' => 'الفوانيس'],
@@ -65,6 +69,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Sacs à dos',
                 'name_ar' => 'حقائب الظهر',
                 'icon' => 'Backpack',
+                'image' => '/categories/backpack.png',
                 'subs' => [
                     ['slug' => 'journee-20-40l',        'name_fr' => 'Journée 20-40L',        'name_ar' => 'يومية 20-40 لتر'],
                     ['slug' => 'randonnee-40-65l',      'name_fr' => 'Randonnée 40-65L',      'name_ar' => 'مشي 40-65 لتر'],
@@ -77,6 +82,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Vêtements',
                 'name_ar' => 'الملابس',
                 'icon' => 'Shirt',
+                'image' => '/categories/backpack.png',
                 'subs' => [
                     ['slug' => 'vestes-impermeables',   'name_fr' => 'Vestes & imperméables', 'name_ar' => 'سترات ومضادات الماء'],
                     ['slug' => 'polaires-pulls',        'name_fr' => 'Polaires & pulls',      'name_ar' => 'بولارات وكنزات'],
@@ -89,6 +95,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Chaussures',
                 'name_ar' => 'الأحذية',
                 'icon' => 'Footprints',
+                'image' => '/categories/boots.png',
                 'subs' => [
                     ['slug' => 'chaussures-randonnee',  'name_fr' => 'Chaussures de randonnée','name_ar' => 'أحذية المشي'],
                     ['slug' => 'chaussures-trail',      'name_fr' => 'Chaussures de trail',   'name_ar' => 'أحذية الترايل'],
@@ -100,6 +107,7 @@ class CategorySeeder extends Seeder
                 'name_fr' => 'Accessoires',
                 'name_ar' => 'الإكسسوارات',
                 'icon' => 'Compass',
+                'image' => '/categories/map.png',
                 'subs' => [
                     ['slug' => 'boussoles-navigation',  'name_fr' => 'Boussoles & navigation','name_ar' => 'بوصلات وملاحة'],
                     ['slug' => 'couteaux-multifonctions','name_fr'=> 'Couteaux multifonctions','name_ar'=> 'سكاكين متعددة الوظائف'],
@@ -116,6 +124,7 @@ class CategorySeeder extends Seeder
                     'name_fr' => $top['name_fr'],
                     'name_ar' => $top['name_ar'],
                     'icon' => $top['icon'],
+                    'image' => $top['image'] ?? null,
                     'display_order' => $i + 1,
                     'parent_id' => null,
                 ]

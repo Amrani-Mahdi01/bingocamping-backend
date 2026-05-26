@@ -104,17 +104,47 @@ class CategoryController extends Controller
     }
 
     /**
-     * DELETE /api/admin/categories/{category}
-     * Cascades subcategories too. Products that reference this category get
-     * a restrict-on-delete error from the DB FK (frontend should warn the
-     * admin to move products out first).
+     * DELETE /api/admin/categories/{category}[?cascade=1]
+     *
+     * Counts products linked to this category and its sub-categories.
+     * - If any exist and `?cascade=1` is NOT set → 422 with the count so
+     *   the admin can either move products out or confirm the cascade.
+     * - If `?cascade=1` → wipes the products (their images/variants
+     *   cascade via FK), then the sub-categories, then the parent.
      */
-    public function destroy(Category $category): JsonResponse
+    public function destroy(Request $request, Category $category): JsonResponse
     {
-        // Delete subs first so the FK doesn't restrict.
-        $category->children()->delete();
-        $category->delete();
-        return response()->json(['message' => 'Category deleted.']);
+        // All category IDs in this subtree (parent + children).
+        $ids = [$category->id, ...$category->children()->pluck('id')->all()];
+        $productCount = DB::table('products')->whereIn('category_id', $ids)->count();
+
+        $cascade = $request->boolean('cascade');
+
+        if ($productCount > 0 && ! $cascade) {
+            return response()->json([
+                'message' => sprintf(
+                    '%d produit%s lié%s à cette catégorie. Déplacez-les ou confirmez la suppression en cascade.',
+                    $productCount,
+                    $productCount > 1 ? 's' : '',
+                    $productCount > 1 ? 's sont' : ' est',
+                ),
+                'product_count' => $productCount,
+            ], 422);
+        }
+
+        DB::transaction(function () use ($category, $ids, $productCount): void {
+            if ($productCount > 0) {
+                // Cascade FKs handle product_images + product_variants.
+                DB::table('products')->whereIn('category_id', $ids)->delete();
+            }
+            $category->children()->delete();
+            $category->delete();
+        });
+
+        return response()->json([
+            'message' => 'Category deleted.',
+            'deleted_products' => $productCount,
+        ]);
     }
 
     /**

@@ -75,6 +75,9 @@ class WilayaSeeder extends Seeder
         ];
 
         foreach ($data as [$code, $nameFr, $nameAr, $region, $shipping, $days]) {
+            // Stop-desk (point-relais) defaults to 300 DZD below home,
+            // floored at 200 DZD — matches Yalidine/Maystro pattern.
+            $stopDesk = max(200, $shipping - 300);
             Wilaya::updateOrCreate(
                 ['id' => $code],
                 [
@@ -83,6 +86,7 @@ class WilayaSeeder extends Seeder
                     'name_ar' => $nameAr,
                     'region' => $region,
                     'shipping_price' => $shipping,
+                    'stop_desk_price' => $stopDesk,
                     'delivery_days' => $days,
                 ]
             );

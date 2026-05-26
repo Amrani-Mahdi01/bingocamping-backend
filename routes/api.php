@@ -1,10 +1,17 @@
 <?php
 
 use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\BlockedIpController;
+use App\Http\Controllers\Api\BlockedPhoneController;
+use App\Http\Controllers\Api\CustomerAuthController;
 use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommuneController;
+use App\Http\Controllers\Api\ContactMessageController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
@@ -29,6 +36,41 @@ Route::get('/settings', [SettingsController::class, 'indexPublic']);
 Route::get('/wilayas', [WilayaController::class, 'indexPublic']);
 Route::get('/wilayas/{wilaya}/communes', [CommuneController::class, 'indexPublic']);
 Route::post('/orders', [OrderController::class, 'store']);
+// Storefront /contact form — reCAPTCHA-gated (see controller).
+Route::post('/contact', [ContactMessageController::class, 'store']);
+// SSE pending-count feed. Sits OUTSIDE the auth:sanctum guard because
+// EventSource on the browser can't send custom headers; the admin
+// token is passed as a query param and validated inside the controller.
+Route::get('/admin/orders/stream', [OrderController::class, 'stream']);
+
+/*
+|--------------------------------------------------------------------------
+| Customer API — storefront auth (Sanctum bearer tokens)
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/auth/register', [CustomerAuthController::class, 'register']);
+Route::post('/auth/login',    [CustomerAuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/auth/logout', [CustomerAuthController::class, 'logout']);
+    Route::get('/auth/me',      [CustomerAuthController::class, 'me']);
+
+    // Storefront "Mes commandes" — list of orders the authenticated
+    // customer has placed (scoped to customer_id, so guests checking
+    // out with the same phone number aren't included).
+    Route::get('/auth/orders',  [CustomerAuthController::class, 'orders']);
+
+    // Logged-in cart — anonymous visitors use localStorage on the client.
+    Route::get('/auth/cart',    [CartController::class, 'index']);
+    Route::put('/auth/cart',    [CartController::class, 'replace']);
+    Route::delete('/auth/cart', [CartController::class, 'clear']);
+
+    // Logged-in favorites — same dual-mode pattern as the cart.
+    Route::get('/auth/favorites',    [FavoriteController::class, 'index']);
+    Route::put('/auth/favorites',    [FavoriteController::class, 'replace']);
+    Route::delete('/auth/favorites', [FavoriteController::class, 'clear']);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +124,32 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     // Customers (aggregated from orders by phone)
     Route::get('/customers', [CustomerController::class, 'index']);
     Route::get('/customers/{phone}', [CustomerController::class, 'show']);
+    // Customer-row admin actions
+    Route::post('/customers/{phone}/promote', [CustomerController::class, 'promote']);
+    Route::post('/customers/{phone}/block-ip', [CustomerController::class, 'blockIp']);
+    // Same as above, addressed by customer id — used when the
+    // customer has no phone (registered via email only).
+    Route::post('/customers/by-id/{customer}/promote', [CustomerController::class, 'promoteById']);
+
+    // Admin accounts — direct create (vs. promote-a-customer in CustomerController)
+    Route::get('/admins', [AdminController::class, 'index']);
+    Route::post('/admins', [AdminController::class, 'store']);
+    Route::delete('/admins/{admin}', [AdminController::class, 'destroy']);
+
+    // IP blocklist
+    Route::get('/blocked-ips', [BlockedIpController::class, 'index']);
+    Route::post('/blocked-ips', [BlockedIpController::class, 'store']);
+    Route::delete('/blocked-ips/{blockedIp}', [BlockedIpController::class, 'destroy']);
+
+    // Phone-number blocklist — VPN bypasses IP blocks, phones stick.
+    Route::get('/blocked-phones', [BlockedPhoneController::class, 'index']);
+    Route::post('/blocked-phones', [BlockedPhoneController::class, 'store']);
+    Route::delete('/blocked-phones/{blockedPhone}', [BlockedPhoneController::class, 'destroy']);
+
+    // Contact-form inbox — read by the admin Messages page.
+    Route::get('/contact-messages', [ContactMessageController::class, 'index']);
+    Route::patch('/contact-messages/{message}', [ContactMessageController::class, 'update']);
+    Route::delete('/contact-messages/{message}', [ContactMessageController::class, 'destroy']);
 
     // Stats
     Route::get('/stats/dashboard', [StatsController::class, 'dashboard']);

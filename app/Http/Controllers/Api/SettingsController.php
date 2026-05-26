@@ -32,6 +32,11 @@ class SettingsController extends Controller
         'contact.',
         'social.',
         'page.',
+        // Homepage banner / featured-product picks edited from /admin/banners.
+        // Examples: home.featured.slug.0..5, home.promo.title.fr,
+        // home.promo.title.ar, home.promo.cta.fr, home.promo.cta.ar,
+        // home.promo.link.
+        'home.',
     ];
 
     private function isWritable(string $key): bool

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'customer_last_name',
     'customer_phone',
     'customer_email',
+    'customer_ip',
     'wilaya_id',
     'wilaya_name',
     'commune',

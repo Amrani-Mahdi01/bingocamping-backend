@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'recaptcha' => [
+        'secret' => env('RECAPTCHA_SECRET_KEY'),
+        // Skip verification entirely when no secret is configured (local
+        // dev convenience). In production, set RECAPTCHA_SECRET_KEY in
+        // .env and any submission missing/with-invalid token is rejected.
+    ],
+
 ];

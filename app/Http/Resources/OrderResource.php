@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\BlockedIp;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -10,6 +11,9 @@ class OrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         $base = rtrim((string) config('app.url'), '/');
+        $ipBlocked = $this->customer_ip
+            ? BlockedIp::where('ip_address', $this->customer_ip)->exists()
+            : false;
 
         return [
             'id' => (string) $this->id,
@@ -38,6 +42,8 @@ class OrderResource extends JsonResource
             'total' => (int) $this->total,
             'trackingNumber' => $this->tracking_number,
             'cancellationReason' => $this->cancellation_reason,
+            'customerIp' => $this->customer_ip,
+            'ipBlocked' => $ipBlocked,
 
             'lines' => $this->whenLoaded('lines', function () use ($base) {
                 return $this->lines->map(function ($line) use ($base) {

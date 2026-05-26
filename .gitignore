@@ -25,3 +25,7 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Windows local-dev CA bundle for reCAPTCHA verify — prod uses
+# system trust store, no need to ship 186KB to Railway.
+/cacert.pem

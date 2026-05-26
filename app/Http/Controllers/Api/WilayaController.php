@@ -38,12 +38,13 @@ class WilayaController extends Controller
             $payload['code'] = str_pad($payload['code'], 2, '0', STR_PAD_LEFT);
         }
         $validated = validator($payload, [
-            'code'           => 'required|string|regex:/^[0-9]{2}$/|unique:wilayas,code',
-            'name_fr'        => 'required|string|max:120',
-            'name_ar'        => 'required|string|max:120',
-            'region'         => 'required|in:Nord,Centre,Est,Ouest,Sud',
-            'shipping_price' => 'required|integer|min:0|max:100000',
-            'delivery_days'  => 'required|integer|min:1|max:30',
+            'code'            => 'required|string|regex:/^[0-9]{2}$/|unique:wilayas,code',
+            'name_fr'         => 'required|string|max:120',
+            'name_ar'         => 'required|string|max:120',
+            'region'          => 'required|in:Nord,Centre,Est,Ouest,Sud',
+            'shipping_price'  => 'required|integer|min:0|max:100000',
+            'stop_desk_price' => 'required|integer|min:0|max:100000',
+            'delivery_days'   => 'required|integer|min:1|max:30',
         ])->validate();
 
         // id mirrors the code (string PK).
@@ -66,8 +67,9 @@ class WilayaController extends Controller
     {
         $payload = $this->normalisePayload($request->all());
         $validated = validator($payload, [
-            'shipping_price' => 'required|integer|min:0|max:100000',
-            'delivery_days'  => 'required|integer|min:1|max:30',
+            'shipping_price'  => 'required|integer|min:0|max:100000',
+            'stop_desk_price' => 'required|integer|min:0|max:100000',
+            'delivery_days'   => 'required|integer|min:1|max:30',
         ])->validate();
 
         $wilaya->update($validated);
@@ -80,6 +82,7 @@ class WilayaController extends Controller
     {
         $aliases = [
             'shippingPrice' => 'shipping_price',
+            'stopDeskPrice' => 'stop_desk_price',
             'deliveryDays'  => 'delivery_days',
             'nameFr'        => 'name_fr',
             'nameAr'        => 'name_ar',
@@ -102,6 +105,7 @@ class WilayaController extends Controller
             'nameAr' => $w->name_ar,
             'region' => $w->region,
             'shippingPrice' => $w->shipping_price,
+            'stopDeskPrice' => $w->stop_desk_price,
             'deliveryDays' => $w->delivery_days,
         ];
     }

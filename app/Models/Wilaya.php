@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'name_ar',
     'region',
     'shipping_price',
+    'stop_desk_price',
     'delivery_days',
 ])]
 class Wilaya extends Model
@@ -24,6 +25,7 @@ class Wilaya extends Model
     {
         return [
             'shipping_price' => 'integer',
+            'stop_desk_price' => 'integer',
             'delivery_days' => 'integer',
         ];
     }
