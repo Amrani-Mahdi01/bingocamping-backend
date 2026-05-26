@@ -38,6 +38,39 @@ Route::get('/wilayas/{wilaya}/communes', [CommuneController::class, 'indexPublic
 Route::post('/orders', [OrderController::class, 'store']);
 // Storefront /contact form — reCAPTCHA-gated (see controller).
 Route::post('/contact', [ContactMessageController::class, 'store']);
+
+/*
+ * TEMP: one-shot storage sync. The local-dev image tree lives in the
+ * repo under database/import-data/storage/, but the Railway Volume
+ * mounts AFTER the boot command runs, so a `cp` in nixpacks.toml's
+ * start cmd ends up shadowed. This route does the copy inside an
+ * HTTP request handler — by then the volume is in place — and is
+ * gated by a one-time secret so it can't be hit at random. Delete
+ * once the prod storage is populated.
+ */
+Route::post('/_dev/sync-storage/{secret}', function (string $secret) {
+    if ($secret !== 'sync-7K3Lp9vQ8mZxN2RfBcDeFgHi') {
+        return response()->json(['error' => 'forbidden'], 403);
+    }
+    $bundle = base_path('database/import-data/storage');
+    if (! is_dir($bundle)) {
+        return response()->json(['error' => 'no bundle at '.$bundle], 404);
+    }
+    $dest = storage_path('app/public');
+    \Illuminate\Support\Facades\File::ensureDirectoryExists($dest);
+    \Illuminate\Support\Facades\File::copyDirectory($bundle, $dest);
+
+    $count = 0;
+    foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dest)) as $f) {
+        if ($f->isFile()) $count++;
+    }
+    return response()->json([
+        'ok' => true,
+        'bundle' => $bundle,
+        'dest' => $dest,
+        'files_in_dest_after_copy' => $count,
+    ]);
+});
 // SSE pending-count feed. Sits OUTSIDE the auth:sanctum guard because
 // EventSource on the browser can't send custom headers; the admin
 // token is passed as a query param and validated inside the controller.
