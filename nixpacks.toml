@@ -15,9 +15,11 @@
 cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
 
 [start]
-# data:load is a one-shot sync of local dev data committed under
-# database/import-data/. Idempotent (upsert by PK + recursive image
-# copy), but should be removed from boot once the prod DB has caught
-# up — keeps cold-start fast. Failures are swallowed (|| true) so a
-# bad import never blocks the server from coming up.
-cmd = "php artisan migrate --force && php artisan storage:link --force && (php artisan data:load || true) && php artisan serve --host=0.0.0.0 --port=$PORT"
+# One-shot image sync: the local-dev storage tree was bundled into
+# the repo under database/import-data/storage/. The Volume mount at
+# storage/app/public/ starts empty on first boot, so `cp -rn` copies
+# the bundled assets in without overwriting anything an admin has
+# already uploaded through /admin/banners etc. Cheap to leave in
+# place (no-op once files exist). The DB rows themselves were synced
+# from a local machine via the public MySQL proxy.
+cmd = "php artisan migrate --force && php artisan storage:link --force && (test -d database/import-data/storage && cp -rn database/import-data/storage/. storage/app/public/ || true) && php artisan serve --host=0.0.0.0 --port=$PORT"

@@ -33,18 +33,30 @@ class ImportLocalData extends Command
 
     protected $description = 'Load committed local-dev data into the current database';
 
+    /**
+     * wilayas + communes are reference data identical across all
+     * environments (seeded from the same SQL). They're left out
+     * because Railway's auto-incremented commune IDs don't line up
+     * with the local SQLite ones, which collides on the
+     * (wilaya_id, code) unique constraint during an upsert. The
+     * data we DO care about — products / settings / admins — never
+     * references communes by ID, only the wilaya code via string.
+     */
+    /**
+     * Each table maps to the column(s) used as its natural unique
+     * key for upsert. Most tables key on `id`; site_settings keys
+     * on `key` (no `id` column at all).
+     */
     private const TABLES = [
-        'brands',
-        'categories',
-        'wilayas',
-        'communes',
-        'site_settings',
-        'admins',
-        'customers',
-        'products',
-        'product_variants',
-        'product_images',
-        'banners',
+        'brands'           => ['id'],
+        'categories'       => ['id'],
+        'site_settings'    => ['key'],
+        'admins'           => ['id'],
+        'customers'        => ['id'],
+        'products'         => ['id'],
+        'product_variants' => ['id'],
+        'product_images'   => ['id'],
+        'banners'          => ['id'],
     ];
 
     public function handle(): int
@@ -57,8 +69,8 @@ class ImportLocalData extends Command
         }
 
         try {
-            foreach (self::TABLES as $table) {
-                $this->loadTable($table);
+            foreach (self::TABLES as $table => $keys) {
+                $this->loadTable($table, $keys);
             }
         } finally {
             if ($driver === 'mysql') {
@@ -72,7 +84,10 @@ class ImportLocalData extends Command
         return self::SUCCESS;
     }
 
-    private function loadTable(string $table): void
+    /**
+     * @param array<int,string> $keys Columns that form the upsert key.
+     */
+    private function loadTable(string $table, array $keys): void
     {
         $path = database_path("import-data/{$table}.json");
         if (! is_file($path)) {
@@ -94,8 +109,10 @@ class ImportLocalData extends Command
         $inserted = 0;
         $updated = 0;
         foreach ($rows as $row) {
-            $existed = DB::table($table)->where('id', $row['id'] ?? null)->exists();
-            DB::table($table)->updateOrInsert(['id' => $row['id'] ?? null], $row);
+            $match = [];
+            foreach ($keys as $k) $match[$k] = $row[$k] ?? null;
+            $existed = DB::table($table)->where($match)->exists();
+            DB::table($table)->updateOrInsert($match, $row);
             $existed ? $updated++ : $inserted++;
         }
 
