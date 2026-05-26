@@ -15,4 +15,9 @@
 cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
 
 [start]
-cmd = "php artisan migrate --force && php artisan storage:link --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+# data:load is a one-shot sync of local dev data committed under
+# database/import-data/. Idempotent (upsert by PK + recursive image
+# copy), but should be removed from boot once the prod DB has caught
+# up — keeps cold-start fast. Failures are swallowed (|| true) so a
+# bad import never blocks the server from coming up.
+cmd = "php artisan migrate --force && php artisan storage:link --force && (php artisan data:load || true) && php artisan serve --host=0.0.0.0 --port=$PORT"
