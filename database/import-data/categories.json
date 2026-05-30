@@ -6,13 +6,13 @@
         "name_ar": "الخيام والمآوي",
         "parent_id": null,
         "icon": "Tent",
-        "image": "\/categories\/camping-tent.png",
+        "image": "/categories/camping-tent.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 1,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 2,
@@ -81,19 +81,19 @@
         "name_ar": "أكياس النوم",
         "parent_id": null,
         "icon": "Moon",
-        "image": "\/categories\/camping-tent.png",
+        "image": "/categories/camping-tent.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 2,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 7,
         "slug": "ete-3-saisons",
-        "name_fr": "Été \/ 3 saisons",
-        "name_ar": "صيف \/ 3 فصول",
+        "name_fr": "Été / 3 saisons",
+        "name_ar": "صيف / 3 فصول",
         "parent_id": 6,
         "icon": "Moon",
         "image": null,
@@ -102,7 +102,7 @@
         "display_order": 1,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 12:26:22"
+        "updated_at": "2026-05-29 18:32:01"
     },
     {
         "id": 8,
@@ -117,7 +117,7 @@
         "display_order": 2,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 12:26:22"
+        "updated_at": "2026-05-29 18:32:01"
     },
     {
         "id": 9,
@@ -132,7 +132,7 @@
         "display_order": 3,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 12:26:22"
+        "updated_at": "2026-05-29 18:32:01"
     },
     {
         "id": 10,
@@ -141,13 +141,13 @@
         "name_ar": "مطبخ المغامرة",
         "parent_id": null,
         "icon": "ChefHat",
-        "image": "\/categories\/bonfire.png",
+        "image": "/categories/bonfire.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 3,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 11,
@@ -216,13 +216,13 @@
         "name_ar": "الإضاءة",
         "parent_id": null,
         "icon": "Lamp",
-        "image": "\/categories\/flashlight.png",
+        "image": "/categories/flashlight.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 4,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 16,
@@ -276,13 +276,13 @@
         "name_ar": "حقائب الظهر",
         "parent_id": null,
         "icon": "Backpack",
-        "image": "\/categories\/backpack.png",
+        "image": "/categories/backpack.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 5,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 20,
@@ -351,13 +351,13 @@
         "name_ar": "الملابس",
         "parent_id": null,
         "icon": "Shirt",
-        "image": "\/categories\/backpack.png",
+        "image": "/categories/backpack.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 6,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 25,
@@ -426,13 +426,13 @@
         "name_ar": "الأحذية",
         "parent_id": null,
         "icon": "Footprints",
-        "image": "\/categories\/boots.png",
+        "image": "/categories/boots.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 7,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 30,
@@ -486,13 +486,13 @@
         "name_ar": "الإكسسوارات",
         "parent_id": null,
         "icon": "Compass",
-        "image": "\/categories\/map.png",
+        "image": "/categories/map.png",
         "description_fr": null,
         "description_ar": null,
         "display_order": 8,
         "is_active": 1,
         "created_at": "2026-05-24 12:26:22",
-        "updated_at": "2026-05-24 14:40:48"
+        "updated_at": "2026-05-29 18:34:18"
     },
     {
         "id": 34,

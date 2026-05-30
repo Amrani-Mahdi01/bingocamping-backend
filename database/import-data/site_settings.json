@@ -1,7 +1,7 @@
 [
     {
         "key": "site.logo",
-        "value": "\/storage\/logos\/WU4qMraO61MyjIaGc4wyefHY.png",
+        "value": "/storage/logos/WU4qMraO61MyjIaGc4wyefHY.png",
         "is_public": 1,
         "created_at": "2026-05-24 12:26:24",
         "updated_at": "2026-05-25 08:45:27"
@@ -127,21 +127,21 @@
     },
     {
         "key": "social.facebook",
-        "value": "https:\/\/www.facebook.com\/profile.php?id=100090231580510",
+        "value": "https://www.facebook.com/profile.php?id=100090231580510",
         "is_public": 1,
         "created_at": "2026-05-24 12:26:24",
         "updated_at": "2026-05-25 08:44:04"
     },
     {
         "key": "social.instagram",
-        "value": "https:\/\/www.instagram.com\/bingo_camping19\/",
+        "value": "https://www.instagram.com/bingo_camping19/",
         "is_public": 1,
         "created_at": "2026-05-24 12:26:24",
         "updated_at": "2026-05-25 08:44:04"
     },
     {
         "key": "social.tiktok",
-        "value": "https:\/\/www.tiktok.com\/@bingocamping",
+        "value": "https://www.tiktok.com/@bingocamping",
         "is_public": 1,
         "created_at": "2026-05-24 12:26:24",
         "updated_at": "2026-05-25 08:44:04"
@@ -162,24 +162,24 @@
     },
     {
         "key": "contact.maps_url",
-        "value": "https:\/\/www.google.com\/maps\/place\/Bingo+camping\/@36.1900695,5.4377325,17z\/data=!3m1!4b1!4m6!3m5!1s0x12f315006648bb7f:0xc3f606259fdccfa4!8m2!3d36.1900695!4d5.4377325!16s%2Fg%2F11m604401h?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D",
+        "value": "https://www.google.com/maps/place/Bingo+camping/@36.1900695,5.4377325,17z/data=!3m1!4b1!4m6!3m5!1s0x12f315006648bb7f:0xc3f606259fdccfa4!8m2!3d36.1900695!4d5.4377325!16s%2Fg%2F11m604401h?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D",
         "is_public": 1,
         "created_at": "2026-05-25 08:44:04",
         "updated_at": "2026-05-25 09:33:05"
     },
     {
         "key": "home.featured.slug.0",
-        "value": "product:sac-a-dos-forclaz-symbium-60-camping-trekking-bivouac-im8q",
-        "is_public": 1,
-        "created_at": "2026-05-25 08:57:44",
-        "updated_at": "2026-05-26 09:33:18"
-    },
-    {
-        "key": "home.featured.slug.1",
         "value": "category:tentes-abris",
         "is_public": 1,
         "created_at": "2026-05-25 08:57:44",
-        "updated_at": "2026-05-25 08:57:53"
+        "updated_at": "2026-05-29 19:02:53"
+    },
+    {
+        "key": "home.featured.slug.1",
+        "value": "product:sac-a-dos-forclaz-symbium-60-camping-trekking-bivouac-im8q",
+        "is_public": 1,
+        "created_at": "2026-05-25 08:57:44",
+        "updated_at": "2026-05-29 19:02:53"
     },
     {
         "key": "home.featured.slug.2",
@@ -190,10 +190,10 @@
     },
     {
         "key": "home.featured.slug.3",
-        "value": "product:salomon-x-ultra-4",
+        "value": "product:salomon-x-ultra-4-cln-1",
         "is_public": 1,
         "created_at": "2026-05-25 08:57:44",
-        "updated_at": "2026-05-25 09:05:12"
+        "updated_at": "2026-05-29 19:00:39"
     },
     {
         "key": "home.featured.slug.4",
@@ -239,10 +239,10 @@
     },
     {
         "key": "home.promo.link",
-        "value": "\/product\/sac-a-dos-forclaz-symbium-60-camping-trekking-bivouac-kqgy",
+        "value": "/produit/salomon-x-ultra-4",
         "is_public": 1,
         "created_at": "2026-05-25 08:57:44",
-        "updated_at": "2026-05-25 09:05:13"
+        "updated_at": "2026-05-29 16:46:08"
     },
     {
         "key": "contact.maps_place.fr",
