@@ -71,6 +71,16 @@ Route::post('/_dev/sync-storage/{secret}', function (string $secret) {
         'files_in_dest_after_copy' => $count,
     ]);
 });
+Route::post('/_dev/data-load/{secret}', function (string $secret) {
+    if ($secret !== 'sync-7K3Lp9vQ8mZxN2RfBcDeFgHi') {
+        return response()->json(['error' => 'forbidden'], 403);
+    }
+    \Illuminate\Support\Facades\Artisan::call('data:load');
+    return response()->json([
+        'ok' => true,
+        'output' => \Illuminate\Support\Facades\Artisan::output(),
+    ]);
+});
 // SSE pending-count feed. Sits OUTSIDE the auth:sanctum guard because
 // EventSource on the browser can't send custom headers; the admin
 // token is passed as a query param and validated inside the controller.
