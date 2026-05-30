@@ -106,4 +106,31 @@ class Product extends Model
         }
         return 'in_stock';
     }
+
+    /**
+     * Auto-deactivate the product whenever its tracked stock hits 0
+     * (and backorder is not allowed). Mirrors the rule the storefront
+     * uses to decide whether the "Ajouter au panier" / "Commander"
+     * CTAs are clickable, so a sold-out product disappears from the
+     * catalogue, search, and product page in one hop — without the
+     * admin having to remember to untick "Actif".
+     *
+     * We intentionally do NOT auto re-activate when stock comes back:
+     * the admin may have deactivated the row for a different reason
+     * (photo missing, price wrong, etc.) and we don't want a restock
+     * to silently surface it again. They re-tick "Actif" manually.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (Product $product) {
+            if (
+                $product->track_stock
+                && ! $product->allow_backorder
+                && (int) $product->stock <= 0
+                && $product->is_active
+            ) {
+                $product->is_active = false;
+            }
+        });
+    }
 }

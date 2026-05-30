@@ -357,11 +357,12 @@ class OrderController extends Controller
             if (! $product || ! $product->track_stock) continue;
             $qty = (int) $line->quantity;
             if ($qty <= 0) continue;
-            if ($isReserved) {
-                $product->decrement('stock', $qty);
-            } else {
-                $product->increment('stock', $qty);
-            }
+            // Use save() instead of Eloquent's decrement/increment
+            // helpers so the Product::saving hook fires and the
+            // auto-deactivate-on-zero rule is applied. The raw
+            // ->decrement() call would bypass model events entirely.
+            $product->stock = (int) $product->stock + ($isReserved ? -$qty : $qty);
+            $product->save();
         }
     }
 
