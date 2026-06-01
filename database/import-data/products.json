@@ -13,7 +13,7 @@
         "brand_id": 6,
         "price": 18900,
         "old_price": null,
-        "stock": 7,
+        "stock": 4,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -24,12 +24,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 9,
-        "sold_count": 4,
+        "view_count": 12,
+        "sold_count": 7,
         "attributes": null,
         "published_at": "2026-05-26 09:26:49",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-06-01 10:57:43",
+        "video": null
     },
     {
         "id": 2,
@@ -61,7 +62,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 4,
@@ -77,7 +79,7 @@
         "brand_id": 2,
         "price": 4800,
         "old_price": null,
-        "stock": 29,
+        "stock": 27,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -89,11 +91,12 @@
         "rating": 0,
         "review_count": 0,
         "view_count": 3,
-        "sold_count": 1,
+        "sold_count": 3,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 17:41:50"
+        "updated_at": "2026-05-30 11:48:10",
+        "video": null
     },
     {
         "id": 5,
@@ -125,7 +128,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 18:12:54"
+        "updated_at": "2026-05-29 18:12:54",
+        "video": null
     },
     {
         "id": 6,
@@ -152,12 +156,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 5,
+        "view_count": 7,
         "sold_count": 2,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 17:50:29"
+        "updated_at": "2026-05-30 12:31:03",
+        "video": null
     },
     {
         "id": 7,
@@ -189,7 +194,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-24 12:26:23"
+        "updated_at": "2026-05-24 12:26:23",
+        "video": null
     },
     {
         "id": 10,
@@ -221,7 +227,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 18:12:54"
+        "updated_at": "2026-05-29 18:12:54",
+        "video": null
     },
     {
         "id": 11,
@@ -253,7 +260,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 19:04:00"
+        "updated_at": "2026-05-29 19:04:00",
+        "video": null
     },
     {
         "id": 12,
@@ -285,7 +293,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 19:03:47"
+        "updated_at": "2026-05-29 19:03:47",
+        "video": null
     },
     {
         "id": 13,
@@ -312,12 +321,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 5,
+        "view_count": 7,
         "sold_count": 1,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 17:45:59"
+        "updated_at": "2026-05-30 11:55:19",
+        "video": null
     },
     {
         "id": 14,
@@ -349,7 +359,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-24 12:26:23"
+        "updated_at": "2026-05-24 12:26:23",
+        "video": null
     },
     {
         "id": 15,
@@ -381,7 +392,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-25 12:05:06"
+        "updated_at": "2026-05-25 12:05:06",
+        "video": null
     },
     {
         "id": 16,
@@ -413,7 +425,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-24 12:26:23",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 17,
@@ -429,7 +442,7 @@
         "brand_id": 2,
         "price": 11800,
         "old_price": 14000,
-        "stock": 15,
+        "stock": 11,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -440,28 +453,29 @@
         "is_promo": 1,
         "rating": 0,
         "review_count": 0,
-        "view_count": 40,
-        "sold_count": 14,
+        "view_count": 58,
+        "sold_count": 21,
         "attributes": null,
         "published_at": "2026-05-26 09:27:09",
         "created_at": "2026-05-24 14:08:47",
-        "updated_at": "2026-05-29 18:12:54"
+        "updated_at": "2026-06-01 10:57:43",
+        "video": null
     },
     {
         "id": 19,
-        "slug": "tente-hubba-nx-2-places-variant-1-ht6t",
-        "sku": "BIN-53L1UZ",
+        "slug": "tente-hubba-nx-2-places-variant-1-tts9",
+        "sku": "BIN-TZCYHG",
         "name_fr": "Tente Hubba NX 2 places · variant 1",
         "name_ar": "خيمة Hubba NX لشخصين · 1",
         "description_short_fr": "Tente ultralégère 2 places, double paroi imperméable.",
         "description_short_ar": "خيمة فائقة الخفة لشخصين، جدار مزدوج مقاوم للماء.",
         "description_fr": "La référence du bivouac alpin — 1.7 kg, montage en 5 minutes, deux portes, arceaux DAC Featherlite NSL et double paroi 1500 mm. Idéale pour les traversées sans concession sur le poids.",
         "description_ar": "المرجع في المخيمات الجبلية — 1.7 كغ، نصب في 5 دقائق، بابان، أعمدة DAC Featherlite NSL وجدار مزدوج 1500 مم. مثالية للمسارات الطويلة دون أي تنازل عن الوزن.",
-        "category_id": 2,
+        "category_id": 40,
         "brand_id": 6,
         "price": 18900,
         "old_price": null,
-        "stock": 10,
+        "stock": 9,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -472,12 +486,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 0,
-        "sold_count": 0,
+        "view_count": 16,
+        "sold_count": 1,
         "attributes": null,
-        "published_at": "2026-05-29 18:25:12",
+        "published_at": "2026-06-01 08:51:52",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:25:12"
+        "updated_at": "2026-06-01 10:57:43",
+        "video": "/storage/products/videos/bYdFwtL2yP6gFMe8jRkCJApC.mp4"
     },
     {
         "id": 20,
@@ -509,7 +524,8 @@
         "attributes": null,
         "published_at": "2026-05-26 09:26:49",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 21,
@@ -541,7 +557,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 22,
@@ -573,7 +590,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 23,
@@ -605,7 +623,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 24,
@@ -621,7 +640,7 @@
         "brand_id": 2,
         "price": 4800,
         "old_price": null,
-        "stock": 29,
+        "stock": 28,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -632,12 +651,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 0,
-        "sold_count": 0,
+        "view_count": 1,
+        "sold_count": 1,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-06-01 10:57:43",
+        "video": null
     },
     {
         "id": 25,
@@ -653,7 +673,7 @@
         "brand_id": 7,
         "price": 19500,
         "old_price": 22000,
-        "stock": 7,
+        "stock": 6,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -664,12 +684,13 @@
         "is_promo": 1,
         "rating": 0,
         "review_count": 0,
-        "view_count": 0,
-        "sold_count": 0,
+        "view_count": 2,
+        "sold_count": 1,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-30 11:48:10",
+        "video": null
     },
     {
         "id": 26,
@@ -701,7 +722,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 27,
@@ -733,7 +755,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 28,
@@ -765,7 +788,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 29,
@@ -797,7 +821,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 30,
@@ -829,12 +854,13 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 31,
-        "slug": "osprey-atmos-50-cln-1",
-        "sku": "OSP-ATM-50-CLN-1",
+        "slug": "sac-a-dos-atmos-ag-50-l-variant-1-6cwi",
+        "sku": "BIN-1J7F3H",
         "name_fr": "Sac à dos Atmos AG 50 L · variant 1",
         "name_ar": "حقيبة ظهر Atmos AG 50 لتر · 1",
         "description_short_fr": "Sac à dos trek 50 L, suspension Anti-Gravity.",
@@ -845,23 +871,24 @@
         "brand_id": 8,
         "price": 13900,
         "old_price": null,
-        "stock": 13,
+        "stock": 0,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
-        "is_active": 1,
+        "is_active": 0,
         "is_featured": 0,
         "is_new": 0,
         "is_best_seller": 1,
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 0,
+        "view_count": 2,
         "sold_count": 0,
         "attributes": null,
-        "published_at": "2026-05-24 12:26:23",
+        "published_at": "2026-05-30 13:15:51",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-30 13:15:51",
+        "video": null
     },
     {
         "id": 32,
@@ -888,12 +915,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 0,
+        "view_count": 1,
         "sold_count": 0,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-30 13:16:02",
+        "video": null
     },
     {
         "id": 33,
@@ -925,7 +953,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:54"
+        "updated_at": "2026-05-29 18:12:54",
+        "video": null
     },
     {
         "id": 34,
@@ -941,7 +970,7 @@
         "brand_id": 8,
         "price": 7200,
         "old_price": null,
-        "stock": 20,
+        "stock": 19,
         "low_stock_threshold": 5,
         "track_stock": 1,
         "allow_backorder": 0,
@@ -957,7 +986,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-30 11:03:13",
+        "video": null
     },
     {
         "id": 35,
@@ -989,7 +1019,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 36,
@@ -1021,7 +1052,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 37,
@@ -1053,7 +1085,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 38,
@@ -1080,12 +1113,13 @@
         "is_promo": 0,
         "rating": 0,
         "review_count": 0,
-        "view_count": 0,
+        "view_count": 1,
         "sold_count": 0,
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-30 10:50:18",
+        "video": null
     },
     {
         "id": 39,
@@ -1117,7 +1151,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 40,
@@ -1149,7 +1184,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 41,
@@ -1181,7 +1217,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 19:04:54"
+        "updated_at": "2026-05-29 19:04:54",
+        "video": null
     },
     {
         "id": 42,
@@ -1213,7 +1250,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 43,
@@ -1245,7 +1283,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:12:55"
+        "updated_at": "2026-05-29 18:12:55",
+        "video": null
     },
     {
         "id": 44,
@@ -1277,7 +1316,8 @@
         "attributes": null,
         "published_at": "2026-05-24 12:26:23",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 45,
@@ -1309,7 +1349,8 @@
         "attributes": null,
         "published_at": "2026-05-26 09:27:09",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     },
     {
         "id": 46,
@@ -1341,6 +1382,7 @@
         "attributes": null,
         "published_at": "2026-05-26 09:27:09",
         "created_at": "2026-05-29 18:02:50",
-        "updated_at": "2026-05-29 18:02:50"
+        "updated_at": "2026-05-29 18:02:50",
+        "video": null
     }
 ]

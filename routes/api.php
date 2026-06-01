@@ -215,5 +215,6 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('/uploads/banner-image', [UploadController::class, 'bannerImage']);
     Route::post('/uploads/category-image', [UploadController::class, 'categoryImage']);
     Route::post('/uploads/product-image', [UploadController::class, 'productImage']);
+    Route::post('/uploads/product-video', [UploadController::class, 'productVideo']);
     Route::post('/uploads/logo', [UploadController::class, 'logoImage']);
 });

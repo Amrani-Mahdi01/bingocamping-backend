@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -177,7 +178,11 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request): JsonResponse
     {
         $product = DB::transaction(function () use ($request) {
-            $p = Product::create($request->toModel());
+            $data = $request->toModel();
+            // Store the video as a host-relative /storage/ path (like images)
+            // so it survives a move between hosts (Railway → Hostinger).
+            $data['video'] = $this->normalizeStoragePath($data['video'] ?? null);
+            $p = Product::create($data);
             $this->syncImages($p, $request);
             $this->syncVariants($p, $request);
             return $p;
@@ -192,7 +197,14 @@ class ProductController extends Controller
     public function update(StoreProductRequest $request, Product $product): ProductResource
     {
         DB::transaction(function () use ($request, $product) {
-            $product->update($request->toModel());
+            $oldVideo = $product->video;
+            $data = $request->toModel();
+            $data['video'] = $this->normalizeStoragePath($data['video'] ?? null);
+            $product->update($data);
+            // Old video replaced or removed → delete the orphaned file.
+            if ($oldVideo && $oldVideo !== $product->video) {
+                $this->deleteStoredFile($oldVideo);
+            }
             if ($request->has('images')) {
                 $this->syncImages($product, $request, replace: true);
             }
@@ -209,6 +221,18 @@ class ProductController extends Controller
     private function syncImages(Product $product, Request $request, bool $replace = false): void
     {
         if ($replace) {
+            // Delete files for images no longer present in the new set so they
+            // don't pile up as orphans. Kept images (same URL) are untouched.
+            $newUrls = [];
+            foreach ((array) $request->input('images', []) as $img) {
+                $u = $this->normalizeStoragePath($img['url'] ?? null);
+                if ($u) $newUrls[] = $u;
+            }
+            foreach ($product->images as $old) {
+                if (! in_array($old->url, $newUrls, true)) {
+                    $this->deleteStoredFile($old->url);
+                }
+            }
             $product->images()->delete();
         }
         foreach ((array) $request->input('images', []) as $i => $img) {
@@ -255,6 +279,13 @@ class ProductController extends Controller
     /** DELETE /api/admin/products/{product} */
     public function destroy(Product $product): JsonResponse
     {
+        // Delete the product's media off disk before the rows cascade away,
+        // otherwise the files become orphans nothing references.
+        foreach ($product->images as $img) {
+            $this->deleteStoredFile($img->url);
+        }
+        $this->deleteStoredFile($product->video);
+
         $product->delete();
         return response()->json(['message' => 'Product deleted.']);
     }
@@ -272,5 +303,23 @@ class ProductController extends Controller
             return substr($value, strlen($base));
         }
         return $value;
+    }
+
+    /**
+     * Delete a file we previously stored on the public disk, given either a
+     * relative "/storage/..." path or an absolute URL pointing at it. No-op
+     * for empty values or anything that isn't one of our /storage/ files.
+     */
+    private function deleteStoredFile(?string $value): void
+    {
+        if (! is_string($value) || trim($value) === '') return;
+        // Drop scheme+host if it's an absolute URL, keeping just the path.
+        $path = parse_url($value, PHP_URL_PATH) ?: $value;
+        $marker = '/storage/';
+        $pos = strpos($path, $marker);
+        if ($pos === false) return;
+        $relative = substr($path, $pos + strlen($marker)); // e.g. products/x.webp
+        if ($relative === '') return;
+        Storage::disk('public')->delete($relative);
     }
 }

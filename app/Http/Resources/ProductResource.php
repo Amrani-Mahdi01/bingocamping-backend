@@ -20,6 +20,14 @@ class ProductResource extends JsonResource
             'descriptionFr' => $this->description_fr,
             'descriptionAr' => $this->description_ar,
 
+            // Absolute URL for the optional product video (prefix relative
+            // /storage/ paths with the app URL, same as images do).
+            'video' => $this->video
+                ? (str_starts_with((string) $this->video, '/storage/')
+                    ? rtrim((string) config('app.url'), '/').$this->video
+                    : $this->video)
+                : null,
+
             'categoryId' => $this->category_id ? (string) $this->category_id : null,
             'brandId' => $this->brand_id ? (string) $this->brand_id : null,
 

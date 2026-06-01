@@ -50,10 +50,14 @@ class StoreProductRequest extends FormRequest
             // Images: array of { url, altFr?, altAr? } — the form uploads
             // first to /uploads/product-image and then sends the resulting
             // URLs here.
-            'images' => ['nullable', 'array'],
+            'images' => ['nullable', 'array', 'max:5'],
             'images.*.url' => ['required_with:images', 'string', 'max:1000'],
             'images.*.altFr' => ['nullable', 'string', 'max:200'],
             'images.*.altAr' => ['nullable', 'string', 'max:200'],
+
+            // One optional product video — the form uploads to
+            // /uploads/product-video and sends the resulting URL here.
+            'video' => ['nullable', 'string', 'max:1000'],
 
             // Variants — each row is a purchasable (color, size) combo.
             // Either color_* or sizeLabel must be present.
@@ -81,6 +85,7 @@ class StoreProductRequest extends FormRequest
             'oldPrice.gte' => "L'ancien prix doit être supérieur ou égal au prix.",
             'sku.unique' => 'Ce SKU est déjà utilisé.',
             'slug.unique' => 'Ce slug est déjà utilisé.',
+            'images.max' => 'Maximum 5 photos par produit.',
         ];
     }
 
@@ -101,6 +106,7 @@ class StoreProductRequest extends FormRequest
             'description_short_ar' => $nullable($v['descriptionShortAr'] ?? null),
             'description_fr' => $nullable($v['descriptionFr'] ?? null),
             'description_ar' => $nullable($v['descriptionAr'] ?? null),
+            'video' => $nullable($v['video'] ?? null),
 
             'category_id' => (int) $v['categoryId'],
             'brand_id' => (int) $v['brandId'],

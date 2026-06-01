@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'description_short_ar',
     'description_fr',
     'description_ar',
+    'video',
     'category_id',
     'brand_id',
     'price',

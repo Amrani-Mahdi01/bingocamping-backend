@@ -47,7 +47,7 @@ class UploadController extends Controller
         // bigger is wasted bandwidth + decode cost. Resize to fit a 1920x800
         // box, keep aspect ratio, re-encode as JPEG at q=82. A 4MB phone
         // photo lands around 200-400 KB after this.
-        $name = Str::random(24).'.jpg';
+        $name = Str::random(24).'.webp';
         $absoluteDir = storage_path('app/public/banners');
         if (! is_dir($absoluteDir)) {
             mkdir($absoluteDir, 0755, true);
@@ -69,7 +69,7 @@ class UploadController extends Controller
      * Body: multipart/form-data with `file` field.
      *
      * Stores product photos under storage/app/public/products/. Resized to
-     * 1600×1600 max (square-ish gallery target), JPEG q=82.
+     * 1600×1600 max (square-ish gallery target), re-encoded as WebP q=82.
      */
     public function productImage(Request $request): JsonResponse
     {
@@ -90,7 +90,7 @@ class UploadController extends Controller
         );
 
         $file = $data['file'];
-        $name = Str::random(24).'.jpg';
+        $name = Str::random(24).'.webp';
         $absoluteDir = storage_path('app/public/products');
         if (! is_dir($absoluteDir)) {
             mkdir($absoluteDir, 0755, true);
@@ -99,6 +99,44 @@ class UploadController extends Controller
         $this->resizeAndStore($file->getRealPath(), $destination, 1600, 1600);
 
         $relative = '/storage/products/'.$name;
+        $absolute = rtrim((string) config('app.url'), '/').$relative;
+
+        return response()->json(['path' => $relative, 'url' => $absolute]);
+    }
+
+    /**
+     * POST /api/admin/uploads/product-video
+     * Body: multipart/form-data with `file` field.
+     *
+     * Stores one product video under storage/app/public/products/videos/.
+     * The file is expected to already be compressed in the browser
+     * (ffmpeg.wasm → 720p H.264 MP4), so we only validate + store it —
+     * no server-side re-encoding (the prod server is single-threaded).
+     */
+    public function productVideo(Request $request): JsonResponse
+    {
+        $data = $request->validate(
+            [
+                'file' => [
+                    'required',
+                    'file',
+                    'mimetypes:video/mp4,video/webm,video/quicktime',
+                    'max:30720', // 30 MB — already compressed client-side
+                ],
+            ],
+            [
+                'file.required' => "Aucun fichier reçu.",
+                'file.mimetypes' => "Formats vidéo acceptés : MP4, WebM, MOV.",
+                'file.max' => "Vidéo trop volumineuse (max 30 Mo).",
+            ]
+        );
+
+        $file = $data['file'];
+        $ext = strtolower($file->getClientOriginalExtension() ?: 'mp4');
+        $name = Str::random(24).'.'.$ext;
+        $file->storeAs('products/videos', $name, 'public');
+
+        $relative = '/storage/products/videos/'.$name;
         $absolute = rtrim((string) config('app.url'), '/').$relative;
 
         return response()->json(['path' => $relative, 'url' => $absolute]);
@@ -131,7 +169,7 @@ class UploadController extends Controller
         );
 
         $file = $data['file'];
-        $name = Str::random(24).'.jpg';
+        $name = Str::random(24).'.webp';
         $absoluteDir = storage_path('app/public/categories');
         if (! is_dir($absoluteDir)) {
             mkdir($absoluteDir, 0755, true);
@@ -186,12 +224,13 @@ class UploadController extends Controller
             $name = Str::random(24).'.svg';
             $file->storeAs('logos', $name, 'public');
         } else {
-            // For raster sources, preserve PNG transparency by saving as PNG
-            // if the source is PNG; everything else collapses to JPEG.
-            $isPng = $clientExt === 'png';
-            $name = Str::random(24).($isPng ? '.png' : '.jpg');
+            // For raster sources, output WebP. Preserve the alpha channel when
+            // the source is a PNG/WebP (transparent logos); JPEG sources get
+            // flattened onto white.
+            $hasAlpha = in_array($clientExt, ['png', 'webp'], true);
+            $name = Str::random(24).'.webp';
             $destination = $absoluteDir.DIRECTORY_SEPARATOR.$name;
-            $this->resizeAndStore($file->getRealPath(), $destination, 600, 200, $isPng);
+            $this->resizeAndStore($file->getRealPath(), $destination, 600, 200, $hasAlpha);
         }
 
         $relative = '/storage/logos/'.$name;
@@ -205,11 +244,12 @@ class UploadController extends Controller
 
     /**
      * Read the source, downscale to fit ($maxW × $maxH) while preserving
-     * aspect ratio (no upscaling), then save as JPEG quality 82 (or PNG
-     * with transparency when $preservePng is true).
+     * aspect ratio (no upscaling), then save as WebP quality 82. When
+     * $preserveAlpha is true the alpha channel is kept (WebP supports
+     * transparency), otherwise transparent areas are flattened onto white.
      * EXIF orientation is honoured so portrait phone shots come out right.
      */
-    private function resizeAndStore(string $source, string $destination, int $maxW, int $maxH, bool $preservePng = false): void
+    private function resizeAndStore(string $source, string $destination, int $maxW, int $maxH, bool $preserveAlpha = false): void
     {
         $info = @getimagesize($source);
         if ($info === false) {
@@ -258,26 +298,24 @@ class UploadController extends Controller
         $newH = (int) round($h * $ratio);
 
         $dst = imagecreatetruecolor($newW, $newH);
-        if ($preservePng) {
-            // Preserve transparency for PNG output (used by logos).
+        if ($preserveAlpha) {
+            // Keep transparency (used by logos) — WebP carries an alpha channel.
             imagealphablending($dst, false);
             imagesavealpha($dst, true);
             $transparent = imagecolorallocatealpha($dst, 0, 0, 0, 127);
             imagefilledrectangle($dst, 0, 0, $newW, $newH, $transparent);
         } else {
-            // White background so PNG transparency doesn't go black when we
-            // re-encode to JPEG.
+            // White background so source transparency doesn't go black when
+            // we flatten it during re-encode.
             $white = imagecolorallocate($dst, 255, 255, 255);
             imagefilledrectangle($dst, 0, 0, $newW, $newH, $white);
         }
         imagecopyresampled($dst, $src, 0, 0, 0, 0, $newW, $newH, $w, $h);
         imagedestroy($src);
 
-        if ($preservePng) {
-            imagepng($dst, $destination, 8); // compression level 8/9
-        } else {
-            imagejpeg($dst, $destination, 82);
-        }
+        // WebP at q82 — ~25-35% smaller than the equivalent JPEG, with alpha
+        // support so transparent logos survive the conversion.
+        imagewebp($dst, $destination, 82);
         imagedestroy($dst);
     }
 }

@@ -27,9 +27,14 @@ class StatsController extends Controller
         $week = $now->copy()->subDays(6)->startOfDay();
         $month = $now->copy()->subDays(29)->startOfDay();
 
+        // BUG-01: revenue + order counts are FINANCE figures — they must only
+        // reflect orders that were actually fulfilled. Counting every
+        // non-cancelled order let "pending" and "returned" orders inflate the
+        // global revenue and the delivered-order counter. Recognise revenue on
+        // delivery only.
         $kpiQuery = fn (Carbon $from) => Order::query()
             ->where('created_at', '>=', $from)
-            ->whereNotIn('status', ['cancelled']);
+            ->where('status', 'delivered');
 
         $todayRev = (int) $kpiQuery($today)->sum('total');
         $todayCount = $kpiQuery($today)->count();
