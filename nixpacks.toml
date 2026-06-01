@@ -23,4 +23,7 @@ cmds = [
 ]
 
 [start]
-cmd = "php artisan migrate --force && php artisan storage:link --force && php artisan serve --host=0.0.0.0 --port=$PORT"
+# NOTE: `data:load` is here temporarily to seed the catalog + media into the
+# Railway MySQL/volume on this deploy. Remove it after the load so future
+# deploys don't re-overwrite production data with the committed snapshot.
+cmd = "php artisan migrate --force && php artisan storage:link --force && php artisan data:load && php artisan serve --host=0.0.0.0 --port=$PORT"
