@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\StatsController;
 use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\WilayaController;
+use App\Http\Controllers\Api\ZrExpressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -163,6 +164,9 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus']);
     Route::post('/orders/{order}/calls', [OrderController::class, 'logCall']);
     Route::delete('/orders/{order}', [OrderController::class, 'destroy']);
+    // ZR Express per-order actions: push/retry (ZR-01) + bordereau (ZR-05)
+    Route::post('/orders/{order}/ship', [ZrExpressController::class, 'ship']);
+    Route::get('/orders/{order}/label', [ZrExpressController::class, 'label']);
 
     // Customers (aggregated from orders by phone)
     Route::get('/customers', [CustomerController::class, 'index']);
@@ -200,6 +204,14 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     // Settings
     Route::get('/settings', [SettingsController::class, 'indexAdmin']);
     Route::put('/settings', [SettingsController::class, 'update']);
+
+    // ZR Express delivery integration
+    Route::get('/zr/settings', [ZrExpressController::class, 'settings']);
+    Route::put('/zr/settings', [ZrExpressController::class, 'updateSettings']);
+    Route::post('/zr/test', [ZrExpressController::class, 'test']);
+    Route::post('/zr/sync-territories', [ZrExpressController::class, 'syncTerritories']);
+    Route::post('/zr/sync-rates', [ZrExpressController::class, 'syncRates']);
+    Route::post('/zr/sync-statuses', [ZrExpressController::class, 'syncStatuses']);
 
     // Wilayas — shipping price + delivery days per wilaya
     Route::get('/wilayas', [WilayaController::class, 'indexAdmin']);

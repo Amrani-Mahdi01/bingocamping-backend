@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'shipping_price',
     'stop_desk_price',
     'delivery_days',
+    'zr_territory_id',
 ])]
 class Wilaya extends Model
 {

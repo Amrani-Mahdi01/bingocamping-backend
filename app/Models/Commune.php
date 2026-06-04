@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'code',
     'name_fr',
     'name_ar',
+    'zr_district_id',
 ])]
 class Commune extends Model
 {

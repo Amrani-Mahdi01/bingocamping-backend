@@ -28,6 +28,11 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'payment_status',
     'tracking_number',
     'cancellation_reason',
+    // ZR Express delivery integration
+    'zr_parcel_id',
+    'zr_state',
+    'zr_synced_at',
+    'zr_last_error',
 ])]
 class Order extends Model
 {
@@ -48,6 +53,7 @@ class Order extends Model
             'subtotal' => 'integer',
             'shipping_fee' => 'integer',
             'total' => 'integer',
+            'zr_synced_at' => 'datetime',
         ];
     }
 

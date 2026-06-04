@@ -6,6 +6,7 @@ use App\Http\Concerns\VerifiesRecaptcha;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Jobs\SendOrderToZrExpress;
 use App\Models\BlockedIp;
 use App\Models\BlockedPhone;
 use App\Models\Customer;
@@ -15,6 +16,8 @@ use App\Models\OrderLine;
 use App\Models\OrderStatusEntry;
 use App\Models\Product;
 use App\Models\Wilaya;
+use App\Services\OrderStatusUpdater;
+use App\Services\ZrExpress\ZrExpressService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +28,9 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class OrderController extends Controller
 {
     use VerifiesRecaptcha;
+
+    /** Minimum merchandise total (DZD) required to place an order. */
+    private const MIN_ORDER_DZD = 1000;
 
     /**
      * POST /api/orders — public (guest checkout).
@@ -105,6 +111,19 @@ class OrderController extends Controller
                     'message' => "Un des produits n'est plus disponible.",
                 ], 422);
             }
+        }
+
+        // Minimum order value (merchandise only, shipping excluded). Mirrors
+        // the 1000 DA client-side gate so it can't be bypassed.
+        $merchandise = 0;
+        foreach ($data['lines'] as $line) {
+            $merchandise += (int) $products->get($line['productSlug'])->price
+                * (int) $line['quantity'];
+        }
+        if ($merchandise < self::MIN_ORDER_DZD) {
+            return response()->json([
+                'message' => 'Le montant minimum de commande est de 1 000 DA.',
+            ], 422);
         }
 
         $order = DB::transaction(function () use ($data, $products, $wilaya, $clientIp, $customerId) {
@@ -259,8 +278,12 @@ class OrderController extends Controller
      * PATCH /api/admin/orders/{order}/status
      * Body: { status: <one of Order::STATUSES>, note?: string }
      */
-    public function updateStatus(Request $request, Order $order): OrderResource
-    {
+    public function updateStatus(
+        Request $request,
+        Order $order,
+        OrderStatusUpdater $updater,
+        ZrExpressService $zr,
+    ): OrderResource {
         $data = $request->validate([
             'status' => ['required', 'in:'.implode(',', Order::STATUSES)],
             'note' => ['nullable', 'string', 'max:500'],
@@ -271,23 +294,26 @@ class OrderController extends Controller
             ? ($admin->getAttribute('name') ?: $admin->getAttribute('email') ?: 'Admin')
             : 'Admin';
 
-        $oldStatus = $order->status;
         $newStatus = $data['status'];
 
-        DB::transaction(function () use ($order, $data, $byLabel, $oldStatus, $newStatus) {
-            $order->update(['status' => $newStatus]);
-            OrderStatusEntry::create([
-                'order_id' => $order->id,
-                'status' => $newStatus,
-                'by' => $byLabel,
-                'note' => $data['note'] ?? null,
-            ]);
-            // Inventory move lives inside the same transaction so the
-            // status flip and the stock change commit together — a
-            // half-applied confirmation would leave stock out of sync
-            // with order reality forever.
-            $this->adjustStockForStatusChange($order, $oldStatus, $newStatus);
-        });
+        // Status flip + history + stock move, all in one transaction. The
+        // inventory rules live in OrderStatusUpdater so the ZR status sync
+        // applies the exact same logic when it mirrors carrier state back.
+        $updater->apply($order, $newStatus, $byLabel, $data['note'] ?? null);
+
+        // ZR-01: confirming an order pushes it to ZR Express automatically.
+        // Dispatched AFTER the status transaction commits so a carrier
+        // outage can never roll back the confirmation, and only when the
+        // order hasn't already been pushed (idempotent re-confirms). The
+        // job itself re-checks `enabled()` at run time.
+        if (
+            $newStatus === 'confirmed'
+            && $order->zr_parcel_id === null
+            && $zr->enabled()
+            && $zr->autoSendEnabled()
+        ) {
+            SendOrderToZrExpress::dispatch($order->id);
+        }
 
         // Auto-block rule: once a phone has accumulated 3+ orders in
         // the `returned` status, both the phone AND the most-recent
@@ -306,64 +332,6 @@ class OrderController extends Controller
         return new OrderResource(
             $order->fresh(['lines', 'statusHistory', 'callAttempts'])
         );
-    }
-
-    /**
-     * Status values that mean "stock is committed to this order" —
-     * confirmée + the three fulfilment states. Every other status
-     * (pending / cancelled / returned) means stock is released and
-     * available to other customers. Crossing the bucket boundary
-     * triggers a decrement / increment on each line's product.
-     */
-    private const RESERVED_STATUSES = ['confirmed', 'preparing', 'shipped', 'delivered'];
-
-    private function statusReservesStock(string $status): bool
-    {
-        return in_array($status, self::RESERVED_STATUSES, true);
-    }
-
-    /**
-     * Move stock for each line of this order when the status flip
-     * crosses the reserved↔released boundary. No-op when the new
-     * status sits in the same bucket as the old one (e.g.
-     * preparing → shipped: both already reserved → no change).
-     *
-     * Skips products with `track_stock = false` (infinite-stock
-     * items like services or made-to-order) and lines whose
-     * product_id is null (product deleted after the order — we
-     * can't safely guess which row to adjust).
-     *
-     * Negative stock is allowed on decrement: it signals "oversold,
-     * the admin shouldn't have confirmed this many" and surfaces
-     * via the existing stockStatus() = out_of_stock check. Better
-     * to flag the problem than silently clamp at zero.
-     */
-    private function adjustStockForStatusChange(
-        Order $order,
-        string $oldStatus,
-        string $newStatus,
-    ): void {
-        if ($oldStatus === $newStatus) return;
-        $wasReserved = $this->statusReservesStock($oldStatus);
-        $isReserved = $this->statusReservesStock($newStatus);
-        if ($wasReserved === $isReserved) return;
-
-        $lines = $order->lines()
-            ->whereNotNull('product_id')
-            ->get(['id', 'product_id', 'quantity']);
-
-        foreach ($lines as $line) {
-            $product = Product::find($line->product_id);
-            if (! $product || ! $product->track_stock) continue;
-            $qty = (int) $line->quantity;
-            if ($qty <= 0) continue;
-            // Use save() instead of Eloquent's decrement/increment
-            // helpers so the Product::saving hook fires and the
-            // auto-deactivate-on-zero rule is applied. The raw
-            // ->decrement() call would bypass model events entirely.
-            $product->stock = (int) $product->stock + ($isReserved ? -$qty : $qty);
-            $product->save();
-        }
     }
 
     /**

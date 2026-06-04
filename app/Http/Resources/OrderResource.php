@@ -14,6 +14,10 @@ class OrderResource extends JsonResource
         $ipBlocked = $this->customer_ip
             ? BlockedIp::where('ip_address', $this->customer_ip)->exists()
             : false;
+        // This resource is shared with the customer's /mes-commandes feed, so
+        // the internal ZR audit fields (parcel id, sync errors) are gated to
+        // admin requests. Customers still get their public trackingNumber.
+        $isAdmin = $request->user() instanceof \App\Models\Admin;
 
         return [
             'id' => (string) $this->id,
@@ -42,6 +46,14 @@ class OrderResource extends JsonResource
             'total' => (int) $this->total,
             'trackingNumber' => $this->tracking_number,
             'cancellationReason' => $this->cancellation_reason,
+
+            // ZR Express delivery integration (admin-only audit fields).
+            'zr' => $this->when($isAdmin, fn () => [
+                'parcelId' => $this->zr_parcel_id,
+                'state' => $this->zr_state,
+                'syncedAt' => $this->zr_synced_at?->toIso8601String(),
+                'lastError' => $this->zr_last_error,
+            ]),
             'customerIp' => $this->customer_ip,
             'ipBlocked' => $ipBlocked,
 
