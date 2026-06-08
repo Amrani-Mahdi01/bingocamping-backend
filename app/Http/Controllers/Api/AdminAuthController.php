@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
 class AdminAuthController extends Controller
@@ -23,23 +24,44 @@ class AdminAuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        $admin = Admin::where('email', strtolower(trim($data['email'])))->first();
+        $email = strtolower(trim($data['email']));
+
+        // Brute-force lockout, keyed per email + IP: after 5 failed attempts
+        // the pair is locked for 60s. This sits under the coarse per-IP route
+        // throttle and is the precise gate (an attacker rotating emails or a
+        // shared IP can't burn another account's budget).
+        $throttleKey = 'admin-login:'.$email.'|'.$request->ip();
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            throw ValidationException::withMessages([
+                'email' => ["Trop de tentatives. Réessayez dans {$seconds} seconde(s)."],
+            ])->status(429);
+        }
+
+        $admin = Admin::where('email', $email)->first();
 
         if (! $admin || ! Hash::check($data['password'], $admin->password)) {
+            RateLimiter::hit($throttleKey, 60);
             throw ValidationException::withMessages([
                 'email' => ['Identifiants invalides.'],
             ]);
         }
 
         if (! $admin->is_active) {
+            RateLimiter::hit($throttleKey, 60);
             throw ValidationException::withMessages([
                 'email' => ['Compte désactivé.'],
             ]);
         }
 
+        // Successful login clears the failed-attempt counter for this pair.
+        RateLimiter::clear($throttleKey);
+
         // Single fresh token per session — drop any older ones for this UA.
+        // The token also carries a hard expiry so a leaked token can't live
+        // forever; logging back in mints a new one.
         $admin->tokens()->where('name', 'admin-session')->delete();
-        $token = $admin->createToken('admin-session', ['admin']);
+        $token = $admin->createToken('admin-session', ['admin'], now()->addDays(7));
 
         $admin->forceFill(['last_seen_at' => now()])->save();
 

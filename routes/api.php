@@ -36,52 +36,16 @@ Route::get('/products/{slug}', [ProductController::class, 'showPublic']);
 Route::get('/settings', [SettingsController::class, 'indexPublic']);
 Route::get('/wilayas', [WilayaController::class, 'indexPublic']);
 Route::get('/wilayas/{wilaya}/communes', [CommuneController::class, 'indexPublic']);
-Route::post('/orders', [OrderController::class, 'store']);
-// Storefront /contact form — reCAPTCHA-gated (see controller).
-Route::post('/contact', [ContactMessageController::class, 'store']);
+// Guest checkout — throttled per IP to blunt order spam (reCAPTCHA also gates).
+Route::post('/orders', [OrderController::class, 'store'])->middleware('throttle:20,1');
+// Storefront /contact form — reCAPTCHA-gated (see controller) + throttled.
+Route::post('/contact', [ContactMessageController::class, 'store'])->middleware('throttle:8,1');
 
-/*
- * TEMP: one-shot storage sync. The local-dev image tree lives in the
- * repo under database/import-data/storage/, but the Railway Volume
- * mounts AFTER the boot command runs, so a `cp` in nixpacks.toml's
- * start cmd ends up shadowed. This route does the copy inside an
- * HTTP request handler — by then the volume is in place — and is
- * gated by a one-time secret so it can't be hit at random. Delete
- * once the prod storage is populated.
- */
-Route::post('/_dev/sync-storage/{secret}', function (string $secret) {
-    if ($secret !== 'sync-7K3Lp9vQ8mZxN2RfBcDeFgHi') {
-        return response()->json(['error' => 'forbidden'], 403);
-    }
-    $bundle = base_path('database/import-data/storage');
-    if (! is_dir($bundle)) {
-        return response()->json(['error' => 'no bundle at '.$bundle], 404);
-    }
-    $dest = storage_path('app/public');
-    \Illuminate\Support\Facades\File::ensureDirectoryExists($dest);
-    \Illuminate\Support\Facades\File::copyDirectory($bundle, $dest);
+// NOTE: the former public /_dev/sync-storage and /_dev/data-load routes were
+// removed — they were Railway-era one-shot hacks gated only by a hardcoded
+// secret (which ended up committed), and data-load reseeds the DB. Run the
+// equivalent artisan commands on the server over SSH instead.
 
-    $count = 0;
-    foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dest)) as $f) {
-        if ($f->isFile()) $count++;
-    }
-    return response()->json([
-        'ok' => true,
-        'bundle' => $bundle,
-        'dest' => $dest,
-        'files_in_dest_after_copy' => $count,
-    ]);
-});
-Route::post('/_dev/data-load/{secret}', function (string $secret) {
-    if ($secret !== 'sync-7K3Lp9vQ8mZxN2RfBcDeFgHi') {
-        return response()->json(['error' => 'forbidden'], 403);
-    }
-    \Illuminate\Support\Facades\Artisan::call('data:load');
-    return response()->json([
-        'ok' => true,
-        'output' => \Illuminate\Support\Facades\Artisan::output(),
-    ]);
-});
 // SSE pending-count feed. Sits OUTSIDE the auth:sanctum guard because
 // EventSource on the browser can't send custom headers; the admin
 // token is passed as a query param and validated inside the controller.
@@ -93,8 +57,9 @@ Route::get('/admin/orders/stream', [OrderController::class, 'stream']);
 |--------------------------------------------------------------------------
 */
 
-Route::post('/auth/register', [CustomerAuthController::class, 'register']);
-Route::post('/auth/login',    [CustomerAuthController::class, 'login']);
+// Throttle account creation + login per IP to blunt enumeration / brute force.
+Route::post('/auth/register', [CustomerAuthController::class, 'register'])->middleware('throttle:5,1');
+Route::post('/auth/login',    [CustomerAuthController::class, 'login'])->middleware('throttle:10,1');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [CustomerAuthController::class, 'logout']);
@@ -122,7 +87,8 @@ Route::middleware('auth:sanctum')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::post('/admin/login', [AdminAuthController::class, 'login']);
+// Coarse per-IP backstop; AdminAuthController adds a finer per-email+IP lockout.
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->middleware('throttle:6,1');
 
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout']);
