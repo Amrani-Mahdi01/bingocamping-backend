@@ -155,23 +155,48 @@ class ZrExpressService
      * advancedFilter object (e.g. {field:'level',operator:'eq',value:'wilaya'}).
      * Returns the flat array of territory rows (unwraps the paged envelope).
      */
-    public function searchTerritories(?array $filter = null, int $pageSize = 5000): array
+    public function searchTerritories(?array $filter = null, int $pageSize = 1000): array
     {
-        $body = [
-            'pageNumber' => 1,
-            'pageSize' => $pageSize,
-            'orderBy' => ['code asc'],
-        ];
-        if ($filter) {
-            $body['advancedFilter'] = $filter;
-        }
-        return $this->unwrap($this->call('POST', 'territories/search', $body)->json());
+        // ZR caps a page at 1000 rows, so paginate until hasNext is false —
+        // the full tree is ~1585 territories (a 5000 pageSize silently
+        // returned only the first 1000).
+        $all = [];
+        $page = 1;
+        do {
+            $body = [
+                'pageNumber' => $page,
+                'pageSize' => $pageSize,
+                'orderBy' => ['code asc'],
+            ];
+            if ($filter) {
+                $body['advancedFilter'] = $filter;
+            }
+            $json = $this->call('POST', 'territories/search', $body)->json();
+            $all = array_merge($all, $this->unwrap($json));
+            $hasNext = is_array($json) ? (bool) ($json['hasNext'] ?? false) : false;
+            $page++;
+        } while ($hasNext && $page <= 100); // safety bound
+        return $all;
     }
 
     /** GET /delivery-pricing/rates — effective per-territory delivery prices. */
     public function getRates(): array
     {
         return $this->unwrap($this->call('GET', 'delivery-pricing/rates')->json());
+    }
+
+    /**
+     * POST /hubs/search — ZR hubs (pickup points + sorting centers). Returns
+     * the flat row array; each row carries address.cityTerritoryId /
+     * districtTerritoryId and isPickupPoint/isVisible flags. ~94 rows, so one
+     * large page covers them all.
+     */
+    public function searchHubs(int $pageSize = 500): array
+    {
+        return $this->unwrap($this->call('POST', 'hubs/search', [
+            'pageNumber' => 1,
+            'pageSize' => $pageSize,
+        ])->json());
     }
 
     /** POST /parcels — create a parcel. Returns the decoded body ({ id: uuid }). */
@@ -293,13 +318,15 @@ class ZrExpressService
 
         $name = trim($order->customer_first_name.' '.$order->customer_last_name);
 
-        return [
+        $isStopDesk = $order->delivery_type === 'stopdesk';
+
+        $payload = [
             'customer' => [
                 // Random UUID — we don't maintain customer records inside ZR.
                 'customerId' => (string) Str::uuid(),
                 'name' => mb_substr($name !== '' ? $name : 'Client', 0, 100),
                 'phone' => [
-                    'number1' => (string) $order->customer_phone,
+                    'number1' => $this->formatPhone($order->customer_phone),
                 ],
             ],
             'deliveryAddress' => [
@@ -308,13 +335,99 @@ class ZrExpressService
                 'street' => $order->address ? mb_substr((string) $order->address, 0, 250) : null,
             ],
             'orderedProducts' => $products,
-            'deliveryType' => (string) config('zrexpress.default_delivery_type', 'home'),
+            // Honour the customer's choice: stop-desk → ZR 'pickup-point',
+            // otherwise home delivery. (Previously hardcoded to 'home', which
+            // sent every stop-desk order to ZR as à-domicile.)
+            'deliveryType' => $isStopDesk ? 'pickup-point' : 'home',
             'description' => $this->buildDescription($order),
             'amount' => (float) $amount,
             // Our order number — lets us reconcile ZR parcels back to orders
             // and gives ZR an idempotency handle on retries.
             'externalId' => mb_substr((string) $order->order_number, 0, 100),
         ];
+
+        // Stop-desk (pickup-point) parcels MUST name the destination hub —
+        // ZR rejects them with "HubId is required" otherwise.
+        if ($isStopDesk) {
+            $payload['hubId'] = $this->resolveStopDeskHubId($wilaya, $commune);
+        }
+
+        return $payload;
+    }
+
+    /**
+     * Resolve the ZR pickup-point hub for a stop-desk order. Picks a visible
+     * pickup-point hub in the order's wilaya, preferring one in the same
+     * commune. Throws a clear, French error when the wilaya has no pickup
+     * point (so the admin/customer falls back to home delivery).
+     */
+    private function resolveStopDeskHubId(Wilaya $wilaya, ?Commune $commune): string
+    {
+        $inWilaya = [];
+        foreach ($this->searchHubs() as $h) {
+            // Only real, customer-facing pickup points — skip hidden sorting
+            // centers (isPickupPoint=false / isVisible=false).
+            if (empty($h['id']) || empty($h['isPickupPoint']) || empty($h['isVisible'])) {
+                continue;
+            }
+            if (($h['address']['cityTerritoryId'] ?? null) === $wilaya->zr_territory_id) {
+                $inWilaya[] = $h;
+            }
+        }
+
+        if ($inWilaya === []) {
+            throw new ZrExpressException(
+                "Aucun point de retrait ZR Express n'est disponible pour la wilaya "
+                ."« {$wilaya->name_fr} ». Choisissez la livraison à domicile."
+            );
+        }
+
+        // Prefer a hub in the customer's own commune when there is one.
+        if ($commune && $commune->zr_district_id) {
+            foreach ($inWilaya as $h) {
+                if (($h['address']['districtTerritoryId'] ?? null) === $commune->zr_district_id) {
+                    return $h['id'];
+                }
+            }
+        }
+
+        return $inWilaya[0]['id'];
+    }
+
+    /**
+     * Normalise an Algerian phone number to E.164 international format
+     * (+213XXXXXXXXX). ZR's parcel validator rejects local `0XXXXXXXXX` form
+     * with "Phone_Number1 must be a valid international phone number".
+     *
+     * Handles the common variants seen in stored orders:
+     *   0554748287      -> +213554748287   (local, leading 0)
+     *   554748287       -> +213554748287   (bare national, 9 digits)
+     *   00213554748287  -> +213554748287   (00 international prefix)
+     *   213554748287    -> +213554748287   (country code, no +)
+     *   +213554748287   -> +213554748287   (already international, untouched)
+     */
+    private function formatPhone(?string $raw): string
+    {
+        $raw = trim((string) $raw);
+        $hasPlus = str_starts_with($raw, '+');
+        $digits = preg_replace('/\D+/', '', $raw);
+
+        if ($digits === '') {
+            return '';
+        }
+        if ($hasPlus) {
+            return '+'.$digits;            // trust the caller-supplied country code
+        }
+        if (str_starts_with($digits, '00')) {
+            return '+'.substr($digits, 2); // 00<cc>... -> +<cc>...
+        }
+        if (str_starts_with($digits, '213')) {
+            return '+'.$digits;            // 213XXXXXXXXX -> +213XXXXXXXXX
+        }
+        if (str_starts_with($digits, '0')) {
+            return '+213'.substr($digits, 1); // local 0XXXXXXXXX -> +213XXXXXXXXX
+        }
+        return '+213'.$digits;             // bare national number
     }
 
     /** A 2..250 char human description of the parcel contents (ZR-required). */
@@ -345,7 +458,10 @@ class ZrExpressService
         if (array_is_list($json)) {
             return $json;
         }
-        foreach (['data', 'items', 'results', 'value'] as $key) {
+        // 'items'  : territories/search paged envelope.
+        // 'rates'  : delivery-pricing/rates envelope ({ rates:[…] }) — verified
+        //            against the live API; without it ZR-04 silently no-ops.
+        foreach (['data', 'items', 'results', 'value', 'rates'] as $key) {
             if (isset($json[$key]) && is_array($json[$key])) {
                 return $json[$key];
             }

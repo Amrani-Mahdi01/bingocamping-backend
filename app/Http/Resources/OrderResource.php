@@ -38,6 +38,7 @@ class OrderResource extends JsonResource
                 'wilayaName' => $this->wilaya_name,
                 'commune' => $this->commune,
                 'address' => $this->address,
+                'deliveryType' => $this->delivery_type ?? 'home',
                 'notes' => $this->notes,
             ],
 

@@ -19,11 +19,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'wilaya_name',
     'commune',
     'address',
+    'delivery_type',
     'notes',
     'subtotal',
     'shipping_fee',
     'total',
     'status',
+    'archived_at',
     'payment_method',
     'payment_status',
     'tracking_number',
@@ -54,6 +56,7 @@ class Order extends Model
             'shipping_fee' => 'integer',
             'total' => 'integer',
             'zr_synced_at' => 'datetime',
+            'archived_at' => 'datetime',
         ];
     }
 
@@ -80,5 +83,21 @@ class Order extends Model
     public function callAttempts(): HasMany
     {
         return $this->hasMany(OrderCallAttempt::class)->orderBy('at');
+    }
+
+    /**
+     * Archive (don't delete) orders left untouched for {$months} months —
+     * abandoned/stalled ones whose status never moved. `updated_at` bumps on
+     * any status change or ZR sync, so only genuinely inactive orders match.
+     * Sets archived_at so they drop out of the active admin list but stay in
+     * the DB (and in the statistics) and can be restored. Already-archived rows
+     * are skipped. Returns the number archived.
+     */
+    public static function archiveStale(int $months = 3): int
+    {
+        return static::query()
+            ->whereNull('archived_at')
+            ->where('updated_at', '<', now()->subMonths($months))
+            ->update(['archived_at' => now()]);
     }
 }

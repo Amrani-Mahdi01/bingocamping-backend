@@ -11,64 +11,132 @@ use Illuminate\Support\Facades\DB;
 
 class StatsController extends Controller
 {
+    /** Periods the dashboard filter offers, in days. */
+    private const RANGES = [7, 30, 90, 365];
+
     /**
-     * GET /api/admin/stats/dashboard
+     * GET /api/admin/stats/dashboard?range=7|30|90|365  (default 30)
      *
-     * Returns:
-     *  - kpis: today/week/month revenue + order counts + AOV
-     *  - revenueLast30: [{date, revenue, orders}] for the last 30 days
-     *  - statusBreakdown: { status: count }
-     *  - topProducts: 5 products with the most lines in the last 30 days
+     * Everything is scoped to the selected window:
+     *  - kpis: revenue + delivered orders + AOV (with deltas vs the previous
+     *    equal window), conversion rate (delivered / orders received) and return
+     *    rate (returned / fulfilled), plus current snapshots (pending, etc.)
+     *  - revenueLast30: time series — daily points (<= 90 d) or monthly (1 year)
+     *  - statusBreakdown / funnel / topProducts / byWilaya for the window
      */
     public function dashboard(): JsonResponse
     {
         $now = Carbon::now();
-        $today = $now->copy()->startOfDay();
-        $week = $now->copy()->subDays(6)->startOfDay();
-        $month = $now->copy()->subDays(29)->startOfDay();
+        $range = (int) request('range', 30);
+        if (! in_array($range, self::RANGES, true)) {
+            $range = 30;
+        }
+        $from = $now->copy()->subDays($range - 1)->startOfDay();
+        $prevFrom = $now->copy()->subDays(2 * $range - 1)->startOfDay();
 
-        // BUG-01: revenue + order counts are FINANCE figures — they must only
-        // reflect orders that were actually fulfilled. Counting every
-        // non-cancelled order let "pending" and "returned" orders inflate the
-        // global revenue and the delivered-order counter. Recognise revenue on
-        // delivery only.
-        $kpiQuery = fn (Carbon $from) => Order::query()
+        // Revenue is recognised on delivery only — pending/returned orders must
+        // not inflate finance figures. CA reflects the net merchandise value
+        // (orders.subtotal), so shipping/delivery fees are excluded:
+        // subtotal == total − shipping_fee by construction.
+        $deliveredRevenue = fn (Carbon $a, ?Carbon $b = null) => Order::query()
+            ->where('status', 'delivered')
+            ->where('created_at', '>=', $a)
+            ->when($b, fn ($q) => $q->where('created_at', '<', $b));
+
+        $rangeRevenue = (int) $deliveredRevenue($from)->sum('subtotal');
+        $rangeOrders = $deliveredRevenue($from)->count();
+        $aov = $rangeOrders > 0 ? (int) round($rangeRevenue / $rangeOrders) : 0;
+        $prevRevenue = (int) $deliveredRevenue($prevFrom, $from)->sum('subtotal');
+        $prevOrders = $deliveredRevenue($prevFrom, $from)->count();
+
+        // Every order placed in the window grouped by status — drives the
+        // funnel, the conversion rate and the return rate.
+        $statusInRange = DB::table('orders')
             ->where('created_at', '>=', $from)
-            ->where('status', 'delivered');
+            ->select('status', DB::raw('COUNT(*) as c'))
+            ->groupBy('status')
+            ->pluck('c', 'status');
+        $sc = fn (string $s) => (int) ($statusInRange[$s] ?? 0);
+        $totalInRange = (int) array_sum($statusInRange->all());
+        $deliveredC = $sc('delivered');
+        $returnedC = $sc('returned');
+        $cancelledC = $sc('cancelled');
 
-        $todayRev = (int) $kpiQuery($today)->sum('total');
-        $todayCount = $kpiQuery($today)->count();
-        $weekRev = (int) $kpiQuery($week)->sum('total');
-        $weekCount = $kpiQuery($week)->count();
-        $monthRev = (int) $kpiQuery($month)->sum('total');
-        $monthCount = $kpiQuery($month)->count();
-        $aov = $monthCount > 0 ? (int) round($monthRev / $monthCount) : 0;
+        // Conversion = delivered / all orders received. Return = returned among
+        // the orders that actually reached the customer (delivered + returned).
+        $conversionRate = $totalInRange > 0
+            ? round($deliveredC / $totalInRange, 4) : 0;
+        $returnRate = ($deliveredC + $returnedC) > 0
+            ? round($returnedC / ($deliveredC + $returnedC), 4) : 0;
 
-        $pending = Order::where('status', 'pending')->count();
+        // Time series: daily for <= 90 days, monthly buckets for a full year so
+        // the charts stay readable.
+        $series = $range > 90
+            ? $this->monthlySeries($now, 12)
+            : $this->dailySeries($now, $from, $range);
 
-        // Daily revenue + order count for the last 30 days, zero-filled.
-        // Use the query builder directly so the result is a plain stdClass
-        // collection. Eloquent's `pluck(null, 'd')` returns inconsistent
-        // shapes on aggregate selects (sometimes null values), which is
-        // what triggered the "Undefined property: stdClass::$" crash.
+        // Funnel (cumulative-down): a delivered order was confirmed + shipped
+        // earlier, so downstream states sum upward.
+        $funnel = [
+            ['label' => 'Reçues', 'value' => $sc('pending') + $sc('confirmed') + $sc('preparing') + $sc('shipped') + $deliveredC],
+            ['label' => 'Confirmées', 'value' => $sc('confirmed') + $sc('preparing') + $sc('shipped') + $deliveredC],
+            ['label' => 'Expédiées', 'value' => $sc('shipped') + $deliveredC],
+            ['label' => 'Livrées', 'value' => $deliveredC],
+        ];
+
+        return response()->json([
+            'kpis' => [
+                'rangeDays' => $range,
+                'rangeRevenue' => $rangeRevenue,
+                'rangeOrders' => $rangeOrders,
+                'averageOrderValue' => $aov,
+                'prevRevenue' => $prevRevenue,
+                'prevOrders' => $prevOrders,
+                'conversionRate' => $conversionRate,
+                'returnRate' => $returnRate,
+                'deliveredOrders' => $deliveredC,
+                'returnedOrders' => $returnedC,
+                'cancelledOrders' => $cancelledC,
+                'totalOrdersInRange' => $totalInRange,
+                'pendingOrders' => Order::where('status', 'pending')->count(),
+                'totalCustomers' => DB::table('orders')->distinct('customer_phone')->count('customer_phone'),
+                'totalProducts' => Product::where('is_active', true)->count(),
+                // Back-compat aliases for any caller still reading month*.
+                'monthRevenue' => $rangeRevenue,
+                'monthOrders' => $rangeOrders,
+            ],
+            // Keep the key name `revenueLast30` for client back-compat; it now
+            // holds the series for the selected window.
+            'revenueLast30' => array_values($series),
+            'statusBreakdown' => (object) $statusInRange->all(),
+            'topProducts' => $this->topProducts($from),
+            'topCategories' => $this->topCategories($from),
+            'topReturnedProducts' => $this->topReturnedProducts($from),
+            'byWilaya' => $this->byWilaya($from),
+            'funnel' => array_values($funnel),
+        ]);
+    }
+
+    /** Daily revenue + order count, zero-filled across the window. */
+    private function dailySeries(Carbon $now, Carbon $from, int $range): array
+    {
         $rows = DB::table('orders')
-            ->where('created_at', '>=', $month)
+            ->where('created_at', '>=', $from)
             ->whereNotIn('status', ['cancelled'])
             ->select(
                 DB::raw('DATE(created_at) as d'),
-                DB::raw('SUM(total) as revenue'),
+                // CA is merchandise only — exclude shipping_fee (Bug #001).
+                DB::raw('SUM(subtotal) as revenue'),
                 DB::raw('COUNT(*) as orders_count'),
             )
             ->groupBy('d')
             ->get();
-
         $byDay = [];
         foreach ($rows as $r) {
             $byDay[(string) $r->d] = $r;
         }
-
         $series = [];
-        for ($i = 29; $i >= 0; $i--) {
+        for ($i = $range - 1; $i >= 0; $i--) {
             $date = $now->copy()->subDays($i)->format('Y-m-d');
             $row = $byDay[$date] ?? null;
             $series[] = [
@@ -77,15 +145,55 @@ class StatsController extends Controller
                 'orders' => $row ? (int) $row->orders_count : 0,
             ];
         }
+        return $series;
+    }
 
-        $statusBreakdown = DB::table('orders')
-            ->select('status', DB::raw('COUNT(*) as c'))
-            ->groupBy('status')
-            ->pluck('c', 'status');
+    /** Monthly revenue + order count, zero-filled across the last N months. */
+    private function monthlySeries(Carbon $now, int $months): array
+    {
+        // Group by the first day of each month. DATE_FORMAT is MySQL-only and
+        // throws on SQLite (which the local/dev DB uses) — that crash was why
+        // the annual filter never rendered (Bug #002). Pick the right month
+        // expression per driver so it works on both engines.
+        $driver = DB::connection()->getDriverName();
+        $monthExpr = $driver === 'sqlite'
+            ? "strftime('%Y-%m-01', created_at)"
+            : "DATE_FORMAT(created_at, '%Y-%m-01')";
 
-        $topProducts = DB::table('order_lines')
+        $rows = DB::table('orders')
+            ->where('created_at', '>=', $now->copy()->subMonths($months - 1)->startOfMonth())
+            ->whereNotIn('status', ['cancelled'])
+            ->select(
+                DB::raw("$monthExpr as d"),
+                // CA is merchandise only — exclude shipping_fee (Bug #001).
+                DB::raw('SUM(subtotal) as revenue'),
+                DB::raw('COUNT(*) as orders_count'),
+            )
+            ->groupBy('d')
+            ->get();
+        $byKey = [];
+        foreach ($rows as $r) {
+            $byKey[(string) $r->d] = $r;
+        }
+        $series = [];
+        for ($i = $months - 1; $i >= 0; $i--) {
+            $key = $now->copy()->subMonths($i)->format('Y-m-01');
+            $row = $byKey[$key] ?? null;
+            $series[] = [
+                'date' => $key,
+                'revenue' => $row ? (int) $row->revenue : 0,
+                'orders' => $row ? (int) $row->orders_count : 0,
+            ];
+        }
+        return $series;
+    }
+
+    /** Top 5 products by revenue within the window. */
+    private function topProducts(Carbon $from): array
+    {
+        $rows = DB::table('order_lines')
             ->join('orders', 'orders.id', '=', 'order_lines.order_id')
-            ->where('orders.created_at', '>=', $month)
+            ->where('orders.created_at', '>=', $from)
             ->whereNotIn('orders.status', ['cancelled'])
             ->select(
                 'order_lines.product_id',
@@ -100,7 +208,7 @@ class StatsController extends Controller
             ->get();
 
         $base = rtrim((string) config('app.url'), '/');
-        $topProducts = $topProducts->map(function ($r) use ($base) {
+        return $rows->map(function ($r) use ($base) {
             $img = $r->image;
             if (is_string($img) && str_starts_with($img, '/storage/')) {
                 $img = $base.$img;
@@ -112,18 +220,75 @@ class StatsController extends Controller
                 'units' => (int) $r->units,
                 'revenue' => (int) $r->revenue,
             ];
-        });
+        })->values()->all();
+    }
 
-        // Revenue + order count per wilaya for the geo heat-grid.
-        $byWilaya = DB::table('orders')
-            ->where('created_at', '>=', $month)
+    /** Top 8 categories by revenue (what customers are buying) in the window. */
+    private function topCategories(Carbon $from): array
+    {
+        return DB::table('order_lines')
+            ->join('orders', 'orders.id', '=', 'order_lines.order_id')
+            ->join('products', 'products.id', '=', 'order_lines.product_id')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->where('orders.created_at', '>=', $from)
+            ->whereNotIn('orders.status', ['cancelled'])
+            ->select(
+                'categories.id as cid',
+                DB::raw('MAX(categories.name_fr) as name'),
+                DB::raw('SUM(order_lines.quantity) as units'),
+                DB::raw('SUM(order_lines.total) as revenue'),
+            )
+            ->groupBy('categories.id')
+            ->orderByDesc('revenue')
+            ->limit(8)
+            ->get()
+            ->map(fn ($r) => [
+                'name' => $r->name ?: 'Sans catégorie',
+                'units' => (int) $r->units,
+                'revenue' => (int) $r->revenue,
+            ])
+            ->all();
+    }
+
+    /** Top 8 most-returned products (by units) within the window. */
+    private function topReturnedProducts(Carbon $from): array
+    {
+        return DB::table('order_lines')
+            ->join('orders', 'orders.id', '=', 'order_lines.order_id')
+            ->where('orders.created_at', '>=', $from)
+            ->where('orders.status', 'returned')
+            ->select(
+                'order_lines.product_id',
+                DB::raw('MAX(order_lines.product_name) as name'),
+                DB::raw('SUM(order_lines.quantity) as units'),
+                DB::raw('SUM(order_lines.total) as revenue'),
+            )
+            ->groupBy('order_lines.product_id')
+            ->orderByDesc('units')
+            ->limit(8)
+            ->get()
+            ->map(fn ($r) => [
+                'productId' => $r->product_id ? (string) $r->product_id : null,
+                'name' => (string) $r->name,
+                'units' => (int) $r->units,
+                'revenue' => (int) $r->revenue,
+            ])
+            ->all();
+    }
+
+    /** Revenue + order count per wilaya within the window (geo heat-grid). */
+    private function byWilaya(Carbon $from): array
+    {
+        return DB::table('orders')
+            ->where('created_at', '>=', $from)
             ->whereNotIn('status', ['cancelled'])
             ->select(
                 'wilaya_id',
                 'wilaya_name',
-                DB::raw('SUM(total) as revenue'),
+                // CA + average basket are merchandise only (Bug #001).
+                DB::raw('SUM(subtotal) as revenue'),
                 DB::raw('COUNT(*) as order_count'),
-                DB::raw('AVG(total) as avg_basket'),
+                DB::raw('AVG(subtotal) as avg_basket'),
             )
             ->groupBy('wilaya_id', 'wilaya_name')
             ->get()
@@ -133,44 +298,8 @@ class StatsController extends Controller
                 'revenue' => (int) $r->revenue,
                 'orderCount' => (int) $r->order_count,
                 'averageBasket' => (int) round((float) $r->avg_basket),
-            ]);
-
-        // Simple status funnel: pending → confirmed → shipped → delivered.
-        $statusCounts = $statusBreakdown->all();
-        $pendingC = (int) ($statusCounts['pending'] ?? 0);
-        $confirmedC = (int) ($statusCounts['confirmed'] ?? 0);
-        $preparingC = (int) ($statusCounts['preparing'] ?? 0);
-        $shippedC = (int) ($statusCounts['shipped'] ?? 0);
-        $deliveredC = (int) ($statusCounts['delivered'] ?? 0);
-        // Cumulative-down funnel: a delivered order was confirmed + shipped
-        // earlier, so we sum the downstream states upward.
-        $funnel = [
-            ['label' => 'Reçues', 'value' => $pendingC + $confirmedC + $preparingC + $shippedC + $deliveredC],
-            ['label' => 'Confirmées', 'value' => $confirmedC + $preparingC + $shippedC + $deliveredC],
-            ['label' => 'Expédiées', 'value' => $shippedC + $deliveredC],
-            ['label' => 'Livrées', 'value' => $deliveredC],
-        ];
-
-        return response()->json([
-            'kpis' => [
-                'todayRevenue' => $todayRev,
-                'todayOrders' => $todayCount,
-                'weekRevenue' => $weekRev,
-                'weekOrders' => $weekCount,
-                'monthRevenue' => $monthRev,
-                'monthOrders' => $monthCount,
-                'averageOrderValue' => $aov,
-                'pendingOrders' => $pending,
-                'totalCustomers' => DB::table('orders')->distinct('customer_phone')->count('customer_phone'),
-                'totalProducts' => Product::where('is_active', true)->count(),
-            ],
-            // Force collections to JSON arrays so empty results serialize
-            // as `[]` (iterable) rather than `{}` (object) on the client.
-            'revenueLast30' => array_values($series),
-            'statusBreakdown' => (object) $statusBreakdown->all(),
-            'topProducts' => $topProducts->values()->all(),
-            'byWilaya' => $byWilaya->values()->all(),
-            'funnel' => array_values($funnel),
-        ]);
+            ])
+            ->values()
+            ->all();
     }
 }

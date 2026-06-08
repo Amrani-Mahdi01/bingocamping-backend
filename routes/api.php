@@ -164,9 +164,16 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus']);
     Route::post('/orders/{order}/calls', [OrderController::class, 'logCall']);
     Route::delete('/orders/{order}', [OrderController::class, 'destroy']);
+    // Archive (reversible) instead of deleting — stale orders auto-archive.
+    Route::post('/orders/{order}/archive', [OrderController::class, 'archive']);
+    Route::post('/orders/{order}/unarchive', [OrderController::class, 'unarchive']);
     // ZR Express per-order actions: push/retry (ZR-01) + bordereau (ZR-05)
     Route::post('/orders/{order}/ship', [ZrExpressController::class, 'ship']);
     Route::get('/orders/{order}/label', [ZrExpressController::class, 'label']);
+    // Clear ZR linkage when a parcel was deleted on ZR's side (unstick + resend).
+    Route::post('/orders/{order}/zr-detach', [ZrExpressController::class, 'detach']);
+    // Refresh THIS order's ZR status on demand (per-order button).
+    Route::post('/orders/{order}/zr-sync', [ZrExpressController::class, 'syncOrder']);
 
     // Customers (aggregated from orders by phone)
     Route::get('/customers', [CustomerController::class, 'index']);
@@ -213,15 +220,12 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('/zr/sync-rates', [ZrExpressController::class, 'syncRates']);
     Route::post('/zr/sync-statuses', [ZrExpressController::class, 'syncStatuses']);
 
-    // Wilayas — shipping price + delivery days per wilaya
+    // Wilayas + communes are imported from ZR Express ("Synchroniser les
+    // territoires") and are read-only here — admins can edit prices/delivery
+    // days but NOT add/remove territories (ZR is the single source of truth).
     Route::get('/wilayas', [WilayaController::class, 'indexAdmin']);
-    Route::post('/wilayas', [WilayaController::class, 'store']);
     Route::put('/wilayas/{wilaya}', [WilayaController::class, 'update']);
-
-    // Communes nested under their wilaya
     Route::get('/wilayas/{wilaya}/communes', [CommuneController::class, 'indexAdmin']);
-    Route::post('/wilayas/{wilaya}/communes', [CommuneController::class, 'store']);
-    Route::delete('/wilayas/{wilaya}/communes/{commune}', [CommuneController::class, 'destroy']);
 
     // Uploads
     Route::post('/uploads/banner-image', [UploadController::class, 'bannerImage']);

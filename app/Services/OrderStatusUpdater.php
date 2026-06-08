@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Order;
 use App\Models\OrderStatusEntry;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -65,11 +66,17 @@ class OrderStatusUpdater
      * reserved↔released boundary. No-op within the same bucket (e.g.
      * preparing → shipped: both reserved → no change).
      *
+     * Inventory model:
+     *  - A line that names a variant (color/size) moves THAT variant's stock,
+     *    then the product total is re-synced to the sum of its variants — so a
+     *    "noir" order only eats "noir" stock and the total stays the sum.
+     *  - A line with no variant (simple product) moves the product total.
+     *
      * Skips infinite-stock products (track_stock = false) and lines whose
-     * product was deleted after the order (product_id null). Negative stock
-     * is allowed on decrement — it signals an oversell rather than silently
-     * clamping at zero. Uses save() (not ->decrement()) so the Product saving
-     * hook fires and the auto-deactivate-on-zero rule still applies.
+     * product was deleted after the order (product_id null). Variant stock is
+     * an unsigned column so it's floored at 0; the simple-product total may go
+     * negative to signal an oversell. Uses save() (not ->decrement()) so the
+     * Product saving hook fires and the auto-deactivate-on-zero rule applies.
      */
     private function adjustStockForStatusChange(Order $order, string $oldStatus, string $newStatus): void
     {
@@ -84,18 +91,49 @@ class OrderStatusUpdater
 
         $lines = $order->lines()
             ->whereNotNull('product_id')
-            ->get(['id', 'product_id', 'quantity']);
+            ->get(['id', 'product_id', 'variant_id', 'quantity']);
+
+        $productsToResync = [];
 
         foreach ($lines as $line) {
-            $product = Product::find($line->product_id);
-            if (! $product || ! $product->track_stock) {
-                continue;
-            }
             $qty = (int) $line->quantity;
             if ($qty <= 0) {
                 continue;
             }
-            $product->stock = (int) $product->stock + ($isReserved ? -$qty : $qty);
+            $delta = $isReserved ? -$qty : $qty;
+
+            // Variant line → move the variant; remember to resync its product.
+            if ($line->variant_id) {
+                $variant = ProductVariant::find($line->variant_id);
+                if (! $variant) {
+                    continue;
+                }
+                $product = Product::find($variant->product_id);
+                if (! $product || ! $product->track_stock) {
+                    continue;
+                }
+                $variant->stock = max(0, (int) $variant->stock + $delta);
+                $variant->save();
+                $productsToResync[$variant->product_id] = true;
+                continue;
+            }
+
+            // Simple product line → move the product total directly.
+            $product = Product::find($line->product_id);
+            if (! $product || ! $product->track_stock) {
+                continue;
+            }
+            $product->stock = (int) $product->stock + $delta;
+            $product->save();
+        }
+
+        // Keep each touched product's total equal to the sum of its variants.
+        foreach (array_keys($productsToResync) as $productId) {
+            $product = Product::find($productId);
+            if (! $product) {
+                continue;
+            }
+            $product->stock = (int) $product->variants()->sum('stock');
             $product->save();
         }
     }

@@ -20,6 +20,7 @@ use App\Services\OrderStatusUpdater;
 use App\Services\ZrExpress\ZrExpressService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -126,6 +127,36 @@ class OrderController extends Controller
             ], 422);
         }
 
+        // Strict stock gate (Bug #005): no line may be ordered beyond the
+        // available stock of the chosen variant (or the product, for simple
+        // lines). Untracked or backorder-friendly products are exempt — this
+        // mirrors isProductOutOfStock on the storefront and the decrement
+        // rules in OrderStatusUpdater so creation and confirmation agree.
+        // Quantities are also clamped client-side; this is the authoritative
+        // server-side half of the double control the storefront can't bypass.
+        foreach ($data['lines'] as $line) {
+            $p = $products->get($line['productSlug']);
+            if (! $p->track_stock || $p->allow_backorder) {
+                continue;
+            }
+            $qty = (int) $line['quantity'];
+            $variantId = $line['variantId'] ?? null;
+            // A variant id is only honoured when it belongs to this product
+            // (matches the in-transaction rule); a foreign id falls back to
+            // the product total.
+            $variant = $variantId
+                ? $p->variants()->whereKey($variantId)->first()
+                : null;
+            $available = $variant ? (int) $variant->stock : (int) $p->stock;
+            if ($qty > $available) {
+                // Deliberately generic — don't leak the exact remaining count
+                // (Bug #004 keeps stock levels confidential).
+                return response()->json([
+                    'message' => "La quantité demandée pour « {$p->name_fr} » dépasse le stock disponible.",
+                ], 422);
+            }
+        }
+
         $order = DB::transaction(function () use ($data, $products, $wilaya, $clientIp, $customerId) {
             $subtotal = 0;
             $linesPayload = [];
@@ -143,8 +174,16 @@ class OrderController extends Controller
                     $image = $primary->url;
                 }
 
+                // Keep the variant id only if it really belongs to this
+                // product — otherwise the wrong variant's stock would move.
+                $variantId = $line['variantId'] ?? null;
+                if ($variantId && ! $p->variants()->whereKey($variantId)->exists()) {
+                    $variantId = null;
+                }
+
                 $linesPayload[] = [
                     'product_id' => $p->id,
+                    'variant_id' => $variantId,
                     'product_name' => $p->name_fr,
                     'sku' => $p->sku,
                     'image' => $image,
@@ -155,7 +194,16 @@ class OrderController extends Controller
                 ];
             }
 
-            $shippingFee = (int) $wilaya->shipping_price;
+            // Stop-desk (retrait en agence) is cheaper than home delivery, so
+            // bill from the matching wilaya column — NOT always the home price.
+            // Falls back to the home price if no stop-desk price is configured.
+            $deliveryType = (($data['shipping']['deliveryType'] ?? 'home') === 'stopdesk')
+                ? 'stopdesk'
+                : 'home';
+            $stopDeskPrice = (int) $wilaya->stop_desk_price;
+            $shippingFee = ($deliveryType === 'stopdesk' && $stopDeskPrice > 0)
+                ? $stopDeskPrice
+                : (int) $wilaya->shipping_price;
             $total = $subtotal + $shippingFee;
 
             $orderNumber = self::nextOrderNumber();
@@ -172,6 +220,7 @@ class OrderController extends Controller
                 'wilaya_name' => $wilaya->name_fr,
                 'commune' => trim($data['shipping']['commune']),
                 'address' => $data['shipping']['address'] ?? null,
+                'delivery_type' => $deliveryType,
                 'notes' => $data['shipping']['notes'] ?? null,
                 'subtotal' => $subtotal,
                 'shipping_fee' => $shippingFee,
@@ -210,7 +259,23 @@ class OrderController extends Controller
     /** GET /api/admin/orders — paginated listing for the dashboard. */
     public function indexAdmin(Request $request): JsonResponse
     {
+        // Auto-archive stale orders (no change in 3 months) — they move to the
+        // archive instead of being deleted. Cache::add runs the body only the
+        // first time per calendar day, so this happens at most once daily even
+        // though admins open this page often.
+        if (Cache::add('orders:archive-stale:'.now()->toDateString(), true, now()->addDay())) {
+            Order::archiveStale(3);
+        }
+
         $q = Order::query()->orderByDesc('created_at');
+
+        // Active list hides archived orders; ?archived=1 shows only the archive.
+        $archived = $request->query('archived');
+        if ($archived === '1' || $archived === 'true') {
+            $q->whereNotNull('archived_at');
+        } else {
+            $q->whereNull('archived_at');
+        }
 
         if ($search = trim((string) $request->query('q', ''))) {
             $like = '%'.$search.'%';
@@ -256,6 +321,7 @@ class OrderController extends Controller
                     ? $blockedSet->has($o->customer_ip)
                     : false,
                 'createdAt' => $o->created_at?->toIso8601String(),
+                'archivedAt' => $o->archived_at?->toIso8601String(),
             ])->values(),
             'meta' => [
                 'total' => $paginator->total(),
@@ -302,17 +368,18 @@ class OrderController extends Controller
         $updater->apply($order, $newStatus, $byLabel, $data['note'] ?? null);
 
         // ZR-01: confirming an order pushes it to ZR Express automatically.
-        // Dispatched AFTER the status transaction commits so a carrier
-        // outage can never roll back the confirmation, and only when the
-        // order hasn't already been pushed (idempotent re-confirms). The
-        // job itself re-checks `enabled()` at run time.
+        // Runs AFTER the HTTP response (afterResponse), in-process, so it needs
+        // NO queue worker and a ZR outage can never slow down or roll back the
+        // confirmation. Only fires when the order hasn't already been pushed
+        // (idempotent re-confirms); the job re-checks enabled() at run time and
+        // records zr_last_error on failure for a manual retry.
         if (
             $newStatus === 'confirmed'
             && $order->zr_parcel_id === null
             && $zr->enabled()
             && $zr->autoSendEnabled()
         ) {
-            SendOrderToZrExpress::dispatch($order->id);
+            SendOrderToZrExpress::dispatch($order->id)->afterResponse();
         }
 
         // Auto-block rule: once a phone has accumulated 3+ orders in
@@ -418,6 +485,20 @@ class OrderController extends Controller
     {
         $order->delete();
         return response()->json(['message' => 'Order deleted.']);
+    }
+
+    /** POST /api/admin/orders/{order}/archive — move to the archive (reversible). */
+    public function archive(Order $order): JsonResponse
+    {
+        $order->update(['archived_at' => now()]);
+        return response()->json(['message' => 'Commande archivée.']);
+    }
+
+    /** POST /api/admin/orders/{order}/unarchive — restore from the archive. */
+    public function unarchive(Order $order): JsonResponse
+    {
+        $order->update(['archived_at' => null]);
+        return response()->json(['message' => 'Commande restaurée.']);
     }
 
     /**

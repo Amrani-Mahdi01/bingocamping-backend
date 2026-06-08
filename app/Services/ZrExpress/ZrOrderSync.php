@@ -82,6 +82,24 @@ class ZrOrderSync
         try {
             $parcel = $this->zr->getParcel($order->zr_parcel_id);
         } catch (ZrExpressException $e) {
+            // 404 = the parcel was deleted/cancelled on ZR's side. Auto-cancel
+            // the local order (releases stock + logs history via the updater)
+            // instead of leaving it stuck on a 404 error. Other errors are
+            // transient (5xx / network) — record them and leave status as-is.
+            if ((int) ($e->context['status'] ?? 0) === 404) {
+                if (! in_array($order->status, ['cancelled', 'returned'], true)) {
+                    $result['changed'] = $this->updater->apply(
+                        $order,
+                        'cancelled',
+                        'ZR Express',
+                        'Annulée automatiquement : le colis a été supprimé chez ZR Express.'
+                    );
+                    $result['status'] = 'cancelled';
+                }
+                $order->update(['zr_last_error' => null, 'zr_synced_at' => now()]);
+                return $result;
+            }
+
             $order->update([
                 'zr_last_error' => mb_substr($e->getMessage(), 0, 500),
                 'zr_synced_at' => now(),
@@ -90,6 +108,20 @@ class ZrOrderSync
             return $result;
         }
 
+        // Same apply logic as the real-time webhook — single source of truth.
+        return array_merge($result, $this->applyParcelState($order, $parcel));
+    }
+
+    /**
+     * Apply a parcel's ZR state onto an order: record the raw state, backfill
+     * the tracking number, and advance the local status when the mapping moves
+     * forward (forward-only; returns/cancellations always honoured). Shared by
+     * the polling sync (ZR-03) and the real-time webhook so both behave
+     * identically. $parcel needs at least `state` (+ optional `trackingNumber`);
+     * $noteSource labels the status-history entry.
+     */
+    public function applyParcelState(Order $order, array $parcel, string $noteSource = 'ZR Express'): array
+    {
         $slug = $this->zr->extractStateSlug($parcel['state'] ?? null);
         $tracking = $parcel['trackingNumber'] ?? null;
         $mapped = $this->zr->mapState($parcel['state'] ?? null);
@@ -104,12 +136,17 @@ class ZrOrderSync
         }
         $order->update($updates);
 
-        $result['zrState'] = $slug;
-        $result['mappedStatus'] = $mapped;
+        $result = [
+            'orderNumber' => $order->order_number,
+            'zrState' => $slug,
+            'mappedStatus' => $mapped,
+            'changed' => false,
+            'status' => $order->status,
+        ];
 
         if ($mapped && $mapped !== $order->status && $this->mayTransition($order->status, $mapped)) {
             $note = "Statut synchronisé depuis ZR Express".($slug ? " ({$slug})" : '');
-            $result['changed'] = $this->updater->apply($order, $mapped, 'ZR Express', $note);
+            $result['changed'] = $this->updater->apply($order, $mapped, $noteSource, $note);
             $result['status'] = $mapped;
         }
 

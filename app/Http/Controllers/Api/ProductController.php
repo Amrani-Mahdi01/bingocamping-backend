@@ -185,6 +185,7 @@ class ProductController extends Controller
             $p = Product::create($data);
             $this->syncImages($p, $request);
             $this->syncVariants($p, $request);
+            $this->resyncStockFromVariants($p);
             return $p;
         });
 
@@ -210,6 +211,7 @@ class ProductController extends Controller
             }
             if ($request->has('variants')) {
                 $this->syncVariants($product, $request, replace: true);
+                $this->resyncStockFromVariants($product);
             }
         });
 
@@ -273,6 +275,20 @@ class ProductController extends Controller
                 'stock' => (int) ($v['stock'] ?? 0),
                 'display_order' => $i,
             ]);
+        }
+    }
+
+    /**
+     * When a product has variants, its total stock is the sum of the variant
+     * stocks (the variants own the inventory). Keeps the product-level number
+     * honest so it can never contradict the per-colour quantities. No-op for
+     * simple products, which keep their manually-entered total.
+     */
+    private function resyncStockFromVariants(Product $product): void
+    {
+        if ($product->variants()->exists()) {
+            $product->stock = (int) $product->variants()->sum('stock');
+            $product->save();
         }
     }
 

@@ -32,6 +32,9 @@ class StoreOrderRequest extends FormRequest
             'shipping.wilayaId' => ['required', 'string', 'size:2', 'exists:wilayas,id'],
             'shipping.commune' => ['required', 'string', 'max:120'],
             'shipping.address' => ['nullable', 'string', 'max:255'],
+            // 'home' (à domicile) or 'stopdesk' (retrait en agence). Optional
+            // for backward compatibility — absent/invalid defaults to 'home'.
+            'shipping.deliveryType' => ['nullable', 'in:home,stopdesk'],
             'shipping.notes' => ['nullable', 'string', 'max:500'],
 
             'lines' => ['required', 'array', 'min:1', 'max:50'],
@@ -40,6 +43,11 @@ class StoreOrderRequest extends FormRequest
             // transaction so a deleted/disabled product fails the order.
             'lines.*.productSlug' => ['required', 'string', 'exists:products,slug'],
             'lines.*.variant' => ['nullable', 'string', 'max:160'],
+            // Exact purchasable variant (color/size) chosen, so the right
+            // variant's stock is decremented on confirm. Validated against the
+            // resolved product inside OrderController (a variant of another
+            // product is ignored there).
+            'lines.*.variantId' => ['nullable', 'integer', 'exists:product_variants,id'],
             'lines.*.quantity' => ['required', 'integer', 'min:1', 'max:99'],
 
             // Google reCAPTCHA v2 response token. Required so the
