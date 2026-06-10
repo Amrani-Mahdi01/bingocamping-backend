@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\BackupController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\BlockedIpController;
 use App\Http\Controllers\Api\BlockedPhoneController;
@@ -177,6 +178,9 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     // Settings
     Route::get('/settings', [SettingsController::class, 'indexAdmin']);
     Route::put('/settings', [SettingsController::class, 'update']);
+
+    // Full-database backup — streams a restorable .sql dump (Paramètres page).
+    Route::get('/backup/database', [BackupController::class, 'database']);
 
     // ZR Express delivery integration
     Route::get('/zr/settings', [ZrExpressController::class, 'settings']);
