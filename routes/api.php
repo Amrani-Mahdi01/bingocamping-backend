@@ -179,8 +179,18 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::get('/settings', [SettingsController::class, 'indexAdmin']);
     Route::put('/settings', [SettingsController::class, 'update']);
 
-    // Full-database backup — streams a restorable .sql dump (Paramètres page).
+    // Full-database backup & restore (Paramètres page).
+    // Direct download (never stored on the server):
     Route::get('/backup/database', [BackupController::class, 'database']);
+    // Server-side snapshots kept under storage/app/backups:
+    Route::get('/backups', [BackupController::class, 'index']);
+    Route::post('/backups', [BackupController::class, 'store']);
+    Route::get('/backups/{name}', [BackupController::class, 'download'])
+        ->where('name', '[A-Za-z0-9._-]+');
+    Route::post('/backups/{name}/restore', [BackupController::class, 'restore'])
+        ->where('name', '[A-Za-z0-9._-]+');
+    Route::delete('/backups/{name}', [BackupController::class, 'destroy'])
+        ->where('name', '[A-Za-z0-9._-]+');
 
     // ZR Express delivery integration
     Route::get('/zr/settings', [ZrExpressController::class, 'settings']);
