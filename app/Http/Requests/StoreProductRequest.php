@@ -50,7 +50,7 @@ class StoreProductRequest extends FormRequest
             // Images: array of { url, altFr?, altAr? } — the form uploads
             // first to /uploads/product-image and then sends the resulting
             // URLs here.
-            'images' => ['nullable', 'array', 'max:5'],
+            'images' => ['nullable', 'array', 'max:10'],
             'images.*.url' => ['required_with:images', 'string', 'max:1000'],
             'images.*.altFr' => ['nullable', 'string', 'max:200'],
             'images.*.altAr' => ['nullable', 'string', 'max:200'],
@@ -85,7 +85,7 @@ class StoreProductRequest extends FormRequest
             'oldPrice.gte' => "L'ancien prix doit être supérieur ou égal au prix.",
             'sku.unique' => 'Ce SKU est déjà utilisé.',
             'slug.unique' => 'Ce slug est déjà utilisé.',
-            'images.max' => 'Maximum 5 photos par produit.',
+            'images.max' => 'Maximum 10 photos par produit.',
         ];
     }
 
