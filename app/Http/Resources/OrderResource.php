@@ -10,7 +10,6 @@ class OrderResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $base = rtrim((string) config('app.url'), '/');
         $ipBlocked = $this->customer_ip
             ? BlockedIp::where('ip_address', $this->customer_ip)->exists()
             : false;
@@ -58,12 +57,17 @@ class OrderResource extends JsonResource
             'customerIp' => $this->customer_ip,
             'ipBlocked' => $ipBlocked,
 
-            'lines' => $this->whenLoaded('lines', function () use ($base) {
-                return $this->lines->map(function ($line) use ($base) {
+            'lines' => $this->whenLoaded('lines', function () {
+                return $this->lines->map(function ($line) {
+                    // Relative /storage path — served same-origin by the
+                    // storefront's /storage proxy so it loads on mobile.
                     $image = $line->image;
-                    if (is_string($image) && str_starts_with($image, '/storage/')) {
-                        $image = $base.$image;
-                    }
+                    // Live colour of the chosen variant so order views can
+                    // render a swatch — the `variant` TEXT label can't convey
+                    // colour when the variant was saved without a name. Null
+                    // when the variant has since been deleted (falls back to
+                    // the text label on the client).
+                    $vr = $line->relationLoaded('variantRef') ? $line->variantRef : null;
                     return [
                         'id' => (string) $line->id,
                         'productId' => $line->product_id ? (string) $line->product_id : null,
@@ -71,6 +75,7 @@ class OrderResource extends JsonResource
                         'sku' => $line->sku,
                         'image' => $image,
                         'variant' => $line->variant,
+                        'variantColorHex' => $vr?->color_hex,
                         'quantity' => (int) $line->quantity,
                         'unitPrice' => (int) $line->unit_price,
                         'total' => (int) $line->total,

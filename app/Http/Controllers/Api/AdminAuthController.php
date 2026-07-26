@@ -26,12 +26,13 @@ class AdminAuthController extends Controller
 
         $email = strtolower(trim($data['email']));
 
-        // Brute-force lockout, keyed per email + IP: after 5 failed attempts
+        // Brute-force lockout, keyed per email + IP: after 10 failed attempts
         // the pair is locked for 60s. This sits under the coarse per-IP route
         // throttle and is the precise gate (an attacker rotating emails or a
-        // shared IP can't burn another account's budget).
+        // shared IP can't burn another account's budget). 10 (not 5) so a
+        // legitimate admin fumbling the password a few times isn't locked out.
         $throttleKey = 'admin-login:'.$email.'|'.$request->ip();
-        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+        if (RateLimiter::tooManyAttempts($throttleKey, 10)) {
             $seconds = RateLimiter::availableIn($throttleKey);
             throw ValidationException::withMessages([
                 'email' => ["Trop de tentatives. Réessayez dans {$seconds} seconde(s)."],

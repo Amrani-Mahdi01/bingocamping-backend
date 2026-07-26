@@ -20,13 +20,10 @@ class ProductResource extends JsonResource
             'descriptionFr' => $this->description_fr,
             'descriptionAr' => $this->description_ar,
 
-            // Absolute URL for the optional product video (prefix relative
-            // /storage/ paths with the app URL, same as images do).
-            'video' => $this->video
-                ? (str_starts_with((string) $this->video, '/storage/')
-                    ? rtrim((string) config('app.url'), '/').$this->video
-                    : $this->video)
-                : null,
+            // Relative /storage path (as stored). The storefront serves media
+            // same-origin via its /storage proxy so it loads on mobile; SEO
+            // re-absolutizes. External (http) URLs pass through unchanged.
+            'video' => $this->video ?: null,
 
             'categoryId' => $this->category_id ? (string) $this->category_id : null,
             'brandId' => $this->brand_id ? (string) $this->brand_id : null,
@@ -69,15 +66,10 @@ class ProductResource extends JsonResource
             }, []),
 
             'images' => $this->whenLoaded('images', function () {
-                $base = rtrim((string) config('app.url'), '/');
-                return $this->images->map(function ($img) use ($base) {
-                    $url = $img->url;
-                    if (is_string($url) && str_starts_with($url, '/storage/')) {
-                        $url = $base.$url;
-                    }
+                return $this->images->map(function ($img) {
                     return [
                         'id' => (string) $img->id,
-                        'url' => $url,
+                        'url' => $img->url,
                         'altFr' => $img->alt_fr,
                         'altAr' => $img->alt_ar,
                         'displayOrder' => (int) $img->display_order,

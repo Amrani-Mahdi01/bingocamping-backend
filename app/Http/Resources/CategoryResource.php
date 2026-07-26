@@ -16,10 +16,9 @@ class CategoryResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        // Relative /storage path (as stored) — served same-origin by the
+        // storefront's /storage proxy so it loads on mobile networks.
         $image = $this->image;
-        if (is_string($image) && str_starts_with($image, '/storage/')) {
-            $image = rtrim((string) config('app.url'), '/').$image;
-        }
 
         return [
             'id' => (string) $this->id,

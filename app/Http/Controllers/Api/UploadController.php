@@ -169,13 +169,18 @@ class UploadController extends Controller
         );
 
         $file = $data['file'];
+        // Category icons sit on the cream storefront card, so a transparent
+        // PNG/WebP must stay transparent — flattening onto white bakes an ugly
+        // white box behind the icon. Preserve alpha for those sources (JPEGs
+        // have no alpha, so they flatten harmlessly).
+        $hasAlpha = in_array(strtolower($file->getClientOriginalExtension()), ['png', 'webp'], true);
         $name = Str::random(24).'.webp';
         $absoluteDir = storage_path('app/public/categories');
         if (! is_dir($absoluteDir)) {
             mkdir($absoluteDir, 0755, true);
         }
         $destination = $absoluteDir.DIRECTORY_SEPARATOR.$name;
-        $this->resizeAndStore($file->getRealPath(), $destination, 1200, 800);
+        $this->resizeAndStore($file->getRealPath(), $destination, 1200, 800, $hasAlpha);
 
         $relative = '/storage/categories/'.$name;
         $absolute = rtrim((string) config('app.url'), '/').$relative;

@@ -164,7 +164,7 @@ class CustomerAuthController extends Controller
 
         $orders = Order::query()
             ->where('customer_id', $customer->id)
-            ->with(['lines', 'statusHistory'])
+            ->with(['lines.variantRef', 'statusHistory'])
             ->orderByDesc('created_at')
             ->get();
 

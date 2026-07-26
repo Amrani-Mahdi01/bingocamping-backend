@@ -259,16 +259,17 @@ class ProductController extends Controller
         foreach ((array) $request->input('variants', []) as $i => $v) {
             $colorFr = trim((string) ($v['colorNameFr'] ?? '')) ?: null;
             $colorAr = trim((string) ($v['colorNameAr'] ?? '')) ?: null;
+            $colorHex = trim((string) ($v['colorHex'] ?? '')) ?: null;
             $sizeLabel = trim((string) ($v['sizeLabel'] ?? '')) ?: null;
-            // Skip rows with no color AND no size — they're not purchasable.
-            if (! $colorFr && ! $colorAr && ! $sizeLabel) {
+            // Skip rows with no color (name or swatch) AND no size — not purchasable.
+            if (! $colorFr && ! $colorAr && ! $colorHex && ! $sizeLabel) {
                 continue;
             }
             ProductVariant::create([
                 'product_id' => $product->id,
                 'color_name_fr' => $colorFr,
                 'color_name_ar' => $colorAr,
-                'color_hex' => $v['colorHex'] ?? null,
+                'color_hex' => $colorHex,
                 'size_label' => $sizeLabel,
                 'sku_suffix' => $v['skuSuffix'] ?? null,
                 'price_delta' => (int) ($v['priceDelta'] ?? 0),

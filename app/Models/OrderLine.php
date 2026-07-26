@@ -43,4 +43,15 @@ class OrderLine extends Model
     {
         return $this->belongsTo(ProductVariant::class);
     }
+
+    /**
+     * Same target as {@see variant()} but under a distinct relation key. The
+     * `variant` TEXT column shadows the `variant()` relation on property
+     * access ($line->variant returns the label string), so eager-loaded
+     * colour data must be reached through this differently-named relation.
+     */
+    public function variantRef(): BelongsTo
+    {
+        return $this->belongsTo(ProductVariant::class, 'variant_id');
+    }
 }

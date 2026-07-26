@@ -384,7 +384,7 @@ class ZrExpressController extends Controller
         return response()->json([
             'ok' => true,
             'message' => 'Statut ZR Express synchronisé.',
-            'order' => new OrderResource($order->load(['lines', 'statusHistory', 'callAttempts'])),
+            'order' => new OrderResource($order->load(['lines.variantRef', 'statusHistory', 'callAttempts'])),
         ]);
     }
 
@@ -419,7 +419,7 @@ class ZrExpressController extends Controller
             'ok' => true,
             'message' => 'Commande envoyée à ZR Express.',
             'trackingNumber' => $order->tracking_number,
-            'order' => new OrderResource($order->load(['lines', 'statusHistory', 'callAttempts'])),
+            'order' => new OrderResource($order->load(['lines.variantRef', 'statusHistory', 'callAttempts'])),
         ]);
     }
 
@@ -459,7 +459,7 @@ class ZrExpressController extends Controller
         return response()->json([
             'ok' => true,
             'message' => 'Commande détachée de ZR Express.',
-            'order' => new OrderResource($order->load(['lines', 'statusHistory', 'callAttempts'])),
+            'order' => new OrderResource($order->load(['lines.variantRef', 'statusHistory', 'callAttempts'])),
         ]);
     }
 

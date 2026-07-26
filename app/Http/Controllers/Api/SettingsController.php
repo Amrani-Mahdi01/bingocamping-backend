@@ -106,15 +106,13 @@ class SettingsController extends Controller
             $query->where('is_public', true);
         }
         $rows = $query->get();
-        $base = rtrim((string) config('app.url'), '/');
 
+        // Values stay as stored — relative /storage paths (logo, etc.) are
+        // served same-origin by the storefront's /storage proxy so they load
+        // on mobile networks that can't reach the backend host directly.
         $out = [];
         foreach ($rows as $row) {
-            $val = $row->value;
-            if (is_string($val) && str_starts_with($val, '/storage/')) {
-                $val = $base.$val;
-            }
-            $out[$row->key] = $val;
+            $out[$row->key] = $row->value;
         }
         return $out;
     }

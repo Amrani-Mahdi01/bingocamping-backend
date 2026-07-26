@@ -31,7 +31,11 @@ return [
     // Let the storefront JS read the download filename off backup responses.
     'exposed_headers' => ['Content-Disposition'],
 
-    'max_age' => 0,
+    // Cache the CORS preflight (OPTIONS) for 24h so the browser stops
+    // re-asking before every request — one round-trip per call instead of
+    // two, which is one fewer thing that can fail on a flaky connection.
+    // (Chrome clamps this to ~2h, Firefox honours the full day.)
+    'max_age' => 86400,
 
     'supports_credentials' => true,
 

@@ -59,8 +59,10 @@ Route::get('/admin/orders/stream', [OrderController::class, 'stream']);
 */
 
 // Throttle account creation + login per IP to blunt enumeration / brute force.
-Route::post('/auth/register', [CustomerAuthController::class, 'register'])->middleware('throttle:5,1');
-Route::post('/auth/login',    [CustomerAuthController::class, 'login'])->middleware('throttle:10,1');
+// Limits are per real client IP (trustProxies + Vercel X-Forwarded-For), so
+// they're generous enough to survive legitimate retries / client auto-retry.
+Route::post('/auth/register', [CustomerAuthController::class, 'register'])->middleware('throttle:15,1');
+Route::post('/auth/login',    [CustomerAuthController::class, 'login'])->middleware('throttle:20,1');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [CustomerAuthController::class, 'logout']);
@@ -88,8 +90,10 @@ Route::middleware('auth:sanctum')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-// Coarse per-IP backstop; AdminAuthController adds a finer per-email+IP lockout.
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->middleware('throttle:6,1');
+// Coarse per-IP backstop; AdminAuthController adds a finer per-email+IP lockout
+// (5 failed attempts), which stays the real brute-force gate. Raised from 6 so
+// legitimate retries on a flaky connection don't trip the coarse limit first.
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->middleware('throttle:20,1');
 
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout']);
@@ -128,6 +132,7 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::get('/orders/pending-count', [OrderController::class, 'pendingCount']);
     Route::get('/orders', [OrderController::class, 'indexAdmin']);
     Route::get('/orders/{order}', [OrderController::class, 'show']);
+    Route::put('/orders/{order}', [OrderController::class, 'update']);
     Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus']);
     Route::post('/orders/{order}/calls', [OrderController::class, 'logCall']);
     Route::delete('/orders/{order}', [OrderController::class, 'destroy']);

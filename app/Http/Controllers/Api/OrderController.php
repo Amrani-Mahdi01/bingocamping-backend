@@ -16,6 +16,7 @@ use App\Models\OrderLine;
 use App\Models\OrderStatusEntry;
 use App\Models\Product;
 use App\Models\Wilaya;
+use App\Services\OrderEditor;
 use App\Services\OrderStatusUpdater;
 use App\Services\ZrExpress\ZrExpressService;
 use Illuminate\Http\JsonResponse;
@@ -252,7 +253,7 @@ class OrderController extends Controller
         });
 
         return (new OrderResource(
-            $order->load(['lines', 'statusHistory', 'callAttempts'])
+            $order->load(['lines.variantRef', 'statusHistory', 'callAttempts'])
         ))->response()->setStatusCode(201);
     }
 
@@ -336,7 +337,58 @@ class OrderController extends Controller
     public function show(Order $order): OrderResource
     {
         return new OrderResource(
-            $order->load(['lines', 'statusHistory', 'callAttempts'])
+            $order->load(['lines.variantRef', 'statusHistory', 'callAttempts'])
+        );
+    }
+
+    /**
+     * PUT /api/admin/orders/{order}
+     *
+     * Full admin edit of an order's contents: line items (add / remove / change
+     * quantity or unit price), delivery destination + fee, and customer details.
+     * Totals are recomputed server-side and stock is moved only when the order
+     * currently reserves it — see {@see OrderEditor}. The order's status is left
+     * untouched (use the status endpoint for that).
+     */
+    public function update(Request $request, Order $order, OrderEditor $editor): OrderResource
+    {
+        $data = $request->validate([
+            'customer' => ['required', 'array'],
+            'customer.firstName' => ['required', 'string', 'max:80'],
+            'customer.lastName' => ['required', 'string', 'max:80'],
+            'customer.phone' => ['required', 'string', 'max:32'],
+            'customer.email' => ['nullable', 'email', 'max:120'],
+
+            'shipping' => ['required', 'array'],
+            'shipping.wilayaId' => ['required', 'string', 'exists:wilayas,id'],
+            'shipping.commune' => ['required', 'string', 'max:120'],
+            'shipping.address' => ['nullable', 'string', 'max:255'],
+            'shipping.deliveryType' => ['required', 'in:home,stopdesk'],
+            'shipping.notes' => ['nullable', 'string', 'max:1000'],
+
+            // Optional manual override; omit/null to bill the wilaya's rate.
+            'shippingFee' => ['nullable', 'integer', 'min:0', 'max:1000000'],
+
+            'lines' => ['required', 'array', 'min:1'],
+            'lines.*.productId' => ['nullable', 'integer', 'exists:products,id'],
+            'lines.*.variantId' => ['nullable', 'integer', 'exists:product_variants,id'],
+            'lines.*.productName' => ['required', 'string', 'max:255'],
+            'lines.*.sku' => ['required', 'string', 'max:64'],
+            'lines.*.image' => ['nullable', 'string', 'max:2048'],
+            'lines.*.variant' => ['nullable', 'string', 'max:255'],
+            'lines.*.quantity' => ['required', 'integer', 'min:1', 'max:9999'],
+            'lines.*.unitPrice' => ['required', 'integer', 'min:0', 'max:100000000'],
+        ]);
+
+        $admin = $request->user();
+        $byLabel = method_exists($admin, 'getAttribute')
+            ? ($admin->getAttribute('name') ?: $admin->getAttribute('email') ?: 'Admin')
+            : 'Admin';
+
+        $editor->apply($order, $data, $byLabel);
+
+        return new OrderResource(
+            $order->fresh(['lines.variantRef', 'statusHistory', 'callAttempts'])
         );
     }
 
@@ -397,7 +449,7 @@ class OrderController extends Controller
         $this->maybeAutoBlock($order, $admin);
 
         return new OrderResource(
-            $order->fresh(['lines', 'statusHistory', 'callAttempts'])
+            $order->fresh(['lines.variantRef', 'statusHistory', 'callAttempts'])
         );
     }
 
@@ -476,7 +528,7 @@ class OrderController extends Controller
         ]);
 
         return new OrderResource(
-            $order->fresh(['lines', 'statusHistory', 'callAttempts'])
+            $order->fresh(['lines.variantRef', 'statusHistory', 'callAttempts'])
         );
     }
 

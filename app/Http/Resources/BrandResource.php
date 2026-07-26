@@ -9,10 +9,9 @@ class BrandResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        // Relative /storage path (as stored) — served same-origin by the
+        // storefront's /storage proxy so it loads on mobile networks.
         $logo = $this->logo;
-        if (is_string($logo) && str_starts_with($logo, '/storage/')) {
-            $logo = rtrim((string) config('app.url'), '/').$logo;
-        }
 
         return [
             'id' => (string) $this->id,
