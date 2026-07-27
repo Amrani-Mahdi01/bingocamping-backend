@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'color_name_fr',
     'color_name_ar',
     'color_hex',
+    'color_hex2',
     'size_label',
     'sku_suffix',
     'price_delta',

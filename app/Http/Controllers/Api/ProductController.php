@@ -260,6 +260,12 @@ class ProductController extends Controller
             $colorFr = trim((string) ($v['colorNameFr'] ?? '')) ?: null;
             $colorAr = trim((string) ($v['colorNameAr'] ?? '')) ?: null;
             $colorHex = trim((string) ($v['colorHex'] ?? '')) ?: null;
+            // Optional second hex → two-tone ("mixed") colour. Only meaningful
+            // alongside a primary hex; dropped otherwise.
+            $colorHex2 = trim((string) ($v['colorHex2'] ?? '')) ?: null;
+            if (! $colorHex) {
+                $colorHex2 = null;
+            }
             $sizeLabel = trim((string) ($v['sizeLabel'] ?? '')) ?: null;
             // Skip rows with no color (name or swatch) AND no size — not purchasable.
             if (! $colorFr && ! $colorAr && ! $colorHex && ! $sizeLabel) {
@@ -270,6 +276,7 @@ class ProductController extends Controller
                 'color_name_fr' => $colorFr,
                 'color_name_ar' => $colorAr,
                 'color_hex' => $colorHex,
+                'color_hex2' => $colorHex2,
                 'size_label' => $sizeLabel,
                 'sku_suffix' => $v['skuSuffix'] ?? null,
                 'price_delta' => (int) ($v['priceDelta'] ?? 0),

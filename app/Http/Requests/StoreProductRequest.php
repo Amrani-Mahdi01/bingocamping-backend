@@ -65,6 +65,7 @@ class StoreProductRequest extends FormRequest
             'variants.*.colorNameFr' => ['nullable', 'string', 'max:60'],
             'variants.*.colorNameAr' => ['nullable', 'string', 'max:60'],
             'variants.*.colorHex' => ['nullable', 'string', 'regex:/^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/'],
+            'variants.*.colorHex2' => ['nullable', 'string', 'regex:/^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$/'],
             'variants.*.sizeLabel' => ['nullable', 'string', 'max:32'],
             'variants.*.skuSuffix' => ['nullable', 'string', 'max:32'],
             'variants.*.priceDelta' => ['nullable', 'integer'],

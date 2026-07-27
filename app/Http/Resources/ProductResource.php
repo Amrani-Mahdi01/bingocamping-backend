@@ -57,6 +57,7 @@ class ProductResource extends JsonResource
                     'colorNameFr' => $v->color_name_fr,
                     'colorNameAr' => $v->color_name_ar,
                     'colorHex' => $v->color_hex,
+                    'colorHex2' => $v->color_hex2,
                     'sizeLabel' => $v->size_label,
                     'skuSuffix' => $v->sku_suffix,
                     'priceDelta' => (int) $v->price_delta,
