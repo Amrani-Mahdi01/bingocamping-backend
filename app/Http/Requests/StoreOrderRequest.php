@@ -30,11 +30,15 @@ class StoreOrderRequest extends FormRequest
 
             'shipping' => ['required', 'array'],
             'shipping.wilayaId' => ['required', 'string', 'size:2', 'exists:wilayas,id'],
-            'shipping.commune' => ['required', 'string', 'max:120'],
+            // Required for home delivery; for stop-desk the commune is derived
+            // from the chosen desk instead (see stopDeskId below).
+            'shipping.commune' => ['required_unless:shipping.deliveryType,stopdesk', 'nullable', 'string', 'max:120'],
             'shipping.address' => ['nullable', 'string', 'max:255'],
             // 'home' (à domicile) or 'stopdesk' (retrait en agence). Optional
             // for backward compatibility — absent/invalid defaults to 'home'.
             'shipping.deliveryType' => ['nullable', 'in:home,stopdesk'],
+            // The exact ZR pickup point chosen — required for stop-desk orders.
+            'shipping.stopDeskId' => ['nullable', 'string', 'exists:zr_hubs,id', 'required_if:shipping.deliveryType,stopdesk'],
             'shipping.notes' => ['nullable', 'string', 'max:500'],
 
             'lines' => ['required', 'array', 'min:1', 'max:50'],
@@ -67,7 +71,9 @@ class StoreOrderRequest extends FormRequest
             'customer.phone.regex' =>
                 "Format attendu : 10 chiffres commençant par 05, 06 ou 07.",
             'shipping.wilayaId.required' => "Choisissez votre wilaya.",
-            'shipping.commune.required' => "La commune est requise.",
+            'shipping.commune.required_unless' => "La commune est requise.",
+            'shipping.stopDeskId.required_if' => "Choisissez un point de retrait (stop desk).",
+            'shipping.stopDeskId.exists' => "Ce point de retrait n'est plus disponible.",
             'lines.required' => "Au moins un article requis.",
             'lines.*.productSlug.exists' => "Un des produits n'est plus disponible.",
         ];

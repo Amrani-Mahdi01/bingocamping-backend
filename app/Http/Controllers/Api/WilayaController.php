@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wilaya;
+use App\Models\ZrHub;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,27 @@ class WilayaController extends Controller
     {
         $rows = Wilaya::query()->orderBy('code')->get();
         return response()->json(['data' => $rows->map(fn ($w) => $this->serialize($w))]);
+    }
+
+    /**
+     * GET /api/wilayas/{wilaya}/stopdesks — public. The ZR pickup points in
+     * this wilaya, so the checkout can let the customer choose the exact desk.
+     */
+    public function stopDesks(Wilaya $wilaya): JsonResponse
+    {
+        $rows = ZrHub::where('wilaya_id', $wilaya->id)
+            ->orderBy('commune_name')
+            ->orderBy('name')
+            ->get();
+
+        return response()->json([
+            'data' => $rows->map(fn ($h) => [
+                'id' => $h->id,
+                'name' => $h->name,
+                'commune' => $h->commune_name,
+                'address' => $h->address,
+            ]),
+        ]);
     }
 
     /**

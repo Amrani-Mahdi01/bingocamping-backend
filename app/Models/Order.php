@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
     'commune',
     'address',
     'delivery_type',
+    'zr_hub_id',
     'notes',
     'subtotal',
     'shipping_fee',
@@ -69,6 +70,12 @@ class Order extends Model
     public function wilaya(): BelongsTo
     {
         return $this->belongsTo(Wilaya::class);
+    }
+
+    /** The chosen ZR stop desk, for stop-desk orders (null otherwise). */
+    public function zrHub(): BelongsTo
+    {
+        return $this->belongsTo(ZrHub::class, 'zr_hub_id');
     }
 
     public function lines(): HasMany

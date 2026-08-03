@@ -347,9 +347,11 @@ class ZrExpressService
         ];
 
         // Stop-desk (pickup-point) parcels MUST name the destination hub —
-        // ZR rejects them with "HubId is required" otherwise.
+        // ZR rejects them with "HubId is required" otherwise. Prefer the exact
+        // desk the customer chose at checkout; fall back to auto-picking a desk
+        // in the wilaya for legacy orders created before per-desk selection.
         if ($isStopDesk) {
-            $payload['hubId'] = $this->resolveStopDeskHubId($wilaya, $commune);
+            $payload['hubId'] = $order->zr_hub_id ?: $this->resolveStopDeskHubId($wilaya, $commune);
         }
 
         return $payload;

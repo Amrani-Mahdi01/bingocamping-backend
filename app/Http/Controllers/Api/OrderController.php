@@ -16,6 +16,7 @@ use App\Models\OrderLine;
 use App\Models\OrderStatusEntry;
 use App\Models\Product;
 use App\Models\Wilaya;
+use App\Models\ZrHub;
 use App\Services\OrderEditor;
 use App\Services\OrderStatusUpdater;
 use App\Services\ZrExpress\ZrExpressService;
@@ -201,6 +202,20 @@ class OrderController extends Controller
             $deliveryType = (($data['shipping']['deliveryType'] ?? 'home') === 'stopdesk')
                 ? 'stopdesk'
                 : 'home';
+
+            // Stop-desk orders carry the EXACT chosen ZR pickup point; the
+            // commune is taken from that desk (the customer picks a desk, not a
+            // commune). Home orders keep the customer-entered commune.
+            $stopDeskHub = null;
+            if ($deliveryType === 'stopdesk' && ! empty($data['shipping']['stopDeskId'])) {
+                $stopDeskHub = ZrHub::where('id', $data['shipping']['stopDeskId'])
+                    ->where('wilaya_id', $wilaya->id)
+                    ->first();
+            }
+            $communeName = $stopDeskHub
+                ? (string) ($stopDeskHub->commune_name ?: ($data['shipping']['commune'] ?? ''))
+                : trim((string) ($data['shipping']['commune'] ?? ''));
+
             $stopDeskPrice = (int) $wilaya->stop_desk_price;
             $shippingFee = ($deliveryType === 'stopdesk' && $stopDeskPrice > 0)
                 ? $stopDeskPrice
@@ -219,9 +234,10 @@ class OrderController extends Controller
                 'customer_ip' => $clientIp,
                 'wilaya_id' => $wilaya->id,
                 'wilaya_name' => $wilaya->name_fr,
-                'commune' => trim($data['shipping']['commune']),
+                'commune' => $communeName,
                 'address' => $data['shipping']['address'] ?? null,
                 'delivery_type' => $deliveryType,
+                'zr_hub_id' => $stopDeskHub?->id,
                 'notes' => $data['shipping']['notes'] ?? null,
                 'subtotal' => $subtotal,
                 'shipping_fee' => $shippingFee,

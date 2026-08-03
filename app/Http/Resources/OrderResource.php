@@ -38,6 +38,9 @@ class OrderResource extends JsonResource
                 'commune' => $this->commune,
                 'address' => $this->address,
                 'deliveryType' => $this->delivery_type ?? 'home',
+                // For stop-desk orders: the exact ZR pickup point the customer chose.
+                'stopDeskId' => $this->zr_hub_id,
+                'stopDesk' => $this->zr_hub_id ? optional($this->zrHub)->name : null,
                 'notes' => $this->notes,
             ],
 

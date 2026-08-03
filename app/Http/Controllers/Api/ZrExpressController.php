@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderStatusEntry;
 use App\Models\Setting;
 use App\Models\Wilaya;
+use App\Models\ZrHub;
 use App\Services\ZrExpress\ZrExpressException;
 use App\Services\ZrExpress\ZrExpressService;
 use App\Services\ZrExpress\ZrOrderSync;
@@ -128,6 +129,7 @@ class ZrExpressController extends Controller
         // Best-effort: if the hubs call fails we still import territories, just
         // with every stop-desk flag left false.
         $stopDeskDistricts = [];
+        $pickupHubs = [];
         try {
             foreach ($zr->searchHubs() as $h) {
                 if (empty($h['isPickupPoint']) || empty($h['isVisible'])) {
@@ -137,9 +139,12 @@ class ZrExpressController extends Controller
                 if ($districtId) {
                     $stopDeskDistricts[$districtId] = true;
                 }
+                if (! empty($h['id'])) {
+                    $pickupHubs[] = $h;
+                }
             }
         } catch (ZrExpressException $e) {
-            // Leave $stopDeskDistricts empty — flags default to false.
+            // Leave both empty — flags default to false, hub list stays as-is.
         }
 
         // Split ZR territories into wilayas + communes grouped by parent.
@@ -166,7 +171,7 @@ class ZrExpressController extends Controller
         $wilayasRemoved = 0;
 
         \Illuminate\Support\Facades\DB::transaction(function () use (
-            $zrWilayas, $communesByParent, $rates, $keepIds, $stopDeskDistricts,
+            $zrWilayas, $communesByParent, $rates, $keepIds, $stopDeskDistricts, $pickupHubs,
             &$wilayasImported, &$communesImported, &$wilayasRemoved
         ) {
             foreach ($zrWilayas as $zw) {
@@ -252,6 +257,41 @@ class ZrExpressController extends Controller
                     $wilayasRemoved++;
                 }
             }
+
+            // Rebuild the stop-desk (pickup point) list from ZR hubs. Runs last,
+            // after wilayas + communes exist, so each hub's city/district
+            // territory ids map to the local rows. A wilaya can hold several
+            // desks, so this preserves each individual desk (unlike the commune
+            // flag, which collapses same-commune desks into one).
+            $wilayaByTerr = Wilaya::whereNotNull('zr_territory_id')->pluck('id', 'zr_territory_id');
+            $communeByDistrict = Commune::whereNotNull('zr_district_id')->pluck('name_fr', 'zr_district_id');
+            ZrHub::query()->delete();
+            $hubRows = [];
+            foreach ($pickupHubs as $h) {
+                $cityId = $h['address']['cityTerritoryId'] ?? null;
+                $wid = $cityId ? ($wilayaByTerr[$cityId] ?? null) : null;
+                if (! $wid) {
+                    continue; // desk in a wilaya we don't serve — skip
+                }
+                $distId = $h['address']['districtTerritoryId'] ?? null;
+                $street = trim((string) ($h['address']['street'] ?? ''));
+                $city = trim((string) ($h['address']['city'] ?? ''));
+                $addr = trim(implode(', ', array_filter([$street, $city])));
+                $hubRows[] = [
+                    'id' => $h['id'],
+                    'wilaya_id' => $wid,
+                    'name' => $this->cleanHubName((string) ($h['name'] ?? ''), (int) $wid),
+                    'commune_name' => ($distId ? ($communeByDistrict[$distId] ?? null) : null)
+                        ?: ($h['address']['district'] ?? null),
+                    'address' => $addr !== '' ? mb_substr($addr, 0, 250) : null,
+                    'district_territory_id' => $distId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            foreach (array_chunk($hubRows, 200) as $chunk) {
+                ZrHub::insert($chunk);
+            }
         });
 
         return response()->json([
@@ -263,7 +303,22 @@ class ZrExpressController extends Controller
             'communesMatched' => Commune::whereNotNull('zr_district_id')->count(),
             'communesTotal' => Commune::count(),
             'stopDeskCommunes' => Commune::where('has_stop_desk', true)->count(),
+            'stopDesks' => ZrHub::count(),
         ]);
+    }
+
+    /**
+     * Turn a raw ZR hub name ("Hub Zouaghi 25 مكتب زواغي") into a clean,
+     * customer-facing label ("Zouaghi") by dropping the "Hub" prefix, the
+     * bundled Arabic name, and the wilaya number.
+     */
+    private function cleanHubName(string $raw, int $wilayaCode): string
+    {
+        $s = preg_replace('/[\x{0600}-\x{06FF}]+/u', ' ', $raw);   // strip Arabic
+        $s = preg_replace('/\bhub\b/i', ' ', (string) $s);         // strip "Hub"
+        $s = preg_replace('/\b0*'.$wilayaCode.'\b/', ' ', (string) $s); // strip wilaya no.
+        $s = trim((string) preg_replace('/\s+/', ' ', (string) $s));
+        return $s !== '' ? $s : 'Bureau';
     }
 
     /**

@@ -37,6 +37,7 @@ Route::get('/products/{slug}', [ProductController::class, 'showPublic']);
 Route::get('/settings', [SettingsController::class, 'indexPublic']);
 Route::get('/wilayas', [WilayaController::class, 'indexPublic']);
 Route::get('/wilayas/{wilaya}/communes', [CommuneController::class, 'indexPublic']);
+Route::get('/wilayas/{wilaya}/stopdesks', [WilayaController::class, 'stopDesks']);
 // Guest checkout — throttled per IP to blunt order spam (reCAPTCHA also gates).
 Route::post('/orders', [OrderController::class, 'store'])->middleware('throttle:20,1');
 // Storefront /contact form — reCAPTCHA-gated (see controller) + throttled.
