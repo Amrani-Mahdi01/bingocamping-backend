@@ -8,6 +8,7 @@ use App\Models\OrderStatusEntry;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\Wilaya;
+use App\Models\ZrHub;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -50,6 +51,19 @@ class OrderEditor
             $deliveryType = (($data['shipping']['deliveryType'] ?? 'home') === 'stopdesk')
                 ? 'stopdesk'
                 : 'home';
+
+            // Stop-desk edit: honour the exact chosen desk and derive the
+            // commune from it. Home orders keep the entered commune / no desk.
+            $stopDeskHub = null;
+            if ($deliveryType === 'stopdesk' && ! empty($data['shipping']['stopDeskId'])) {
+                $stopDeskHub = ZrHub::where('id', $data['shipping']['stopDeskId'])
+                    ->where('wilaya_id', $wilaya->id)
+                    ->first();
+            }
+            $communeName = $stopDeskHub
+                ? (string) ($stopDeskHub->commune_name ?: ($data['shipping']['commune'] ?? $order->commune))
+                : trim((string) ($data['shipping']['commune'] ?? ''));
+
             $stopDesk = (int) $wilaya->stop_desk_price;
             $autoFee = ($deliveryType === 'stopdesk' && $stopDesk > 0)
                 ? $stopDesk
@@ -122,9 +136,12 @@ class OrderEditor
                 'customer_email' => $data['customer']['email'] ?? null,
                 'wilaya_id' => $wilaya->id,
                 'wilaya_name' => $wilaya->name_fr,
-                'commune' => trim($data['shipping']['commune']),
+                'commune' => $communeName,
                 'address' => $data['shipping']['address'] ?? null,
                 'delivery_type' => $deliveryType,
+                'zr_hub_id' => $deliveryType === 'stopdesk'
+                    ? ($stopDeskHub?->id ?? $order->zr_hub_id)
+                    : null,
                 'notes' => $data['shipping']['notes'] ?? null,
                 'subtotal' => $subtotal,
                 'shipping_fee' => $shippingFee,

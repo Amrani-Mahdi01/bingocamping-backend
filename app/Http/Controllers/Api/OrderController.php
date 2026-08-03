@@ -377,9 +377,12 @@ class OrderController extends Controller
 
             'shipping' => ['required', 'array'],
             'shipping.wilayaId' => ['required', 'string', 'exists:wilayas,id'],
-            'shipping.commune' => ['required', 'string', 'max:120'],
+            // Required for home; for stop-desk the commune is derived from the
+            // chosen desk (stopDeskId).
+            'shipping.commune' => ['required_unless:shipping.deliveryType,stopdesk', 'nullable', 'string', 'max:120'],
             'shipping.address' => ['nullable', 'string', 'max:255'],
             'shipping.deliveryType' => ['required', 'in:home,stopdesk'],
+            'shipping.stopDeskId' => ['nullable', 'string', 'exists:zr_hubs,id', 'required_if:shipping.deliveryType,stopdesk'],
             'shipping.notes' => ['nullable', 'string', 'max:1000'],
 
             // Optional manual override; omit/null to bill the wilaya's rate.
