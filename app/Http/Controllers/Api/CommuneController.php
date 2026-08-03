@@ -93,6 +93,7 @@ class CommuneController extends Controller
             'code' => $c->code,
             'name' => $c->name_fr,
             'nameAr' => $c->name_ar,
+            'hasStopDesk' => (bool) $c->has_stop_desk,
         ];
     }
 }

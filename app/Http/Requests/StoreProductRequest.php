@@ -95,8 +95,20 @@ class StoreProductRequest extends FormRequest
         $v = $this->validated();
         $nullable = fn ($x) => is_string($x) && trim($x) === '' ? null : $x;
 
-        $slug = $nullable($v['slug'] ?? null) ?? Str::slug($v['nameFr']).'-'.Str::lower(Str::random(4));
-        $sku = $nullable($v['sku'] ?? null) ?? 'BIN-'.strtoupper(Str::random(6));
+        // On update the product is route-model-bound, so reuse its existing
+        // slug/sku whenever the request omits them. Slugs MUST be stable: the
+        // public product URL is `/produit/<slug>`, and it's also the key that
+        // homepage "featured" slots reference. Regenerating a random slug on
+        // every edit silently 404s the Google-indexed URL and breaks featured
+        // picks ("Référence introuvable"). An explicit slug in the payload
+        // still wins (deliberate rename); only the fallback changed.
+        $existing = $this->route('product');
+        $slug = $nullable($v['slug'] ?? null)
+            ?? $existing?->slug
+            ?? Str::slug($v['nameFr']).'-'.Str::lower(Str::random(4));
+        $sku = $nullable($v['sku'] ?? null)
+            ?? $existing?->sku
+            ?? 'BIN-'.strtoupper(Str::random(6));
 
         return [
             'slug' => $slug,

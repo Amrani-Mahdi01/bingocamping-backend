@@ -122,6 +122,26 @@ class ZrExpressController extends Controller
             return response()->json(['ok' => false, 'message' => $e->getMessage()], 422);
         }
 
+        // Which communes host a ZR pickup point (stop desk). Each visible
+        // pickup-point hub names the commune it sits in via
+        // address.districtTerritoryId, which equals a commune's zr_district_id.
+        // Best-effort: if the hubs call fails we still import territories, just
+        // with every stop-desk flag left false.
+        $stopDeskDistricts = [];
+        try {
+            foreach ($zr->searchHubs() as $h) {
+                if (empty($h['isPickupPoint']) || empty($h['isVisible'])) {
+                    continue; // hidden sorting center, not a customer desk
+                }
+                $districtId = $h['address']['districtTerritoryId'] ?? null;
+                if ($districtId) {
+                    $stopDeskDistricts[$districtId] = true;
+                }
+            }
+        } catch (ZrExpressException $e) {
+            // Leave $stopDeskDistricts empty — flags default to false.
+        }
+
         // Split ZR territories into wilayas + communes grouped by parent.
         $zrWilayas = [];
         $communesByParent = [];
@@ -146,7 +166,7 @@ class ZrExpressController extends Controller
         $wilayasRemoved = 0;
 
         \Illuminate\Support\Facades\DB::transaction(function () use (
-            $zrWilayas, $communesByParent, $rates, $keepIds,
+            $zrWilayas, $communesByParent, $rates, $keepIds, $stopDeskDistricts,
             &$wilayasImported, &$communesImported, &$wilayasRemoved
         ) {
             foreach ($zrWilayas as $zw) {
@@ -195,6 +215,7 @@ class ZrExpressController extends Controller
                         'name_fr' => mb_substr((string) ($d['name'] ?? ''), 0, 250) ?: 'Commune',
                         'name_ar' => mb_substr((string) ($d['nameArabic'] ?? ''), 0, 250),
                         'zr_district_id' => $d['id'],
+                        'has_stop_desk' => isset($stopDeskDistricts[$d['id']]),
                         'created_at' => now(),
                         'updated_at' => now(),
                     ];
@@ -241,6 +262,7 @@ class ZrExpressController extends Controller
             'wilayasTotal' => Wilaya::count(),
             'communesMatched' => Commune::whereNotNull('zr_district_id')->count(),
             'communesTotal' => Commune::count(),
+            'stopDeskCommunes' => Commune::where('has_stop_desk', true)->count(),
         ]);
     }
 

@@ -41,6 +41,7 @@ class Order extends Model
     /** Canonical status values. Anything else is rejected at the boundary. */
     public const STATUSES = [
         'pending',
+        'no_answer',
         'confirmed',
         'preparing',
         'shipped',
