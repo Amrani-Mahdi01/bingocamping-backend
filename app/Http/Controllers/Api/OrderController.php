@@ -159,7 +159,7 @@ class OrderController extends Controller
             }
         }
 
-        $order = DB::transaction(function () use ($data, $products, $wilaya, $clientIp, $customerId) {
+        $makeOrder = fn () => DB::transaction(function () use ($data, $products, $wilaya, $clientIp, $customerId) {
             $subtotal = 0;
             $linesPayload = [];
             foreach ($data['lines'] as $line) {
@@ -267,6 +267,22 @@ class OrderController extends Controller
 
             return $order;
         });
+
+        // Retry on an order-number collision (a concurrent order grabbing the
+        // same next number). nextOrderNumber() recomputes from the live MAX on
+        // each attempt, so a retry gets a fresh number instead of a 500.
+        $order = null;
+        for ($attempt = 1; $attempt <= 5; $attempt++) {
+            try {
+                $order = $makeOrder();
+                break;
+            } catch (\Illuminate\Database\UniqueConstraintViolationException $e) {
+                if ($attempt === 5) {
+                    throw $e;
+                }
+                usleep(20000);
+            }
+        }
 
         return (new OrderResource(
             $order->load(['lines.variantRef', 'statusHistory', 'callAttempts'])
@@ -678,9 +694,16 @@ class OrderController extends Controller
     /** Generate the next sequential order number, e.g. BIN-2026-00042. */
     private static function nextOrderNumber(): string
     {
+        // Base the sequence on the HIGHEST existing number for the year, not a
+        // row count — deleting/purging an order (see the orders-cleanup feature)
+        // drops the count while the number stays taken, so a count+1 scheme
+        // regenerates an existing number and every new order 500s on the unique
+        // constraint. The zero-padded 5-digit suffix sorts correctly under MAX().
         $year = now()->format('Y');
-        $count = Order::whereYear('created_at', $year)->count() + 1;
-        return sprintf('BIN-%s-%05d', $year, $count);
+        $prefix = "BIN-{$year}-";
+        $max = Order::where('order_number', 'like', $prefix.'%')->max('order_number');
+        $next = $max ? ((int) substr($max, strlen($prefix))) + 1 : 1;
+        return sprintf('BIN-%s-%05d', $year, $next);
     }
 
 }
